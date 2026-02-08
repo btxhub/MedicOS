@@ -1,0 +1,33 @@
+version: "3.9"
+
+services:
+  db:
+    image: postgres:15-alpine
+    container_name: medicos-db
+    env_file:
+      - .env.docker
+    volumes:
+      - medicos_db_data:/var/lib/postgresql/data
+    networks:
+      - medicos_net
+
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile.api
+    container_name: medicos-api
+    env_file:
+      - .env.docker
+    depends_on:
+      - db
+    ports:
+      - "3000:3000"
+    networks:
+      - medicos_net
+
+volumes:
+  medicos_db_data:
+
+networks:
+  medicos_net:
+    driver: bridge
