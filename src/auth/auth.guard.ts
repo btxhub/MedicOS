@@ -26,10 +26,17 @@ export class AuthGuard implements CanActivate {
       throw new UnauthorizedException('Token inválido o expirado');
     }
 
-    const user = await this.prisma.user.findUnique({
-      where: { id: payload.sub },
-      include: { roles: true },
-    });
+const user = await this.prisma.user.findUnique({
+  where: { id: payload.sub },
+  include: {
+    roles: {
+      include: {
+        role: true,
+      },
+    },
+  },
+});
+
 
     if (!user) {
       throw new UnauthorizedException('Usuario no encontrado');
@@ -39,7 +46,8 @@ export class AuthGuard implements CanActivate {
       throw new UnauthorizedException('Usuario inactivo');
     }
 
-    request.user = payload;
+    request.user = user;
+
 
 
     return true;

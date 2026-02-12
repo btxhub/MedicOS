@@ -23,8 +23,10 @@ export class RolesGuard implements CanActivate {
       throw new ForbiddenException('Acceso no autorizado');
     }
 
-    const hasRole = requiredRoles.some((role) =>
-      user.roles.includes(role),
+    const userRoles = user.roles.map((ur: any) => ur.role?.key);
+
+    const hasRole = requiredRoles.some(role =>
+      userRoles.includes(role),
     );
 
     if (!hasRole) {
