@@ -31,13 +31,15 @@ async canActivate(context: ExecutionContext): Promise<boolean> {
     where: { id: payload.userId },
   });
 
-  if (!user || !user.isActive) {
-    throw new UnauthorizedException('Usuario inactivo o no encontrado');
+  if (!user) {
+    throw new UnauthorizedException('Usuario no encontrado');
+  }
+
+  if (!user.isActive) {
+    throw new UnauthorizedException('Usuario inactivo');
   }
 
   return true;
-}
-
 }
 
 }
