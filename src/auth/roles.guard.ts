@@ -9,10 +9,7 @@ export class RolesGuard implements CanActivate {
   canActivate(context: ExecutionContext): boolean {
     const requiredRoles = this.reflector.getAllAndOverride<string[]>(
       ROLES_KEY,
-      [
-        context.getHandler(),
-        context.getClass(),
-      ],
+      [context.getHandler(), context.getClass()],
     );
 
     if (!requiredRoles || requiredRoles.length === 0) {
@@ -26,10 +23,8 @@ export class RolesGuard implements CanActivate {
       throw new ForbiddenException('Acceso no autorizado');
     }
 
-    const userRoles = user.roles.map((role: any) => role.name);
-
     const hasRole = requiredRoles.some((role) =>
-      userRoles.includes(role),
+      user.roles.includes(role),
     );
 
     if (!hasRole) {
