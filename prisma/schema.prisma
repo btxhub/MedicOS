@@ -8,12 +8,14 @@ datasource db {
 }
 
 model Doctor {
-  id        String   @id @default(cuid())
+  id        String    @id @default(cuid())
   name      String
   users     User[]
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  patients  Patient[]
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
 }
+
 
 model User {
   id        String   @id @default(cuid())
@@ -52,4 +54,26 @@ model UserRole {
 
   @@id([userId, roleId])
   @@index([roleId])
+}
+
+model Patient {
+  id                 String   @id @default(cuid())
+  doctorId           String
+  doctor             Doctor   @relation(fields: [doctorId], references: [id], onDelete: Cascade)
+
+  nombres            String
+  apellidos          String
+  documentoIdentidad String
+  fechaNacimiento    DateTime
+
+  telefono           String?
+  email              String?
+  direccion          String?
+
+  activo             Boolean  @default(true)
+
+  createdAt          DateTime @default(now())
+  updatedAt          DateTime @updatedAt
+
+  @@index([doctorId])
 }
