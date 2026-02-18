@@ -1,33 +1,31 @@
-version: "3.9"
+version: "3.8"
 
 services:
   db:
     image: postgres:15-alpine
     container_name: medicos-db
-    env_file:
-      - .env.docker
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: medicos
+    ports:
+      - "5432:5432"
     volumes:
-      - medicos_db_data:/var/lib/postgresql/data
-    networks:
-      - medicos_net
+      - medicos_medicos_db_data:/var/lib/postgresql/data
 
   api:
     build:
       context: .
       dockerfile: Dockerfile.api
     container_name: medicos-api
-    env_file:
-      - .env.docker
-    depends_on:
-      - db
+    restart: always
     ports:
       - "3000:3000"
-    networks:
-      - medicos_net
+    depends_on:
+      - db
+    environment:
+      DATABASE_URL: postgresql://postgres:postgres@db:5432/medicos
 
 volumes:
-  medicos_db_data:
-
-networks:
-  medicos_net:
-    driver: bridge
+  medicos_medicos_db_data:
