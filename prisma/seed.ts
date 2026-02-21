@@ -5,12 +5,12 @@ const prisma = new PrismaClient();
 
 async function main() {
   // Crear Doctor con id fijo
-  const doctor = await prisma.doctor.create({
-    data: {
-      id: 'doctor-0001',
-      name: 'Doctor Prueba',
-    },
-  });
+const doctor = await prisma.doctor.create({
+  data: {
+    id: "doctor-0001",
+    name: 'Doctor Prueba',
+  },
+});
 
   // Crear Role
   const role = await prisma.role.create({
@@ -20,26 +20,25 @@ async function main() {
     },
   });
 
-  // Crear User con id fijo y asociado
-  const passwordHash = await bcrypt.hash('Password123', 10);
-  const user = await prisma.user.create({
-    data: {
-      id: 'user-0001',
-      email: 'usuario@prueba.com',
-      name: 'Usuario Prueba',
-      password: passwordHash,
-      isActive: true,
-      doctorId: 'doctor-0001',
-    },
-  });
+// Crear usuario de prueba
+const user = await prisma.user.create({
+  data: {
+    id: "user-test-id",
+    doctorId: "doctor-0001",
+    email: "testuser@medicos.com",
+    name: "Test User",
+    password: await bcrypt.hash("123456", 10),
+    isActive: true,
+  },
+});
 
-  // Asignar Role al User
-  await prisma.userRole.create({
-    data: {
-      userId: 'user-0001',
-      roleId: role.id,
-    },
-  });
+// Asignar Role al User
+await prisma.userRole.create({
+  data: {
+    userId: user.id,
+    roleId: role.id,
+  },
+});
 
   console.log('Datos iniciales genéricos creados con ids fijos');
 }

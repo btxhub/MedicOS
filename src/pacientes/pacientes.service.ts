@@ -1,34 +1,30 @@
-import {
-  BadRequestException,
-  Injectable,
-  InternalServerErrorException,
-} from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { PrismaService } from '../prisma/prisma.service';
 import { CreatePacienteDto } from './dto/create-paciente.dto';
-import { Prisma } from '@prisma/client';
 
 @Injectable()
 export class PacientesService {
   constructor(private prisma: PrismaService) {}
 
   async create(doctorId: string, dto: CreatePacienteDto) {
-    if (!doctorId) {
-      throw new BadRequestException('Doctor inválido.');
-    }
+    return this.prisma.patient.create({
+      data: {
+        ...dto,
+        doctorId,
+      },
+    });
+  }
 
-    try {
-      return await this.prisma.patient.create({
-        data: {
-          doctorId,
-          nombres: dto.nombres,
-          apellidos: dto.apellidos,
-          documentoIdentidad: dto.documentoIdentidad,
-          fechaNacimiento: new Date(dto.fechaNacimiento),
-          telefono: dto.telefono ?? null,
-          email: dto.email ?? null,
-          direccion: dto.direccion ?? null,
-          activo: true,
-        },
+  async findAll(doctorId: string, page: number, limit: number) {
+    const skip = (page - 1) * limit;
+    const take = limit;
+
+    const [data, total] = await Promise.all([
+      this.prisma.patient.findMany({
+        where: { doctorId },
+        orderBy: { createdAt: 'desc' },
+        skip,
+        take,
         select: {
           id: true,
           nombres: true,
@@ -42,17 +38,22 @@ export class PacientesService {
           createdAt: true,
           updatedAt: true,
         },
-      });
-    } catch (error) {
-      if (error instanceof Prisma.PrismaClientKnownRequestError) {
-        throw new BadRequestException(
-          'No se pudo crear el paciente.',
-        );
-      }
+      }),
+      this.prisma.patient.count({
+        where: { doctorId },
+      }),
+    ]);
 
-      throw new InternalServerErrorException(
-        'Error interno al crear el paciente.',
-      );
-    }
+    const totalPages = Math.ceil(total / limit);
+
+    return {
+      data,
+      meta: {
+        total,
+        page,
+        limit,
+        totalPages,
+      },
+    };
   }
 }
