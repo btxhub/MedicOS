@@ -2,6 +2,7 @@ import { Injectable, BadRequestException, NotFoundException, ForbiddenException 
 import { PrismaService } from '../prisma/prisma.service';
 import { CreatePacienteDto } from './dto/create-paciente.dto';
 import { UpdatePacienteDto } from './dto/update-paciente.dto';
+import { UpdateEstadoPacienteDto } from './dto/update-estado-paciente.dto';
 
 @Injectable()
 export class PacientesService {
@@ -89,6 +90,38 @@ export class PacientesService {
         direccion: true,
         activo: true,
         createdAt: true,
+        updatedAt: true,
+      },
+    });
+
+    return actualizado;
+  }
+
+  async updateStatus(id: string, doctorId: string, dto: UpdateEstadoPacienteDto) {
+    if (!dto || typeof dto.activo !== 'boolean') {
+      throw new BadRequestException('Body inválido');
+    }
+
+    const paciente = await this.prisma.patient.findUnique({
+      where: { id },
+    });
+
+    if (!paciente) {
+      throw new NotFoundException('Paciente no encontrado');
+    }
+
+    if (paciente.doctorId !== doctorId) {
+      throw new ForbiddenException('Acceso denegado');
+    }
+
+    const actualizado = await this.prisma.patient.update({
+      where: { id },
+      data: {
+        activo: dto.activo,
+      },
+      select: {
+        id: true,
+        activo: true,
         updatedAt: true,
       },
     });
