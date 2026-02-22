@@ -5,6 +5,8 @@ import {
   HttpCode,
   HttpStatus,
   Post,
+  Put,
+  Param,
   Query,
   Req,
   UseGuards,
@@ -14,6 +16,7 @@ import {
 import { Request } from 'express';
 import { AuthGuard } from '../auth/auth.guard';
 import { CreatePacienteDto } from './dto/create-paciente.dto';
+import { UpdatePacienteDto } from './dto/update-paciente.dto';
 import { PacientesService } from './pacientes.service';
 
 type RequestWithUser = Request & { user?: any };
@@ -66,5 +69,29 @@ export class PacientesController {
     }
 
     return this.pacientesService.findAll(doctorId, page, limit);
+  }
+
+  @UseGuards(AuthGuard)
+  @Put(':id')
+  @HttpCode(HttpStatus.OK)
+  async update(
+    @Param('id') id: string,
+    @Req() req: RequestWithUser,
+    @Body(
+      new ValidationPipe({
+        whitelist: true,
+        forbidNonWhitelisted: true,
+        transform: true,
+      }),
+    )
+    dto: UpdatePacienteDto,
+  ) {
+    if (!id) {
+      throw new BadRequestException('id inválido');
+    }
+
+    const doctorId = req.user?.doctorId;
+
+    return this.pacientesService.update(id, doctorId, dto);
   }
 }
