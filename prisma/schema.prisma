@@ -8,14 +8,15 @@ datasource db {
 }
 
 model Doctor {
-  id        String    @id @default(cuid())
-  name      String
-  users     User[]
-  patients  Patient[]
-  createdAt DateTime  @default(now())
-  updatedAt DateTime  @updatedAt
+  id         String      @id @default(cuid())
+  name       String
+  users      User[]
+  patients   Patient[]
+  hces       HCE[]
+  evolutions Evolution[]
+  createdAt  DateTime    @default(now())
+  updatedAt  DateTime    @updatedAt
 }
-
 
 model User {
   id        String   @id @default(cuid())
@@ -72,8 +73,51 @@ model Patient {
 
   activo             Boolean  @default(true)
 
+  hces               HCE[]
+
   createdAt          DateTime @default(now())
   updatedAt          DateTime @updatedAt
 
   @@index([doctorId])
+}
+
+model HCE {
+  id              String   @id @default(cuid())
+
+  doctorId        String
+  doctor          Doctor   @relation(fields: [doctorId], references: [id], onDelete: Cascade)
+
+  patientId       String
+  patient         Patient  @relation(fields: [patientId], references: [id], onDelete: Cascade)
+
+  motivoConsulta  String?
+  antecedentes    String?
+  diagnostico     String?
+  tratamiento     String?
+
+  evolutions      Evolution[]
+
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  @@index([doctorId])
+  @@index([patientId])
+}
+
+model Evolution {
+  id          String   @id @default(cuid())
+
+  doctorId    String
+  doctor      Doctor   @relation(fields: [doctorId], references: [id], onDelete: Cascade)
+
+  hceId       String
+  hce         HCE      @relation(fields: [hceId], references: [id], onDelete: Cascade)
+
+  notaClinica String
+
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@index([doctorId])
+  @@index([hceId])
 }
