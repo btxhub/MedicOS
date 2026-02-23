@@ -1,15 +1,10 @@
 import { Module } from '@nestjs/common';
 import { HceController } from './hce.controller';
-import { HceService } from './hce.service';
-import { PrismaModule } from '../prisma/prisma.module';
-import { AuthModule } from '../auth/auth.module';
+import { EvolucionesController } from './evoluciones.controller';
+import { PrismaService } from '../prisma/prisma.service';
 
 @Module({
-  imports: [
-    PrismaModule,
-    AuthModule,
-  ],
-  controllers: [HceController],
-  providers: [HceService],
+  controllers: [HceController, EvolucionesController],
+  providers: [PrismaService],
 })
 export class HceModule {}
