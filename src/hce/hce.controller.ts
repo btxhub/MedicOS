@@ -1,27 +1,21 @@
-import { Controller, Post, Body, UseGuards, Req } from '@nestjs/common';
+import { Controller, Post, Body, UseGuards, Req, Param } from '@nestjs/common';
 import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
-import { PrismaService } from '../prisma/prisma.service';
+import { HceService } from './hce.service';
+import { CreateAdjuntoDto } from './dto/create-adjunto.dto';
 
 @Controller('hce')
 @UseGuards(JwtAuthGuard)
 export class HceController {
-  constructor(private readonly prisma: PrismaService) {}
+  constructor(private readonly hceService: HceService) {}
 
-  @Post()
-  async createHce(@Body() body: any, @Req() req) {
-    const doctorId = req.user.id;
-    const created = await this.prisma.hCE.create({
-      data: {
-        patientId: body.patientId,
-        doctorId,
-        motivoConsulta: body.motivoConsulta || '',
-        antecedentes: body.antecedentes || '',
-        diagnostico: body.diagnostico || [],
-        tratamiento: body.tratamiento || [],
-        createdAt: new Date(),
-        updatedAt: new Date(),
-      },
-    });
-    return created;
+  @Post(':id/adjuntos')
+  async createAdjunto(
+    @Param('id') id: string,
+    @Body() dto: CreateAdjuntoDto,
+    @Req() req
+  ) {
+    const doctorId = req.user.doctorId;
+
+    return this.hceService.createAdjunto(id, dto, doctorId);
   }
 }
