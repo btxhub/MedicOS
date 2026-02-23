@@ -14,6 +14,7 @@ model Doctor {
   patients   Patient[]
   hces       HCE[]
   evolutions Evolution[]
+  adjuntos   AdjuntoClinico[]
   createdAt  DateTime    @default(now())
   updatedAt  DateTime    @updatedAt
 }
@@ -96,6 +97,7 @@ model HCE {
   tratamiento     String?
 
   evolutions      Evolution[]
+  adjuntos        AdjuntoClinico[]
 
   createdAt       DateTime @default(now())
   updatedAt       DateTime @updatedAt
@@ -114,6 +116,26 @@ model Evolution {
   hce         HCE      @relation(fields: [hceId], references: [id], onDelete: Cascade)
 
   notaClinica String
+
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@index([doctorId])
+  @@index([hceId])
+}
+
+model AdjuntoClinico {
+  id          String   @id @default(cuid())
+
+  doctorId    String
+  doctor      Doctor   @relation(fields: [doctorId], references: [id], onDelete: Cascade)
+
+  hceId       String
+  hce         HCE      @relation(fields: [hceId], references: [id], onDelete: Cascade)
+
+  nombre      String
+  tipo        String
+  url         String
 
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
