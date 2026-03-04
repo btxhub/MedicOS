@@ -6,8 +6,8 @@ services:
     container_name: medicos-db
     restart: always
     environment:
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: postgres
+      POSTGRES_USER: app_user
+      POSTGRES_PASSWORD: app_password
       POSTGRES_DB: medicos
     ports:
       - "5432:5432"
@@ -25,7 +25,8 @@ services:
     depends_on:
       - db
     environment:
-      DATABASE_URL: postgresql://postgres:postgres@db:5432/medicos
+      DATABASE_URL: postgresql://app_user:app_password@db:5432/medicos
+      JWT_SECRET: medicos_secret_key
 
 volumes:
   medicos_medicos_db_data:
