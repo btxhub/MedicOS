@@ -1,5 +1,5 @@
 generator client {
-  provider = "prisma-client-js"
+  provider      = "prisma-client-js"
   binaryTargets = ["native", "debian-openssl-1.1.x", "linux-musl"]
 }
 
@@ -22,125 +22,34 @@ model Doctor {
 
 model User {
   id        String   @id @default(cuid())
-  doctorId  String
-  doctor    Doctor   @relation(fields: [doctorId], references: [id], onDelete: Restrict)
-
-  email     String
-  name      String
+  email     String   @unique
   password  String
-  isActive  Boolean  @default(true)
-
-  roles     UserRole[]
-
+  doctorId  String
+  doctor    Doctor   @relation(fields: [doctorId], references: [id])
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-
-  @@unique([doctorId, email])
-  @@index([doctorId])
-}
-
-model Role {
-  id        String   @id @default(cuid())
-  key       String   @unique
-  name      String
-  users     UserRole[]
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-}
-
-model UserRole {
-  userId    String
-  roleId    String
-  user      User @relation(fields: [userId], references: [id], onDelete: Cascade)
-  role      Role @relation(fields: [roleId], references: [id], onDelete: Cascade)
-  createdAt DateTime @default(now())
-
-  @@id([userId, roleId])
-  @@index([roleId])
 }
 
 model Patient {
-  id                 String   @id @default(cuid())
-  doctorId           String
-  doctor             Doctor   @relation(fields: [doctorId], references: [id], onDelete: Cascade)
-
-  nombres            String
-  apellidos          String
-  documentoIdentidad String
-  fechaNacimiento    DateTime
-
-  telefono           String?
-  email              String?
-  direccion          String?
-
-  activo             Boolean  @default(true)
-
-  hces               HCE[]
-
-  createdAt          DateTime @default(now())
-  updatedAt          DateTime @updatedAt
-
-  @@index([doctorId])
+  id        String   @id @default(cuid())
+  doctorId  String
+  doctor    Doctor   @relation(fields: [doctorId], references: [id])
 }
 
 model HCE {
-  id              String   @id @default(cuid())
-
-  doctorId        String
-  doctor          Doctor   @relation(fields: [doctorId], references: [id], onDelete: Cascade)
-
-  patientId       String
-  patient         Patient  @relation(fields: [patientId], references: [id], onDelete: Cascade)
-
-  motivoConsulta  String?
-  antecedentes    String?
-  diagnostico     String?
-  tratamiento     String?
-
-  evolutions      Evolution[]
-  adjuntos        AdjuntoClinico[]
-
-  createdAt       DateTime @default(now())
-  updatedAt       DateTime @updatedAt
-
-  @@index([doctorId])
-  @@index([patientId])
+  id        String   @id @default(cuid())
+  doctorId  String
+  doctor    Doctor   @relation(fields: [doctorId], references: [id])
 }
 
 model Evolution {
-  id          String   @id @default(cuid())
-
-  doctorId    String
-  doctor      Doctor   @relation(fields: [doctorId], references: [id], onDelete: Cascade)
-
-  hceId       String
-  hce         HCE      @relation(fields: [hceId], references: [id], onDelete: Cascade)
-
-  notaClinica String
-
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
-
-  @@index([doctorId])
-  @@index([hceId])
+  id        String   @id @default(cuid())
+  doctorId  String
+  doctor    Doctor   @relation(fields: [doctorId], references: [id])
 }
 
 model AdjuntoClinico {
-  id          String   @id @default(cuid())
-
-  doctorId    String
-  doctor      Doctor   @relation(fields: [doctorId], references: [id], onDelete: Cascade)
-
-  hceId       String
-  hce         HCE      @relation(fields: [hceId], references: [id], onDelete: Cascade)
-
-  nombre      String
-  tipo        String
-  url         String
-
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
-
-  @@index([doctorId])
-  @@index([hceId])
+  id        String   @id @default(cuid())
+  doctorId  String
+  doctor    Doctor   @relation(fields: [doctorId], references: [id])
 }
