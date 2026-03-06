@@ -9,15 +9,15 @@ datasource db {
 }
 
 model Doctor {
-  id         String      @id @default(cuid())
+  id         String           @id @default(cuid())
   name       String
-  users      User[]
-  patients   Patient[]
-  hces       HCE[]
-  evolutions Evolution[]
+  createdAt  DateTime         @default(now())
+  updatedAt  DateTime         @updatedAt
   adjuntos   AdjuntoClinico[]
-  createdAt  DateTime    @default(now())
-  updatedAt  DateTime    @updatedAt
+  evolutions Evolution[]
+  hces       HCE[]
+  patients   Patient[]
+  users      User[]
 }
 
 model User {
@@ -25,31 +25,31 @@ model User {
   email     String   @unique
   password  String
   doctorId  String
-  doctor    Doctor   @relation(fields: [doctorId], references: [id])
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+  doctor    Doctor   @relation(fields: [doctorId], references: [id])
 }
 
 model Patient {
-  id        String   @id @default(cuid())
-  doctorId  String
-  doctor    Doctor   @relation(fields: [doctorId], references: [id])
+  id       String @id @default(cuid())
+  doctorId String
+  doctor   Doctor @relation(fields: [doctorId], references: [id])
 }
 
 model HCE {
-  id        String   @id @default(cuid())
-  doctorId  String
-  doctor    Doctor   @relation(fields: [doctorId], references: [id])
+  id       String @id @default(cuid())
+  doctorId String
+  doctor   Doctor @relation(fields: [doctorId], references: [id])
 }
 
 model Evolution {
-  id        String   @id @default(cuid())
-  doctorId  String
-  doctor    Doctor   @relation(fields: [doctorId], references: [id])
+  id       String @id @default(cuid())
+  doctorId String
+  doctor   Doctor @relation(fields: [doctorId], references: [id])
 }
 
 model AdjuntoClinico {
-  id        String   @id @default(cuid())
-  doctorId  String
-  doctor    Doctor   @relation(fields: [doctorId], references: [id])
+  id       String @id @default(cuid())
+  doctorId String
+  doctor   Doctor @relation(fields: [doctorId], references: [id])
 }
