@@ -1,6 +1,8 @@
 generator client {
-  provider      = "prisma-client-js"
-  binaryTargets = ["native", "debian-openssl-1.1.x", "linux-musl"]
+  provider = "prisma-client"
+  output   = "../generated/prisma"
+  engineType = "binary"
+  previewFeatures = ["clientExtensions"]
 }
 
 datasource db {
@@ -17,17 +19,6 @@ model Doctor {
   evolutions Evolution[]
   hces       HCE[]
   patients   Patient[]
-  users      User[]
-}
-
-model User {
-  id        String   @id @default(cuid())
-  email     String   @unique
-  password  String
-  doctorId  String
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  doctor    Doctor   @relation(fields: [doctorId], references: [id])
 }
 
 model Patient {
@@ -53,6 +44,7 @@ model AdjuntoClinico {
   doctorId String
   doctor   Doctor @relation(fields: [doctorId], references: [id])
 }
+
 model User {
   id        String   @id @default(uuid())
   email     String   @unique
@@ -65,19 +57,13 @@ model User {
 model Role {
   id        String   @id @default(uuid())
   name      String   @unique
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
   userRoles UserRole[]
 }
 
 model UserRole {
-  id        String   @id @default(uuid())
-  userId    String
-  roleId    String
-  user      User @relation(fields: [userId], references: [id])
-  role      Role @relation(fields: [roleId], references: [id])
-  createdAt DateTime @default(now())
-
-  @@unique([userId, roleId])
+  id     String @id @default(uuid())
+  userId String
+  roleId String
+  user   User   @relation(fields: [userId], references: [id])
+  role   Role   @relation(fields: [roleId], references: [id])
 }
-
