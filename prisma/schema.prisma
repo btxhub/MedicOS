@@ -53,3 +53,11 @@ model AdjuntoClinico {
   doctorId String
   doctor   Doctor @relation(fields: [doctorId], references: [id])
 }
+model User {
+  id        String   @id @default(uuid())
+  email     String   @unique
+  password  String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
