@@ -3,15 +3,24 @@ import { JwtModule } from "@nestjs/jwt";
 
 import { AuthController } from "./auth.controller";
 import { AuthService } from "./auth.service";
+import { AuthGuard } from "./auth.guard";
+import { RolesGuard } from "./roles.guard";
+
+import { PrismaModule } from "../prisma/prisma.module";
 
 @Module({
   imports: [
+    PrismaModule,
     JwtModule.register({
-      secret: "medicos_jwt_secret",
+      secret: process.env.JWT_SECRET || "supersecret",
       signOptions: { expiresIn: "1h" },
     }),
   ],
   controllers: [AuthController],
-  providers: [AuthService],
+  providers: [
+    AuthService,
+    AuthGuard,
+    RolesGuard,
+  ],
 })
 export class AuthModule {}
