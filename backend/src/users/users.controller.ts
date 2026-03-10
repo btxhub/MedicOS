@@ -1,17 +1,19 @@
-import { Controller, Get, Param } from '@nestjs/common';
+import { Controller, Get, Param, UseGuards } from '@nestjs/common';
+import { AuthGuard } from '../auth/auth.guard';
 import { UsersService } from './users.service';
 
+@UseGuards(AuthGuard)
 @Controller('users')
 export class UsersController {
   constructor(private readonly usersService: UsersService) {}
 
   @Get()
-  async getUsers() {
+  findAll() {
     return this.usersService.findAll();
   }
 
   @Get(':id')
-  async getUser(@Param('id') id: string) {
+  findById(@Param('id') id: string) {
     return this.usersService.findById(id);
   }
 }
