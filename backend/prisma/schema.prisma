@@ -7,30 +7,172 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+model Doctor {
+  idDoc      String   @id @default(uuid())
+  nomDoc     String?
+  apePatDoc  String?
+  apeMatDoc  String?
+  docIdDoc   String?
+  emailDoc   String?
+  celDoc     String?
+  telDoc     String?
+  waDoc      String?
+  dirDoc     String?
+  espDoc     String?
+  licDoc     String?
+  createdDoc DateTime?
+  updatedDoc DateTime?
+}
+
+model Asistente {
+  idAsis      String   @id @default(uuid())
+  refDocAsis  String?
+  nomAsis     String?
+  apePatAsis  String?
+  apeMatAsis  String?
+  docIdAsis   String?
+  emailAsis   String?
+  celAsis     String?
+  telAsis     String?
+  waAsis      String?
+  activoAsis  Boolean?
+  createdAsis DateTime?
+  updatedAsis DateTime?
+}
+
+model Paciente {
+  idPac        String   @id @default(uuid())
+  refDocPac    String?
+  nomPac       String?
+  apePatPac    String?
+  apeMatPac    String?
+  docIdPac     String?
+  fechaNacPac  DateTime?
+  sexoPac      String?
+  celPac       String?
+  telPac       String?
+  waPac        String?
+  emailPac     String?
+  dirPac       String?
+  grupoSangPac String?
+  seguroPac    String?
+  activoPac    Boolean?
+  createdPac   DateTime?
+  updatedPac   DateTime?
+}
+
+model Hce {
+  idHce            String   @id @default(uuid())
+  refDocHce        String?
+  refPacHce        String?
+  fechaHce         DateTime?
+  horaHce          String?
+  motivoHce        String?
+  enfActHce        String?
+  antecedentesHce  String?
+  alergiasHce      String?
+  signosVitHce     String?
+  exploracionHce   String?
+  diagnosticoHce   String?
+  tratamientoHce   String?
+  planHce          String?
+  consentimientoHce String?
+  createdHce       DateTime?
+  updatedHce       DateTime?
+}
+
+model Evolucion {
+  idEvo        String   @id @default(uuid())
+  refHceEvo    String?
+  refDocEvo    String?
+  fechaHoraEvo DateTime?
+  notaEvo      String?
+  signosVitEvo String?
+  tratamientoEvo String?
+  obsEvo       String?
+  createdEvo   DateTime?
+  updatedEvo   DateTime?
+}
+
+model Adjunto {
+  idAdj      String   @id @default(uuid())
+  refHceAdj  String?
+  refDocAdj  String?
+  nombreAdj  String?
+  tipoAdj    String?
+  urlAdj     String?
+  createdAdj DateTime?
+}
+
+model Cita {
+  idCita        String   @id @default(uuid())
+  refDocCita    String?
+  refPacCita    String?
+  tipoCita      String?
+  fechaHoraCita DateTime?
+  estadoCita    String?
+  motivoCita    String?
+  createdCita   DateTime?
+  updatedCita   DateTime?
+}
+
+model Pago {
+  idPago       String   @id @default(uuid())
+  refDocPago   String?
+  refPacPago   String?
+  refCitaPago  String?
+  montoTotPago Float?
+  montoPagPago Float?
+  saldoPago    Float?
+  metodoPago   String?
+  estadoPago   String?
+  fechaPago    DateTime?
+  createdPago  DateTime?
+  updatedPago  DateTime?
+}
+
+model Factura {
+  idFac      String   @id @default(uuid())
+  refPagoFac String?
+  numeroFac  String?
+  fechaFac   DateTime?
+  totalFac   Float?
+  estadoFac  String?
+  createdFac DateTime?
+  updatedFac DateTime?
+}
+
+model Comunicacion {
+  idCom       String   @id @default(uuid())
+  refDocCom   String?
+  refPacCom   String?
+  tipoCom     String?
+  canalCom    String?
+  mensajeCom  String?
+  estadoCom   String?
+  fechaEnvCom DateTime?
+  createdCom  DateTime?
+  updatedCom  DateTime?
+}
+
 model User {
-  id        String     @id @default(uuid())
-  email     String     @unique
-  password  String
-  createdAt DateTime   @default(now())
-  updatedAt DateTime   @updatedAt
-  roles     UserRole[]
+  idUser       String   @id @default(uuid())
+  refDocUser   String?
+  refAsisUser  String?
+  emailUser    String   @unique
+  passHashUser String
+  activoUser   Boolean?
+  createdUser  DateTime?
+  updatedUser  DateTime?
 }
 
-model Role {
-  id        String     @id @default(uuid())
-  name      String     @unique
-  createdAt DateTime   @default(now())
-  updatedAt DateTime
-  users     UserRole[]
-}
-
-model UserRole {
-  id        String   @id @default(uuid())
-  userId    String
-  roleId    String
-  createdAt DateTime @default(now())
-  role      Role     @relation(fields: [roleId], references: [id])
-  user      User     @relation(fields: [userId], references: [id])
-
-  @@unique([userId, roleId])
+model Log {
+  idLog        String   @id @default(uuid())
+  refUserLog   String?
+  accionLog    String?
+  moduloLog    String?
+  entidadLog   String?
+  entidadRefLog String?
+  fechaLog     DateTime?
+  ipLog        String?
 }

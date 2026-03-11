@@ -1,54 +1,63 @@
-import { Injectable, UnauthorizedException } from "@nestjs/common";
-import { JwtService } from "@nestjs/jwt";
-import * as bcrypt from "bcrypt";
-import { PrismaService } from "../prisma/prisma.service";
+import { Injectable, UnauthorizedException } from '@nestjs/common'
+import { PrismaService } from '../prisma/prisma.service'
+import { JwtService } from '@nestjs/jwt'
+import * as bcrypt from 'bcrypt'
 
 @Injectable()
 export class AuthService {
+
   constructor(
-    private readonly prisma: PrismaService,
-    private readonly jwtService: JwtService
+    private prisma: PrismaService,
+    private jwtService: JwtService,
   ) {}
 
   async register(email: string, password: string) {
-    const hashedPassword = await bcrypt.hash(password, 10);
+
+    const passHash = await bcrypt.hash(password, 10)
 
     const user = await this.prisma.user.create({
       data: {
-        email,
-        password: hashedPassword,
-      },
-    });
+        emailUser: email,
+        passHashUser: passHash,
+        activoUser: true
+      }
+    })
 
     return {
-      id: user.id,
-      email: user.email,
-      createdAt: user.createdAt,
-    };
+      id: user.idUser,
+      email: user.emailUser,
+      createdAt: user.createdUser
+    }
+
   }
 
   async login(email: string, password: string) {
+
     const user = await this.prisma.user.findUnique({
-      where: { email },
-    });
+      where: {
+        emailUser: email
+      }
+    })
 
     if (!user) {
-      throw new UnauthorizedException("Credenciales inválidas");
+      throw new UnauthorizedException('Credenciales inválidas')
     }
 
-    const passwordValid = await bcrypt.compare(password, user.password);
+    const passwordValid = await bcrypt.compare(password, user.passHashUser)
 
     if (!passwordValid) {
-      throw new UnauthorizedException("Credenciales inválidas");
+      throw new UnauthorizedException('Credenciales inválidas')
     }
 
     const payload = {
-      sub: user.id,
-      email: user.email,
-    };
+      sub: user.idUser,
+      email: user.emailUser
+    }
 
     return {
-      access_token: this.jwtService.sign(payload),
-    };
+      access_token: this.jwtService.sign(payload)
+    }
+
   }
+
 }
