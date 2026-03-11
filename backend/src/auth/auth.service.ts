@@ -24,9 +24,9 @@ export class AuthService {
     });
 
     return {
-      id: user.idUser,
-      email: user.emailUser,
-      createdAt: user.createdUser,
+      idUser: user.idUser,
+      emailUser: user.emailUser,
+      createdUser: user.createdUser,
     };
   }
 
