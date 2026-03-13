@@ -7,9 +7,51 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+model User {
+  idUser       String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  emailUser    String   @unique
+  passHashUser String
+  activoUser   Boolean? @default(true)
+  createdUser  DateTime? @default(now())
+  updatedUser  DateTime? @default(now())
+  refDocUser   String?  @db.Uuid
+  refAsisUser  String?  @db.Uuid
+
+  @@map("User")
+}
+
+model Doctor {
+  idDoc      String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  telDoc     String?
+  waDoc      String?
+  dirDoc     String?
+  espDoc     String?
+  licDoc     String?
+  createdDoc DateTime? @default(now())
+  updatedDoc DateTime? @default(now())
+
+  @@map("Doctor")
+}
+
+model Paciente {
+  idPac        String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  refDocPac    String?  @db.Uuid
+  telPac       String?
+  waPac        String?
+  emailPac     String?
+  dirPac       String?
+  grupoSangPac String?
+  seguroPac    String?
+  activoPac    Boolean? @default(true)
+  createdPac   DateTime? @default(now())
+  updatedPac   DateTime? @default(now())
+
+  @@map("Paciente")
+}
+
 model Asistente {
-  idAsis      String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  refDocAsis  String?   @db.Uuid
+  idAsis      String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  refDocAsis  String?  @db.Uuid
   nomAsis     String
   apePatAsis  String
   apeMatAsis  String?
@@ -18,120 +60,59 @@ model Asistente {
   celAsis     String?
   telAsis     String?
   waAsis      String?
-  activoAsis  Boolean?  @default(true)
-  createdAsis DateTime? @default(now()) @db.Timestamp(6)
-  updatedAsis DateTime? @default(now()) @db.Timestamp(6)
-  Doctor      Doctor?   @relation(fields: [refDocAsis], references: [idDoc], onDelete: NoAction, onUpdate: NoAction, map: "fk_asistente_doctor")
+  activoAsis  Boolean? @default(true)
+  createdAsis DateTime? @default(now())
+  updatedAsis DateTime? @default(now())
+
+  @@map("Asistente")
 }
 
 model Cita {
-  idCita      String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  refDocCita  String    @db.Uuid
-  refPacCita  String    @db.Uuid
-  fechaCita   DateTime  @db.Date
-  horaCita    DateTime  @db.Time(6)
+  idCita      String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  refDocCita  String   @db.Uuid
+  refPacCita  String   @db.Uuid
+  fechaCita   DateTime
+  horaCita    DateTime
   estadoCita  String?
   motivoCita  String?
   observCita  String?
-  createdCita DateTime? @default(now()) @db.Timestamp(6)
-  updatedCita DateTime? @default(now()) @db.Timestamp(6)
-  Doctor      Doctor    @relation(fields: [refDocCita], references: [idDoc], onDelete: NoAction, onUpdate: NoAction, map: "fk_cita_doctor")
-  Paciente    Paciente  @relation(fields: [refPacCita], references: [idPac], onDelete: NoAction, onUpdate: NoAction, map: "fk_cita_paciente")
-}
+  createdCita DateTime? @default(now())
+  updatedCita DateTime? @default(now())
 
-model Doctor {
-  idDoc      String      @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  nomDoc     String
-  apePatDoc  String
-  apeMatDoc  String?
-  docIdDoc   String?
-  emailDoc   String?
-  celDoc     String?
-  telDoc     String?
-  waDoc      String?
-  dirDoc     String?
-  espDoc     String?
-  licDoc     String?
-  createdDoc DateTime?   @default(now()) @db.Timestamp(6)
-  updatedDoc DateTime?   @default(now()) @db.Timestamp(6)
-  Asistente  Asistente[]
-  Cita       Cita[]
-  HCE        HCE[]
-  Paciente   Paciente[]
-  Receta     Receta[]
+  @@map("Cita")
 }
 
 model HCE {
-  idHce             String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  refDocHce         String    @db.Uuid
-  refPacHce         String    @db.Uuid
-  fechaHce          DateTime? @db.Date
-  horaHce           DateTime? @db.Time(6)
-  motivoHce         String?
-  enfActHce         String?
-  antecedentesHce   String?
-  alergiasHce       String?
+  idHce              String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  refDocHce          String   @db.Uuid
+  refPacHce          String   @db.Uuid
+  motivoHce          String?
+  enfActHce          String?
+  antecedentesHce    String?
+  alergiasHce        String?
   signosVitHce      String?
-  exploracionHce    String?
-  diagnosticoHce    String?
-  tratamientoHce    String?
-  planHce           String?
-  consentimientoHce String?
-  createdHce        DateTime? @default(now()) @db.Timestamp(6)
-  updatedHce        DateTime? @default(now()) @db.Timestamp(6)
-  Doctor            Doctor    @relation(fields: [refDocHce], references: [idDoc], onDelete: NoAction, onUpdate: NoAction, map: "fk_hce_doctor")
-  Paciente          Paciente  @relation(fields: [refPacHce], references: [idPac], onDelete: NoAction, onUpdate: NoAction, map: "fk_hce_paciente")
-  Receta            Receta[]
-}
+  exploracionHce     String?
+  diagnosticoHce     String?
+  tratamientoHce     String?
+  planHce            String?
+  consentimientoHce  String?
+  createdHce         DateTime? @default(now())
+  updatedHce         DateTime? @default(now())
 
-model Paciente {
-  idPac        String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  refDocPac    String?   @db.Uuid
-  nomPac       String
-  apePatPac    String
-  apeMatPac    String?
-  docIdPac     String?
-  fechaNacPac  DateTime? @db.Date
-  sexoPac      String?
-  celPac       String?
-  telPac       String?
-  waPac        String?
-  emailPac     String?
-  dirPac       String?
-  grupoSangPac String?
-  seguroPac    String?
-  activoPac    Boolean?  @default(true)
-  createdPac   DateTime? @default(now()) @db.Timestamp(6)
-  updatedPac   DateTime? @default(now()) @db.Timestamp(6)
-  Cita         Cita[]
-  HCE          HCE[]
-  Doctor       Doctor?   @relation(fields: [refDocPac], references: [idDoc], onDelete: NoAction, onUpdate: NoAction, map: "fk_paciente_doctor")
-  Receta       Receta[]
+  @@map("HCE")
 }
 
 model Receta {
-  idReceta           String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  refDocReceta       String    @db.Uuid
-  refPacReceta       String    @db.Uuid
-  refHceReceta       String?   @db.Uuid
-  fechaReceta        DateTime? @db.Date
+  idReceta           String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  refDocReceta       String   @db.Uuid
+  refPacReceta       String   @db.Uuid
+  refHceReceta       String?  @db.Uuid
+  fechaReceta        DateTime?
   medicamentoReceta  String?
   dosisReceta        String?
   indicacionesReceta String?
-  createdReceta      DateTime? @default(now()) @db.Timestamp(6)
-  updatedReceta      DateTime? @default(now()) @db.Timestamp(6)
-  Doctor             Doctor    @relation(fields: [refDocReceta], references: [idDoc], onDelete: NoAction, onUpdate: NoAction, map: "fk_receta_doctor")
-  HCE                HCE?      @relation(fields: [refHceReceta], references: [idHce], onDelete: NoAction, onUpdate: NoAction, map: "fk_receta_hce")
-  Paciente           Paciente  @relation(fields: [refPacReceta], references: [idPac], onDelete: NoAction, onUpdate: NoAction, map: "fk_receta_paciente")
-}
+  createdReceta      DateTime? @default(now())
+  updatedReceta      DateTime? @default(now())
 
-model User {
-  idUser       String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  emailUser    String    @unique
-  passHashUser String
-  activoUser   Boolean?  @default(true)
-  createdUser  DateTime? @default(now()) @db.Timestamp(6)
-  updatedUser  DateTime? @default(now()) @db.Timestamp(6)
-  refDocUser   String?   @db.Uuid
-  refAsisUser  String?   @db.Uuid
+  @@map("Receta")
 }
