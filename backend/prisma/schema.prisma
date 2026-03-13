@@ -30,6 +30,12 @@ model Doctor {
   createdDoc DateTime? @default(now())
   updatedDoc DateTime? @default(now())
 
+  pacientes  Paciente[]
+  asistentes Asistente[]
+  citas      Cita[]
+  hces       HCE[]
+  recetas    Receta[]
+
   @@map("Doctor")
 }
 
@@ -45,6 +51,11 @@ model Paciente {
   activoPac    Boolean? @default(true)
   createdPac   DateTime? @default(now())
   updatedPac   DateTime? @default(now())
+
+  doctor       Doctor? @relation(fields: [refDocPac], references: [idDoc])
+  citas        Cita[]
+  hces         HCE[]
+  recetas      Receta[]
 
   @@map("Paciente")
 }
@@ -64,6 +75,8 @@ model Asistente {
   createdAsis DateTime? @default(now())
   updatedAsis DateTime? @default(now())
 
+  doctor      Doctor? @relation(fields: [refDocAsis], references: [idDoc])
+
   @@map("Asistente")
 }
 
@@ -79,25 +92,32 @@ model Cita {
   createdCita DateTime? @default(now())
   updatedCita DateTime? @default(now())
 
+  doctor      Doctor   @relation(fields: [refDocCita], references: [idDoc])
+  paciente    Paciente @relation(fields: [refPacCita], references: [idPac])
+
   @@map("Cita")
 }
 
 model HCE {
-  idHce              String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  refDocHce          String   @db.Uuid
-  refPacHce          String   @db.Uuid
-  motivoHce          String?
-  enfActHce          String?
-  antecedentesHce    String?
-  alergiasHce        String?
+  idHce             String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  refDocHce         String   @db.Uuid
+  refPacHce         String   @db.Uuid
+  motivoHce         String?
+  enfActHce         String?
+  antecedentesHce   String?
+  alergiasHce       String?
   signosVitHce      String?
-  exploracionHce     String?
-  diagnosticoHce     String?
-  tratamientoHce     String?
-  planHce            String?
-  consentimientoHce  String?
-  createdHce         DateTime? @default(now())
-  updatedHce         DateTime? @default(now())
+  exploracionHce    String?
+  diagnosticoHce    String?
+  tratamientoHce    String?
+  planHce           String?
+  consentimientoHce String?
+  createdHce        DateTime? @default(now())
+  updatedHce        DateTime? @default(now())
+
+  doctor      Doctor   @relation(fields: [refDocHce], references: [idDoc])
+  paciente    Paciente @relation(fields: [refPacHce], references: [idPac])
+  recetas     Receta[]
 
   @@map("HCE")
 }
@@ -113,6 +133,10 @@ model Receta {
   indicacionesReceta String?
   createdReceta      DateTime? @default(now())
   updatedReceta      DateTime? @default(now())
+
+  doctor      Doctor   @relation(fields: [refDocReceta], references: [idDoc])
+  paciente    Paciente @relation(fields: [refPacReceta], references: [idPac])
+  hce         HCE?     @relation(fields: [refHceReceta], references: [idHce])
 
   @@map("Receta")
 }
