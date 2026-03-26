@@ -1,19 +1,16 @@
-import { Module } from "@nestjs/common";
-import { AppController } from "./app.controller";
-import { AppService } from "./app.service";
-import { AuthModule } from "./auth/auth.module";
-import { UsersModule } from "./users/users.module";
-import { PacientesModule } from "./pacientes/pacientes.module";
-import { IntegracionesModule } from "./modules/integraciones/integraciones.module";
+// REEMPLAZAR TODO EL CONTENIDO DEL ARCHIVO
+import { Module } from '@nestjs/common';
+import { AuthModule } from './auth/auth.module';
+import { PrismaModule } from './prisma/prisma.module';
+import { IntegracionesModule } from './modules/integraciones/integraciones.module';
+import { TraduccionModule } from './core/i18n/traduccion.module';
 
 @Module({
   imports: [
+    PrismaModule,
     AuthModule,
-    UsersModule,
-    PacientesModule,
-    IntegracionesModule
+    IntegracionesModule,
+    TraduccionModule
   ],
-  controllers: [AppController],
-  providers: [AppService],
 })
 export class AppModule {}

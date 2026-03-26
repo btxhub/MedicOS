@@ -7,6 +7,7 @@ export class Paciente {
   dirPac: string | null;
   grupoSangPac: string | null;
   seguroPac: string | null;
+  fotoPac: string | null;
   activoPac: boolean;
   createdPac: Date;
   updatedPac: Date;
