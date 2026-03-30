@@ -1,0 +1,7 @@
+/* ARCHIVO: frontend/src/shared/components/layout-wrapper/layout-wrapper.css */
+
+.layout-wrapper {
+  padding: var(--spacing-lg);
+  max-width: 1200px;
+  margin: 0 auto;
+}

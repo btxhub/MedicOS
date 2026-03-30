@@ -1,0 +1,25 @@
+/* ARCHIVO: frontend/src/shared/components/input/input.css */
+
+.input-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+}
+
+.input-label {
+  font-family: var(--font-family);
+  font-size: var(--font-size-sm);
+  color: var(--color-text);
+}
+
+.input-field {
+  padding: var(--spacing-md);
+  border-radius: var(--radius);
+  border: 1px solid var(--color-border);
+  font-family: var(--font-family);
+}
+
+.input-field:focus {
+  outline: none;
+  border-color: var(--color-primary);
+}

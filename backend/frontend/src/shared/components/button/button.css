@@ -1,0 +1,24 @@
+/* ARCHIVO: frontend/src/shared/components/button/button.css */
+
+.btn {
+  padding: var(--spacing-md);
+  font-family: var(--font-family);
+  border-radius: var(--radius);
+  cursor: pointer;
+  border: none;
+}
+
+.btn-primary {
+  background-color: var(--color-primary);
+  color: var(--color-text-light);
+}
+
+.btn-secondary {
+  background-color: var(--color-secondary);
+  color: var(--color-text-light);
+}
+
+.btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
