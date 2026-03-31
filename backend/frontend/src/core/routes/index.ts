@@ -1,10 +1,8 @@
-export const routes = {
-  root: '/',
-  usuario: '/usuario',
-  paciente: '/paciente',
-  agenda: '/agenda',
-  clinico: '/clinico',
-  suscripcion: '/suscripcion',
-  sistema: '/sistema',
-  publicidad: '/publicidad'
-};
+import { Login, Registro, Perfil, Configuracion } from "@/modules/usuario/pages";
+
+export const routes = [
+  { path: "/login", component: Login },
+  { path: "/registro", component: Registro },
+  { path: "/perfil", component: Perfil },
+  { path: "/configuracion", component: Configuracion },
+];
