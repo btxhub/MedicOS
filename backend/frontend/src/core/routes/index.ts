@@ -1,5 +1,13 @@
+// ARCHIVO: frontend/src/core/routes/index.ts
+
 import { Login, Registro, Perfil, Configuracion } from "@/modules/usuario/pages";
 import { PacienteListPage, PacienteFormPage, PacienteDetailPage } from "@/modules/paciente/pages";
+import {
+  AgendaCalendarPage,
+  AgendaCreatePage,
+  AgendaEditPage,
+  AgendaDetailPage
+} from "@/modules/agenda/pages";
 
 export const routes = [
   { path: "/login", component: Login },
@@ -10,5 +18,10 @@ export const routes = [
   { path: "/pacientes", component: PacienteListPage },
   { path: "/pacientes/nuevo", component: PacienteFormPage },
   { path: "/pacientes/editar", component: PacienteFormPage },
-  { path: "/pacientes/detalle", component: PacienteDetailPage }
+  { path: "/pacientes/detalle", component: PacienteDetailPage },
+
+  { path: "/agenda", component: AgendaCalendarPage },
+  { path: "/agenda/nuevo", component: AgendaCreatePage },
+  { path: "/agenda/editar", component: AgendaEditPage },
+  { path: "/agenda/detalle", component: AgendaDetailPage }
 ];

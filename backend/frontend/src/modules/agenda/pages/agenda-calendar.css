@@ -1,0 +1,32 @@
+/* ARCHIVO: frontend/src/modules/agenda/pages/agenda-calendar.css */
+
+.agenda-calendar-container {
+  padding: var(--spacing-md);
+}
+
+.agenda-calendar-title {
+  font-size: var(--font-size-xl);
+  color: var(--color-primary);
+  margin-bottom: var(--spacing-md);
+}
+
+.agenda-calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: var(--spacing-md);
+}
+
+.agenda-calendar-card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+}
+
+.agenda-calendar-date {
+  font-weight: 600;
+  color: var(--color-text-primary);
+}
+
+.agenda-calendar-event {
+  color: var(--color-text-secondary);
+}
