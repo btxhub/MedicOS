@@ -1,0 +1,23 @@
+/* ARCHIVO: frontend/src/modules/hce/pages/hce-create.css */
+
+.hce-create-container {
+  padding: var(--spacing-lg);
+}
+
+.hce-create-title {
+  font-size: var(--font-size-lg);
+  color: var(--color-text-primary);
+  margin-bottom: var(--spacing-md);
+}
+
+.hce-create-form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+}
+
+.hce-create-actions {
+  display: flex;
+  gap: var(--spacing-sm);
+  margin-top: var(--spacing-md);
+}

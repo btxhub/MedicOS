@@ -1,2 +1,4 @@
-export * as usuario from './usuario';
+// ARCHIVO: frontend/src/modules/index.ts
+
 export * as paciente from './paciente';
+export * as hce from './hce';
