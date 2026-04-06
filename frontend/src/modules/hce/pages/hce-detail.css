@@ -1,0 +1,21 @@
+/* ARCHIVO: frontend/src/modules/hce/pages/hce-detail.css */
+
+.hce-detail-container {
+  padding: var(--spacing-lg);
+}
+
+.hce-detail-title {
+  font-size: var(--font-size-lg);
+  color: var(--color-text-primary);
+  margin-bottom: var(--spacing-md);
+}
+
+.hce-detail-section {
+  margin-bottom: var(--spacing-md);
+}
+
+.hce-detail-section h3 {
+  font-size: var(--font-size-md);
+  color: var(--color-text-secondary);
+  margin-bottom: var(--spacing-xs);
+}

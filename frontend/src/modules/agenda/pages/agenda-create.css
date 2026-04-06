@@ -1,0 +1,17 @@
+/* ARCHIVO: frontend/src/modules/agenda/pages/agenda-create.css */
+
+.agenda-create-container {
+  padding: var(--spacing-md);
+}
+
+.agenda-create-title {
+  font-size: var(--font-size-xl);
+  color: var(--color-primary);
+  margin-bottom: var(--spacing-md);
+}
+
+.agenda-create-form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+}

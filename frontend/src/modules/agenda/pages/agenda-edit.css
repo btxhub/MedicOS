@@ -1,0 +1,17 @@
+/* ARCHIVO: frontend/src/modules/agenda/pages/agenda-edit.css */
+
+.agenda-edit-container {
+  padding: var(--spacing-md);
+}
+
+.agenda-edit-title {
+  font-size: var(--font-size-xl);
+  color: var(--color-primary);
+  margin-bottom: var(--spacing-md);
+}
+
+.agenda-edit-form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+}

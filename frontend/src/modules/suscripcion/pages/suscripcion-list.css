@@ -1,0 +1,111 @@
+.suscripcion-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-lg);
+}
+
+.suscripcion-list__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.suscripcion-list__eyebrow {
+  font-size: 12px;
+  color: var(--color-text-muted);
+  margin-bottom: 4px;
+}
+
+.suscripcion-list__title {
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--color-text-primary);
+}
+
+.suscripcion-list__subtitle {
+  font-size: 13px;
+  color: var(--color-text-secondary);
+}
+
+.suscripcion-list__card {
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: var(--spacing-md);
+}
+
+.suscripcion-list__card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--spacing-md);
+}
+
+.suscripcion-list__card-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--color-text-primary);
+}
+
+.suscripcion-list__count {
+  font-size: 12px;
+  color: var(--color-text-muted);
+}
+
+.suscripcion-list__table-wrapper {
+  overflow-x: auto;
+}
+
+.suscripcion-list__table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+
+.suscripcion-list__table th {
+  text-align: left;
+  padding: 10px;
+  border-bottom: 1px solid var(--color-border);
+  color: var(--color-text-muted);
+  font-weight: 500;
+}
+
+.suscripcion-list__table td {
+  padding: 10px;
+  border-bottom: 1px solid var(--color-border);
+  color: var(--color-text-primary);
+}
+
+.suscripcion-list__table tr:hover {
+  background-color: var(--color-hover);
+}
+
+.suscripcion-list__badge {
+  padding: 4px 8px;
+  border-radius: var(--radius-sm);
+  font-size: 11px;
+  font-weight: 500;
+  display: inline-block;
+}
+
+/* Estados */
+
+.suscripcion-list__badge--activa {
+  background-color: var(--color-success-bg);
+  color: var(--color-success);
+}
+
+.suscripcion-list__badge--vencida {
+  background-color: var(--color-danger-bg);
+  color: var(--color-danger);
+}
+
+.suscripcion-list__badge--pendiente {
+  background-color: var(--color-warning-bg);
+  color: var(--color-warning);
+}
+
+.suscripcion-list__badge--suspendida {
+  background-color: var(--color-muted-bg);
+  color: var(--color-text-muted);
+}

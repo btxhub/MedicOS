@@ -1,0 +1,26 @@
+/* ARCHIVO: frontend/src/shared/components/select/select.css */
+
+.select-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+}
+
+.select-label {
+  font-family: var(--font-family);
+  font-size: var(--font-size-sm);
+  color: var(--color-text);
+}
+
+.select-field {
+  padding: var(--spacing-md);
+  border-radius: var(--radius);
+  border: 1px solid var(--color-border);
+  font-family: var(--font-family);
+  background-color: var(--color-background);
+}
+
+.select-field:focus {
+  outline: none;
+  border-color: var(--color-primary);
+}

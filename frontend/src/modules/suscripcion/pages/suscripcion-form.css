@@ -1,0 +1,94 @@
+.suscripcion-form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-lg);
+}
+
+.suscripcion-form__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.suscripcion-form__eyebrow {
+  font-size: 12px;
+  color: var(--color-text-muted);
+  margin-bottom: 4px;
+}
+
+.suscripcion-form__title {
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--color-text-primary);
+}
+
+.suscripcion-form__subtitle {
+  font-size: 13px;
+  color: var(--color-text-secondary);
+}
+
+.suscripcion-form__card {
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: var(--spacing-md);
+}
+
+.suscripcion-form__form {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: var(--spacing-md);
+}
+
+.suscripcion-form__group {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.suscripcion-form__group label {
+  font-size: 12px;
+  color: var(--color-text-muted);
+}
+
+.suscripcion-form__group input,
+.suscripcion-form__group select {
+  padding: 8px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--color-border);
+  background-color: var(--color-background);
+  color: var(--color-text-primary);
+  font-size: 13px;
+}
+
+.suscripcion-form__group input:focus,
+.suscripcion-form__group select:focus {
+  outline: none;
+  border-color: var(--color-primary);
+}
+
+.suscripcion-form__actions {
+  grid-column: 1 / -1;
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--spacing-sm);
+  margin-top: var(--spacing-md);
+}
+
+.suscripcion-form__btn {
+  padding: 8px 14px;
+  border-radius: var(--radius-sm);
+  font-size: 13px;
+  border: none;
+  cursor: pointer;
+}
+
+.suscripcion-form__btn.primary {
+  background-color: var(--color-primary);
+  color: var(--color-on-primary);
+}
+
+.suscripcion-form__btn.secondary {
+  background-color: var(--color-muted-bg);
+  color: var(--color-text-primary);
+}

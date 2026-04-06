@@ -1,0 +1,11 @@
+/* ARCHIVO: frontend/src/modules/agenda/pages/agenda-detail.css */
+
+.agenda-detail-container {
+  padding: var(--spacing-md);
+}
+
+.agenda-detail-title {
+  font-size: var(--font-size-xl);
+  color: var(--color-primary);
+  margin-bottom: var(--spacing-md);
+}

@@ -1,0 +1,86 @@
+.suscripcion-pagos {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-lg);
+}
+
+.suscripcion-pagos__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.suscripcion-pagos__eyebrow {
+  font-size: 12px;
+  color: var(--color-text-muted);
+  margin-bottom: 4px;
+}
+
+.suscripcion-pagos__title {
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--color-text-primary);
+}
+
+.suscripcion-pagos__subtitle {
+  font-size: 13px;
+  color: var(--color-text-secondary);
+}
+
+.suscripcion-pagos__card {
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: var(--spacing-md);
+}
+
+.suscripcion-pagos__table-wrapper {
+  overflow-x: auto;
+}
+
+.suscripcion-pagos__table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+
+.suscripcion-pagos__table th {
+  text-align: left;
+  padding: 10px;
+  border-bottom: 1px solid var(--color-border);
+  color: var(--color-text-muted);
+}
+
+.suscripcion-pagos__table td {
+  padding: 10px;
+  border-bottom: 1px solid var(--color-border);
+  color: var(--color-text-primary);
+}
+
+.suscripcion-pagos__table tr:hover {
+  background-color: var(--color-hover);
+}
+
+.suscripcion-pagos__badge {
+  padding: 4px 8px;
+  border-radius: var(--radius-sm);
+  font-size: 11px;
+  font-weight: 500;
+}
+
+/* Estados */
+
+.suscripcion-pagos__badge.pagado {
+  background-color: var(--color-success-bg);
+  color: var(--color-success);
+}
+
+.suscripcion-pagos__badge.pendiente {
+  background-color: var(--color-warning-bg);
+  color: var(--color-warning);
+}
+
+.suscripcion-pagos__badge.fallido {
+  background-color: var(--color-danger-bg);
+  color: var(--color-danger);
+}
