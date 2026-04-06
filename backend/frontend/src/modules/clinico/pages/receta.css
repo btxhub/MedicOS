@@ -1,0 +1,19 @@
+/* ARCHIVO: frontend/src/modules/clinico/pages/receta.css */
+
+.receta-container {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+}
+
+.receta-form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+}
+
+.receta-historial {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+}
