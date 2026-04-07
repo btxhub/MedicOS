@@ -1,4 +1,4 @@
-// ARCHIVO: src/modules/agenda/pages/AgendaCalendarPage.tsx
+// ARCHIVO: frontend/src/modules/agenda/pages/AgendaCalendarPage.tsx
 
 import { ContentLayout } from '@/shared/layouts/ContentLayout';
 import { Card } from '@/shared/components';

@@ -1,17 +1,18 @@
-import { routes } from "@/core/routes";
+// ARCHIVO: src/App.tsx
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { PublicidadListPage, PublicidadFormPage, PublicidadPagosPage } from '@/modules/publicidad/pages';
 
-function App() {
-  const currentPath = window.location.pathname;
-
-  const route = routes.find(r => r.path === currentPath);
-
-  if (!route) {
-    return <div>404</div>;
-  }
-
-  const Component = route.component;
-
-  return <Component />;
-}
+export const App: React.FC = () => {
+  return (
+    <Router>
+      <Routes>
+        <Route path="/publicidad/listado" element={<PublicidadListPage />} />
+        <Route path="/publicidad/crear" element={<PublicidadFormPage />} />
+        <Route path="/publicidad/pagos" element={<PublicidadPagosPage />} />
+      </Routes>
+    </Router>
+  );
+};
 
 export default App;

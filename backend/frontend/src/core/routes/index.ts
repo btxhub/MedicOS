@@ -18,6 +18,12 @@ import {
   AdjuntosPage
 } from "@/modules/clinico/pages";
 
+import {
+  PublicidadListPage,
+  PublicidadFormPage,
+  PublicidadPagosPage
+} from "@/modules/publicidad/pages";
+
 export const routes = [
   { path: "/login", component: Login },
   { path: "/registro", component: Registro },
@@ -40,5 +46,10 @@ export const routes = [
   { path: "/clinico/receta", component: RecetaPage },
   { path: "/clinico/signos-vitales", component: SignosVitalesPage },
   { path: "/clinico/evolucion", component: EvolucionPage },
-  { path: "/clinico/adjuntos", component: AdjuntosPage }
+  { path: "/clinico/adjuntos", component: AdjuntosPage },
+
+  // PUBLICIDAD
+  { path: "/publicidad/listado", component: PublicidadListPage },
+  { path: "/publicidad/crear", component: PublicidadFormPage },
+  { path: "/publicidad/pagos", component: PublicidadPagosPage }
 ];
