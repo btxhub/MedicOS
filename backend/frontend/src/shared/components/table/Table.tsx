@@ -1,7 +1,4 @@
-import './table.css';
-// ARCHIVO: frontend/src/shared/components/table/Table.tsx
-
-import React from 'react';
+// ARCHIVO: src/shared/components/table/Table.tsx
 
 interface Column {
   key: string;
@@ -10,13 +7,11 @@ interface Column {
 
 interface TableProps {
   columns: Column[];
-  data: Record<string, string>[];
+  data: any[];
+  onRowClick?: (row: any) => void;
 }
 
-export const Table: React.FC<TableProps> = ({
-  columns,
-  data,
-}) => {
+export const Table = ({ columns, data, onRowClick }: TableProps) => {
   return (
     <table className="table">
       <thead>
@@ -28,7 +23,11 @@ export const Table: React.FC<TableProps> = ({
       </thead>
       <tbody>
         {data.map((row, idx) => (
-          <tr key={idx}>
+          <tr
+            key={idx}
+            onClick={() => onRowClick && onRowClick(row)}
+            style={{ cursor: onRowClick ? "pointer" : "default" }}
+          >
             {columns.map((col) => (
               <td key={col.key}>{row[col.key]}</td>
             ))}

@@ -1,39 +1,39 @@
-import { ContentLayout } from '@/shared/layouts/ContentLayout';
-import { Card, Input, Select, Button } from '@/shared/components/index';
+// ARCHIVO: src/modules/publicidad/pages/PublicidadFormPage.tsx
 
-export default function PublicidadFormPage() {
+import { ContentLayout } from "@/shared/layouts/ContentLayout";
+import { Card, Input, Select, Button } from "@/shared/components";
+
+export const PublicidadFormPage = () => {
   return (
     <ContentLayout>
       <Card>
         <h2>Crear / Editar anuncio</h2>
 
-        <Input label="Título" value="Banner principal" />
-        <Input label="Descripción" value="Promoción destacada" />
+        <Input label="Título" />
+        <Input label="Descripción" />
 
         <Select
           label="Tipo"
-          value="banner"
           options={[
-            { label: 'Banner', value: 'banner' },
-            { label: 'Popup', value: 'popup' },
+            { label: "Banner", value: "banner" },
+            { label: "Popup", value: "popup" },
           ]}
         />
 
-        <Input label="URLs" value="https://example.com" />
-        <Input label="Fecha inicio" value="01/04/2026" />
-        <Input label="Fecha fin" value="30/04/2026" />
+        <Input label="URLs" />
+        <Input label="Fecha inicio" />
+        <Input label="Fecha fin" />
 
         <Select
           label="Ubicación"
-          value="home"
           options={[
-            { label: 'Home', value: 'home' },
-            { label: 'Checkout', value: 'checkout' },
+            { label: "Home", value: "home" },
+            { label: "Sidebar", value: "sidebar" },
           ]}
         />
 
-        <Button>Guardar</Button>
+        <Button label="Guardar" />
       </Card>
     </ContentLayout>
   );
-}
+};

@@ -1,2 +1,4 @@
 // ARCHIVO: src/modules/index.ts
-export * as publicidad from './publicidad';
+
+export * as publicidad from "./publicidad";
+export * as sistema from "./sistema";

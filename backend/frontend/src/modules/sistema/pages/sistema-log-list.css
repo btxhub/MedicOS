@@ -1,0 +1,11 @@
+.sistema-log-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-lg);
+}
+
+.sistema-log-list .filters {
+  display: flex;
+  gap: var(--spacing-md);
+  flex-wrap: wrap;
+}

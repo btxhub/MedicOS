@@ -1,35 +1,28 @@
-import { ContentLayout } from '@/shared/layouts/ContentLayout';
-import { Card, Table } from '@/shared/components/index';
+// ARCHIVO: src/modules/publicidad/pages/PublicidadPagosPage.tsx
 
-export default function PublicidadPagosPage() {
+import { ContentLayout } from "@/shared/layouts/ContentLayout";
+import { Card, Table } from "@/shared/components";
+
+export const PublicidadPagosPage = () => {
   const columns = [
-    { key: 'monto', label: 'Monto' },
-    { key: 'fecha', label: 'Fecha' },
-    { key: 'metodo', label: 'Método' },
-    { key: 'estado', label: 'Estado' },
+    { key: "fecha", label: "Fecha" },
+    { key: "monto", label: "Monto" },
+    { key: "estado", label: "Estado" },
   ];
 
   const data = [
     {
-      monto: '$100',
-      fecha: '01/04/2026',
-      metodo: 'Tarjeta',
-      estado: 'Pagado',
-    },
-    {
-      monto: '$50',
-      fecha: '05/04/2026',
-      metodo: 'Transferencia',
-      estado: 'Pendiente',
+      fecha: "2026-04-07",
+      monto: "100 Bs",
+      estado: "Pagado",
     },
   ];
 
   return (
     <ContentLayout>
       <Card>
-        <h2>Gestión de pagos publicitarios</h2>
         <Table columns={columns} data={data} />
       </Card>
     </ContentLayout>
   );
-}
+};

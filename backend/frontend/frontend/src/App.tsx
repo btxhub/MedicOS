@@ -1,6 +1,6 @@
 // ARCHIVO: frontend/src/App.tsx
 
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 
 import {
   PublicidadListPage,
@@ -17,6 +17,9 @@ function App() {
   return (
     <Router>
       <Routes>
+        {/* DEFAULT */}
+        <Route path="/" element={<Navigate to="/sistema/logs" />} />
+
         {/* PUBLICIDAD */}
         <Route path="/publicidad/listado" element={<PublicidadListPage />} />
         <Route path="/publicidad/crear" element={<PublicidadFormPage />} />
