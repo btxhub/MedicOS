@@ -1,13 +1,9 @@
-import { ReactNode } from "react";
+import React from 'react';
 
-interface ContentLayoutProps {
-  children: ReactNode;
-}
-
-export const ContentLayout = ({ children }: ContentLayoutProps) => {
+export function ContentLayout({ children }: { children: React.ReactNode }) {
   return (
-    <div>
+    <div style={{ padding: '16px' }}>
       {children}
     </div>
   );
-};
+}

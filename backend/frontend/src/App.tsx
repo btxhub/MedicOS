@@ -13,6 +13,12 @@ import {
   SistemaLogDetailPage,
 } from "@/modules/sistema/pages";
 
+import {
+  IntegracionesEmailPage,
+  IntegracionesWhatsappPage,
+  IntegracionesCalendarPage
+} from "@/modules/integraciones/pages";
+
 function App() {
   return (
     <Router>
@@ -28,6 +34,11 @@ function App() {
         {/* SISTEMA LOG */}
         <Route path="/sistema/logs" element={<SistemaLogListPage />} />
         <Route path="/sistema/logs/:id" element={<SistemaLogDetailPage />} />
+
+        {/* INTEGRACIONES */}
+        <Route path="/integraciones/email" element={<IntegracionesEmailPage />} />
+        <Route path="/integraciones/whatsapp" element={<IntegracionesWhatsappPage />} />
+        <Route path="/integraciones/calendario" element={<IntegracionesCalendarPage />} />
       </Routes>
     </Router>
   );

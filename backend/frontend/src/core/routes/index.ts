@@ -24,6 +24,12 @@ import {
   PublicidadPagosPage
 } from "@/modules/publicidad/pages";
 
+import {
+  IntegracionesEmailPage,
+  IntegracionesWhatsappPage,
+  IntegracionesCalendarPage
+} from "@/modules/integraciones/pages";
+
 export const routes = [
   { path: "/login", component: Login },
   { path: "/registro", component: Registro },
@@ -51,5 +57,10 @@ export const routes = [
   // PUBLICIDAD
   { path: "/publicidad/listado", component: PublicidadListPage },
   { path: "/publicidad/crear", component: PublicidadFormPage },
-  { path: "/publicidad/pagos", component: PublicidadPagosPage }
+  { path: "/publicidad/pagos", component: PublicidadPagosPage },
+
+  // INTEGRACIONES
+  { path: "/integraciones/email", component: IntegracionesEmailPage },
+  { path: "/integraciones/whatsapp", component: IntegracionesWhatsappPage },
+  { path: "/integraciones/calendario", component: IntegracionesCalendarPage }
 ];
