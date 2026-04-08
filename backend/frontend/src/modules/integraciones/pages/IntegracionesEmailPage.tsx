@@ -5,16 +5,15 @@ export default function IntegracionesEmailPage() {
   return (
     <ContentLayout>
       <Card>
-        <h2>Envío de Email</h2>
-
-        <Input label="Destinatario" placeholder="Destinatario" />
-        <Input label="Asunto" placeholder="Asunto" />
-
-        <textarea
-          placeholder="Mensaje"
-          style={{ width: '100%', minHeight: '120px' }}
-        />
-
+        <div className="form-group">
+          <Input label="Destinatario" />
+        </div>
+        <div className="form-group">
+          <Input label="Asunto" />
+        </div>
+        <div className="form-group">
+          <textarea className="textarea" placeholder="Mensaje"></textarea>
+        </div>
         <Button label="Enviar" />
       </Card>
     </ContentLayout>

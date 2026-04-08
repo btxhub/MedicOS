@@ -5,8 +5,6 @@ export default function IntegracionesCalendarPage() {
   return (
     <ContentLayout>
       <Card>
-        <h2>Calendario</h2>
-
         <Table
           columns={[
             { key: 'fecha', label: 'Fecha' },
