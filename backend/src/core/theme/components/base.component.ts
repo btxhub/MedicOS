@@ -1,17 +1,14 @@
-// REEMPLAZAR TODO EL CONTENIDO DEL ARCHIVO
+// ARCHIVO: src/core/theme/components/base.component.ts
+
 import { Injectable } from '@nestjs/common';
-import { themeConfig } from '../theme.config';
-import { TraduccionService } from '../i18n/traduccion.service';
 
 @Injectable()
 export class BaseComponent {
-  constructor(private readonly traduccionService: TraduccionService) {}
-
   getColor(key: string): string {
-    return themeConfig.colors[key] || '';
+    return '';
   }
 
-  getTexto(clave: string, idioma: string): Promise<string> {
-    return this.traduccionService.getValor(clave, idioma);
+  async getTexto(clave: string, idioma: string): Promise<string> {
+    return '';
   }
 }

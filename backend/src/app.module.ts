@@ -1,16 +1,13 @@
-// REEMPLAZAR TODO EL CONTENIDO DEL ARCHIVO
 import { Module } from '@nestjs/common';
-import { AuthModule } from './auth/auth.module';
-import { PrismaModule } from './prisma/prisma.module';
 import { IntegracionesModule } from './modules/integraciones/integraciones.module';
 import { TraduccionModule } from './core/i18n/traduccion.module';
+import { SistemaModule } from './modules/sistema/sistema.module';
 
 @Module({
   imports: [
-    PrismaModule,
-    AuthModule,
     IntegracionesModule,
-    TraduccionModule
+    TraduccionModule,
+    SistemaModule
   ],
 })
 export class AppModule {}

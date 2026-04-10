@@ -1,1 +1,3 @@
-export * from './pages';
+// ARCHIVO: src/modules/publicidad/index.ts
+
+export {};

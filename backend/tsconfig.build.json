@@ -2,9 +2,10 @@
   "extends": "./tsconfig.json",
   "exclude": [
     "node_modules",
-    "dist",
     "test",
+    "dist",
     "**/*spec.ts",
-    "test-register.ts"
+    "**/_legacy*",
+    "frontend"
   ]
 }

@@ -1,3 +1,7 @@
-export interface WhatsappService {
-  sendMessage(to: string, content: string): Promise<void>;
+export class WhatsappService {
+
+  async sendMessage(to: string, message: string): Promise<void> {
+    console.log('WHATSAPP', { to, message });
+  }
+
 }

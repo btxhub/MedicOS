@@ -11,8 +11,8 @@ export class IntegracionesController {
   ) {}
 
   @Post('email')
-  async sendEmail(@Body() body: { to: string; subject: string; body: string }) {
-    return this.sendEmailUseCase.execute(body.to, body.subject, body.body);
+  async sendEmail(@Body() body: { to: string; subject: string; content: string }) {
+    return this.sendEmailUseCase.execute(body.to, body.subject, body.content);
   }
 
   @Post('whatsapp')
