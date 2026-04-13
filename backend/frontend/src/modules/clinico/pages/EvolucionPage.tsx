@@ -1,8 +1,8 @@
 // ARCHIVO: src/modules/clinico/pages/EvolucionPage.tsx
 
 import React from "react";
-import { Card, Input, Button } from "../../../shared/components";
-import { ContentLayout } from "../../../shared/layouts/ContentLayout";
+import { Card, Input, Button } from "@/shared/components";
+import { ContentLayout } from "@/shared/layouts/ContentLayout";
 import "../pages/evolucion.css";
 
 export const EvolucionPage: React.FC = () => {

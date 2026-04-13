@@ -1,8 +1,8 @@
 // ARCHIVO: src/modules/clinico/pages/AdjuntosPage.tsx
 
 import React from "react";
-import { Card, Button, Modal } from "../../../shared/components";
-import { ContentLayout } from "../../../shared/layouts/ContentLayout";
+import { Card, Button, Modal } from "@/shared/components";
+import { ContentLayout } from "@/shared/layouts/ContentLayout";
 import "../pages/adjuntos.css";
 
 export const AdjuntosPage: React.FC = () => {

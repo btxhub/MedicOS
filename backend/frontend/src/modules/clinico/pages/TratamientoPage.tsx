@@ -1,8 +1,8 @@
 // ARCHIVO: src/modules/clinico/pages/TratamientoPage.tsx
 
 import React from "react";
-import { Card, Input, Button } from "../../../shared/components";
-import { ContentLayout } from "../../../shared/layouts/ContentLayout";
+import { Card, Input, Button } from "@/shared/components";
+import { ContentLayout } from "@/shared/layouts/ContentLayout";
 import "../pages/tratamiento.css";
 
 export const TratamientoPage: React.FC = () => {

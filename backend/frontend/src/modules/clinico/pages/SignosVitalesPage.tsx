@@ -1,8 +1,8 @@
 // ARCHIVO: src/modules/clinico/pages/SignosVitalesPage.tsx
 
 import React from "react";
-import { Card, Input, Button } from "../../../shared/components";
-import { ContentLayout } from "../../../shared/layouts/ContentLayout";
+import { Card, Input, Button } from "@/shared/components";
+import { ContentLayout } from "@/shared/layouts/ContentLayout";
 import "../pages/signos-vitales.css";
 
 export const SignosVitalesPage: React.FC = () => {
