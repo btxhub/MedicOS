@@ -1,11 +1,9 @@
-// ARCHIVO: src/modules/paciente/application/use-cases/create-antecedente.usecase.ts
-import type { Antecedente } from '../../domain/entities/antecedente.entity';
-import type { AntecedenteRepository } from '../../domain/repositories/antecedente.repository';
+import { PacienteRepository } from "../../domain/repositories/paciente.repository";
 
 export class CreateAntecedenteUseCase {
-  constructor(private readonly antecedenteRepository: AntecedenteRepository) {}
+  constructor(private readonly pacienteRepository: PacienteRepository) {}
 
-  create(entity: Antecedente): Promise<Antecedente> {
-    return this.antecedenteRepository.save(entity);
+  async execute(data: unknown) {
+    return this.pacienteRepository.createAntecedente(data);
   }
 }

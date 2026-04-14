@@ -1,11 +1,9 @@
-// ARCHIVO: src/modules/paciente/application/use-cases/get-paciente-contacto-by-id.usecase.ts
-import type { PacienteContacto } from '../../domain/entities/paciente-contacto.entity';
-import type { PacienteContactoRepository } from '../../domain/repositories/paciente-contacto.repository';
+import { PacienteRepository } from "../../domain/repositories/paciente.repository";
 
 export class GetPacienteContactoByIdUseCase {
-  constructor(private readonly pacienteContactoRepository: PacienteContactoRepository) {}
+  constructor(private readonly pacienteRepository: PacienteRepository) {}
 
-  execute(id: string): Promise<PacienteContacto | null> {
-    return this.pacienteContactoRepository.findById(id);
+  async execute(id: string) {
+    return this.pacienteRepository.findContactoById(id);
   }
 }

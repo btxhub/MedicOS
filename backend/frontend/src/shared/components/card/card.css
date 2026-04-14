@@ -1,8 +1,0 @@
-/* ARCHIVO: frontend/src/shared/components/card/card.css */
-
-.card {
-  padding: var(--spacing-lg);
-  border-radius: var(--radius);
-  background-color: var(--color-surface);
-  box-shadow: var(--shadow-sm);
-}

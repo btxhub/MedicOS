@@ -1,11 +1,9 @@
-// ARCHIVO: src/modules/paciente/application/use-cases/update-antecedente.usecase.ts
-import type { Antecedente } from '../../domain/entities/antecedente.entity';
-import type { AntecedenteRepository } from '../../domain/repositories/antecedente.repository';
+import { PacienteRepository } from "../../domain/repositories/paciente.repository";
 
 export class UpdateAntecedenteUseCase {
-  constructor(private readonly antecedenteRepository: AntecedenteRepository) {}
+  constructor(private readonly pacienteRepository: PacienteRepository) {}
 
-  update(entity: Antecedente): Promise<Antecedente> {
-    return this.antecedenteRepository.update(entity);
+  async execute(id: string, data: unknown) {
+    return this.pacienteRepository.updateAntecedente(id, data);
   }
 }

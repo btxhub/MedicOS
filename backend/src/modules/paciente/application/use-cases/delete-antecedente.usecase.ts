@@ -1,10 +1,9 @@
-// ARCHIVO: src/modules/paciente/application/use-cases/delete-antecedente.usecase.ts
-import type { AntecedenteRepository } from '../../domain/repositories/antecedente.repository';
+import { PacienteRepository } from "../../domain/repositories/paciente.repository";
 
 export class DeleteAntecedenteUseCase {
-  constructor(private readonly antecedenteRepository: AntecedenteRepository) {}
+  constructor(private readonly pacienteRepository: PacienteRepository) {}
 
-  delete(id: string): Promise<void> {
-    return this.antecedenteRepository.delete(id);
+  async execute(id: string) {
+    return this.pacienteRepository.deleteAntecedente(id);
   }
 }

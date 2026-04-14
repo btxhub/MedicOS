@@ -1,11 +1,9 @@
-// ARCHIVO: src/modules/paciente/application/use-cases/update-paciente-contacto.usecase.ts
-import type { PacienteContacto } from '../../domain/entities/paciente-contacto.entity';
-import type { PacienteContactoRepository } from '../../domain/repositories/paciente-contacto.repository';
+import { PacienteRepository } from "../../domain/repositories/paciente.repository";
 
 export class UpdatePacienteContactoUseCase {
-  constructor(private readonly pacienteContactoRepository: PacienteContactoRepository) {}
+  constructor(private readonly pacienteRepository: PacienteRepository) {}
 
-  update(entity: PacienteContacto): Promise<PacienteContacto> {
-    return this.pacienteContactoRepository.update(entity);
+  async execute(id: string, data: unknown) {
+    return this.pacienteRepository.updateContacto(id, data);
   }
 }

@@ -1,10 +1,9 @@
-// ARCHIVO: src/modules/paciente/application/use-cases/delete-paciente-seguro.usecase.ts
-import type { PacienteSeguroRepository } from '../../domain/repositories/paciente-seguro.repository';
+import { PacienteRepository } from "../../domain/repositories/paciente.repository";
 
 export class DeletePacienteSeguroUseCase {
-  constructor(private readonly pacienteSeguroRepository: PacienteSeguroRepository) {}
+  constructor(private readonly pacienteRepository: PacienteRepository) {}
 
-  delete(id: string): Promise<void> {
-    return this.pacienteSeguroRepository.delete(id);
+  async execute(id: string) {
+    return this.pacienteRepository.deleteSeguro(id);
   }
 }

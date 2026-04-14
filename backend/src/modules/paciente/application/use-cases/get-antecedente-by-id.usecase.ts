@@ -1,11 +1,9 @@
-// ARCHIVO: src/modules/paciente/application/use-cases/get-antecedente-by-id.usecase.ts
-import type { Antecedente } from '../../domain/entities/antecedente.entity';
-import type { AntecedenteRepository } from '../../domain/repositories/antecedente.repository';
+import { PacienteRepository } from "../../domain/repositories/paciente.repository";
 
 export class GetAntecedenteByIdUseCase {
-  constructor(private readonly antecedenteRepository: AntecedenteRepository) {}
+  constructor(private readonly pacienteRepository: PacienteRepository) {}
 
-  execute(id: string): Promise<Antecedente | null> {
-    return this.antecedenteRepository.findById(id);
+  async execute(id: string) {
+    return this.pacienteRepository.findAntecedenteById(id);
   }
 }
