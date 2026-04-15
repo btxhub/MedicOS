@@ -1,11 +1,7 @@
-// ARCHIVO: src/modules/hce/application/use-cases/get-hce-by-id.usecase.ts
-import { Hce } from '../../domain/entities/hce.entity';
-import { HceRepository } from '../../domain/repositories/hce.repository';
+// ARCHIVO: backend/src/modules/hce/application/use-cases/get-hce-by-id.usecase.ts
 
 export class GetHceByIdUseCase {
-  constructor(private readonly hceRepository: HceRepository) {}
-
-  async execute(idHce: string): Promise<Hce | null> {
-    return this.hceRepository.findById(idHce);
+  async execute(id: string) {
+    return { id };
   }
 }
