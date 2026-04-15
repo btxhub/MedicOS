@@ -1,4 +1,4 @@
-// ARCHIVO: frontend/src/core/routes/index.ts
+// ARCHIVO: src/core/routes/index.ts
 
 import { Login, Registro, Perfil, Configuracion } from "@/modules/usuario/pages";
 import { PacienteListPage, PacienteFormPage, PacienteDetailPage } from "@/modules/paciente/pages";
@@ -18,7 +18,16 @@ import {
   AdjuntosPage
 } from "@/modules/clinico/pages";
 
+// HCE
+import {
+  HceListPage,
+  HceCreatePage,
+  HceDetailPage
+} from "@/modules/hce/pages";
+
 export const routes = [
+  { path: "/", component: HceListPage },
+
   { path: "/login", component: Login },
   { path: "/registro", component: Registro },
   { path: "/perfil", component: Perfil },
@@ -33,6 +42,11 @@ export const routes = [
   { path: "/agenda/nuevo", component: AgendaCreatePage },
   { path: "/agenda/editar", component: AgendaEditPage },
   { path: "/agenda/detalle", component: AgendaDetailPage },
+
+  // HCE
+  { path: "/hce", component: HceListPage },
+  { path: "/hce/nuevo", component: HceCreatePage },
+  { path: "/hce/:id", component: HceDetailPage },
 
   // CLINICO
   { path: "/clinico/diagnostico", component: DiagnosticoPage },
