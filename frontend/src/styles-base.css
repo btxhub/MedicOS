@@ -1,0 +1,71 @@
+body {
+  margin: 0;
+  font-family: sans-serif;
+  background: #f5f6fa;
+}
+
+.topbar {
+  height: 60px;
+  background: #ffffff;
+  border-bottom: 1px solid #e5e7eb;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 24px;
+}
+
+.logo {
+  color: #6c4cff;
+  font-weight: 600;
+}
+
+.menu {
+  display: flex;
+  gap: 18px;
+}
+
+.menu-item {
+  padding: 6px 10px;
+}
+
+.menu-item-active {
+  color: #6c4cff;
+  font-weight: 600;
+}
+
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 24px;
+}
+
+.grid {
+  display: flex;
+  gap: 16px;
+  justify-content: flex-start;
+}
+
+.card {
+  background: #ffffff;
+  padding: 12px;
+  border-radius: 8px;
+  border-left: 3px solid #6c4cff;
+  width: 180px;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12px;
+}
+
+.table th {
+  text-align: left;
+  padding: 10px;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.table td {
+  padding: 10px;
+  border-bottom: 1px solid #e5e7eb;
+}

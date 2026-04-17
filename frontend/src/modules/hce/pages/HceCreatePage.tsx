@@ -1,4 +1,4 @@
-// ARCHIVO: frontend/src/modules/hce/pages/HceCreatePage.tsx
+// ARCHIVO: src/modules/hce/pages/HceCreatePage.tsx
 
 import './hce-create.css';
 import { useState, useEffect } from 'react';
@@ -65,12 +65,15 @@ const HceCreatePage = () => {
   return (
     <ContentLayout>
       <div className="hce-create-container">
-        <Card>
-          <h2 className="hce-create-title">Nueva Historia Clínica</h2>
 
-          {error && <div className="hce-error">{error}</div>}
+        <h2 className="hce-create-title">Nueva Historia Clínica</h2>
 
-          <div className="hce-create-form">
+        {error && <div className="hce-error">{error}</div>}
+
+        <div className="hce-create-form">
+
+          <Card>
+            <h3>Paciente</h3>
             <select
               value={selectedPaciente}
               onChange={(e) => setSelectedPaciente(e.target.value)}
@@ -82,10 +85,16 @@ const HceCreatePage = () => {
                 </option>
               ))}
             </select>
+          </Card>
 
+          <Card>
+            <h3>Fecha y hora</h3>
             <Input label="Fecha" value={fecha} disabled />
             <Input label="Hora" value={hora} disabled />
+          </Card>
 
+          <Card>
+            <h3>Acciones</h3>
             <div className="hce-create-actions">
               <Button
                 variant="primary"
@@ -95,8 +104,9 @@ const HceCreatePage = () => {
               />
               <Button variant="secondary" label="Cancelar" disabled={loading} />
             </div>
-          </div>
-        </Card>
+          </Card>
+
+        </div>
       </div>
     </ContentLayout>
   );

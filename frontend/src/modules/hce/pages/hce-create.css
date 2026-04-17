@@ -1,6 +1,8 @@
 /* ARCHIVO: frontend/src/modules/hce/pages/hce-create.css */
 
 .hce-create-container {
+  max-width: 900px;
+  margin: 0 auto;
   padding: var(--spacing-lg);
 }
 
@@ -8,6 +10,7 @@
   font-size: var(--font-size-lg);
   color: var(--color-text-primary);
   margin-bottom: var(--spacing-md);
+  text-align: center;
 }
 
 .hce-create-form {
@@ -18,6 +21,7 @@
 
 .hce-create-actions {
   display: flex;
+  justify-content: flex-end;
   gap: var(--spacing-sm);
   margin-top: var(--spacing-md);
 }
