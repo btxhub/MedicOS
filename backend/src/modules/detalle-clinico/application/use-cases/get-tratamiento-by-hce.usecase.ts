@@ -1,11 +1,16 @@
-// ARCHIVO: src/modules/detalle-clinico/application/use-cases/get-tratamiento-by-hce.usecase.ts
-import type { Tratamiento } from '../../domain/entities/tratamiento.entity';
-import type { TratamientoRepository } from '../../domain/repositories/tratamiento.repository';
+// ARCHIVO: /home/btx/MedicOS/backend/src/modules/detalle-clinico/application/use-cases/get-tratamiento-by-hce.usecase.ts
 
+import { Inject, Injectable } from '@nestjs/common';
+import { TratamientoRepository } from '../../domain/repositories/tratamiento.repository';
+
+@Injectable()
 export class GetTratamientoByHceUseCase {
-  constructor(private readonly tratamientoRepository: TratamientoRepository) {}
+  constructor(
+    @Inject('TratamientoRepository')
+    private readonly repository: TratamientoRepository,
+  ) {}
 
-  execute(idHce: string): Promise<Tratamiento[]> {
-    return this.tratamientoRepository.findByHce(idHce);
+  async execute(idHce: string) {
+    return await this.repository.findByHce(Number(idHce));
   }
 }

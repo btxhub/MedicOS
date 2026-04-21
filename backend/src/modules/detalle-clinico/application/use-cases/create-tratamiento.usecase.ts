@@ -1,11 +1,19 @@
-// ARCHIVO: src/modules/detalle-clinico/application/use-cases/create-tratamiento.usecase.ts
-import type { Tratamiento } from '../../domain/entities/tratamiento.entity';
-import type { TratamientoRepository } from '../../domain/repositories/tratamiento.repository';
+// ARCHIVO: /home/btx/MedicOS/backend/src/modules/detalle-clinico/application/use-cases/create-tratamiento.usecase.ts
 
+import { Inject, Injectable } from '@nestjs/common';
+import { TratamientoRepository } from '../../domain/repositories/tratamiento.repository';
+
+@Injectable()
 export class CreateTratamientoUseCase {
-  constructor(private readonly tratamientoRepository: TratamientoRepository) {}
+  constructor(
+    @Inject('TratamientoRepository')
+    private readonly repository: TratamientoRepository,
+  ) {}
 
-  execute(tratamiento: Tratamiento): Promise<Tratamiento> {
-    return this.tratamientoRepository.save(tratamiento);
+  async execute(data: any) {
+    return await this.repository.create({
+      idHce: Number(data.idHce),
+      descripcion: data.descripcion,
+    });
   }
 }

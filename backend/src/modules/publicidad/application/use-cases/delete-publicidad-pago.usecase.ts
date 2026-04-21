@@ -1,10 +1,9 @@
-// ARCHIVO: src/modules/publicidad/application/use-cases/delete-publicidad-pago.usecase.ts
-import type { PublicidadPagoRepository } from '../../domain/repositories/publicidad-pago.repository';
+import type { PublicidadRepository } from '../../domain/repositories/publicidad.repository';
 
 export class DeletePublicidadPagoUseCase {
-  constructor(private readonly publicidadPagoRepository: PublicidadPagoRepository) {}
+  constructor(private readonly publicidadRepository: PublicidadRepository) {}
 
-  delete(id: string): Promise<void> {
-    return this.publicidadPagoRepository.delete(id);
+  execute(id: string): Promise<void> {
+    return this.publicidadRepository.deletePago(id);
   }
 }

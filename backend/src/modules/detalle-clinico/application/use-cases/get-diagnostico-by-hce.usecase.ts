@@ -1,11 +1,16 @@
-// ARCHIVO: src/modules/detalle-clinico/application/use-cases/get-diagnostico-by-hce.usecase.ts
-import type { Diagnostico } from '../../domain/entities/diagnostico.entity';
-import type { DiagnosticoRepository } from '../../domain/repositories/diagnostico.repository';
+// ARCHIVO: /home/btx/MedicOS/backend/src/modules/detalle-clinico/application/use-cases/get-diagnostico-by-hce.usecase.ts
 
+import { Inject, Injectable } from '@nestjs/common';
+import { DiagnosticoRepository } from '../../domain/repositories/diagnostico.repository';
+
+@Injectable()
 export class GetDiagnosticoByHceUseCase {
-  constructor(private readonly diagnosticoRepository: DiagnosticoRepository) {}
+  constructor(
+    @Inject('DiagnosticoRepository')
+    private readonly repository: DiagnosticoRepository,
+  ) {}
 
-  execute(idHce: string): Promise<Diagnostico[]> {
-    return this.diagnosticoRepository.findByHce(idHce);
+  async execute(idHce: string) {
+    return await this.repository.findByHce(Number(idHce));
   }
 }

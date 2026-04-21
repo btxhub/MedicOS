@@ -1,11 +1,15 @@
 // ARCHIVO: src/modules/suscripcion/application/use-cases/get-pago-suscripcion-by-id.usecase.ts
-import type { PagoSuscripcion } from '../../domain/entities/pago-suscripcion.entity';
-import type { PagoSuscripcionRepository } from '../../domain/repositories/pago-suscripcion.repository';
 
+import { Inject, Injectable } from '@nestjs/common';
+
+@Injectable()
 export class GetPagoSuscripcionByIdUseCase {
-  constructor(private readonly pagoSuscripcionRepository: PagoSuscripcionRepository) {}
+  constructor(
+    @Inject('SuscripcionRepository')
+    private readonly repository: any,
+  ) {}
 
-  execute(id: string): Promise<PagoSuscripcion | null> {
-    return this.pagoSuscripcionRepository.findById(id);
+  async execute(id: number) {
+    return this.repository.findPagoById(id);
   }
 }

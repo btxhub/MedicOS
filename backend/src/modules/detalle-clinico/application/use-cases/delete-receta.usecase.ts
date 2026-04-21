@@ -1,10 +1,16 @@
-// ARCHIVO: src/modules/detalle-clinico/application/use-cases/delete-receta.usecase.ts
-import type { RecetaRepository } from '../../domain/repositories/receta.repository';
+// ARCHIVO: /home/btx/MedicOS/backend/src/modules/detalle-clinico/application/use-cases/delete-receta.usecase.ts
 
+import { Inject, Injectable } from '@nestjs/common';
+import { RecetaRepository } from '../../domain/repositories/receta.repository';
+
+@Injectable()
 export class DeleteRecetaUseCase {
-  constructor(private readonly recetaRepository: RecetaRepository) {}
+  constructor(
+    @Inject('RecetaRepository')
+    private readonly repository: RecetaRepository,
+  ) {}
 
-  execute(idRec: string): Promise<void> {
-    return this.recetaRepository.delete(idRec);
+  async execute(id: string) {
+    return await this.repository.delete(Number(id));
   }
 }

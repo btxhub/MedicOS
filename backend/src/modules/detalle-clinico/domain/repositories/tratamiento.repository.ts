@@ -1,10 +1,8 @@
-// ARCHIVO: src/modules/detalle-clinico/domain/repositories/tratamiento.repository.ts
-import type { Tratamiento } from '../entities/tratamiento.entity';
+// ARCHIVO: /home/btx/MedicOS/backend/src/modules/detalle-clinico/domain/repositories/tratamiento.repository.ts
 
 export interface TratamientoRepository {
-  save(tratamiento: Tratamiento): Promise<Tratamiento>;
-  findById(idTrat: string): Promise<Tratamiento | null>;
-  findByHce(idHce: string): Promise<Tratamiento[]>;
-  update(tratamiento: Tratamiento): Promise<Tratamiento>;
-  delete(idTrat: string): Promise<void>;
+  create(data: any): Promise<any>;
+  findById(id: number): Promise<any>;
+  findByHce(idHce: number): Promise<any[]>;
+  delete(id: number): Promise<number>;
 }

@@ -1,10 +1,13 @@
-import { Usuario } from '../../domain/entities/usuario.entity';
-import { UsuarioRepository } from '../../domain/repositories/usuario.repository';
+import { Inject } from '@nestjs/common';
+import type { UsuarioRepository } from '../../domain/repositories/usuario.repository';
 
 export class GetUsuarioByIdUseCase {
-  constructor(private readonly usuarioRepository: UsuarioRepository) {}
+  constructor(
+    @Inject('UsuarioRepository')
+    private readonly repository: UsuarioRepository
+  ) {}
 
-  execute(idUser: string): Promise<Usuario | null> {
-    return this.usuarioRepository.findById(idUser);
+  async execute(id: string): Promise<any> {
+    return this.repository.findById(id);
   }
 }

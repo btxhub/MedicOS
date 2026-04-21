@@ -1,10 +1,15 @@
 // ARCHIVO: src/modules/suscripcion/application/use-cases/delete-pago-suscripcion.usecase.ts
-import type { PagoSuscripcionRepository } from '../../domain/repositories/pago-suscripcion.repository';
 
+import { Inject, Injectable } from '@nestjs/common';
+
+@Injectable()
 export class DeletePagoSuscripcionUseCase {
-  constructor(private readonly pagoSuscripcionRepository: PagoSuscripcionRepository) {}
+  constructor(
+    @Inject('SuscripcionRepository')
+    private readonly repository: any,
+  ) {}
 
-  delete(id: string): Promise<void> {
-    return this.pagoSuscripcionRepository.delete(id);
+  async execute(id: number) {
+    return this.repository.deletePago(id);
   }
 }

@@ -1,11 +1,20 @@
-// ARCHIVO: src/modules/detalle-clinico/application/use-cases/create-evolucion.usecase.ts
-import type { Evolucion } from '../../domain/entities/evolucion.entity';
-import type { EvolucionRepository } from '../../domain/repositories/evolucion.repository';
+// ARCHIVO: /home/btx/MedicOS/backend/src/modules/detalle-clinico/application/use-cases/create-evolucion.usecase.ts
 
+import { Inject, Injectable } from '@nestjs/common';
+import { EvolucionRepository } from '../../domain/repositories/evolucion.repository';
+
+@Injectable()
 export class CreateEvolucionUseCase {
-  constructor(private readonly evolucionRepository: EvolucionRepository) {}
+  constructor(
+    @Inject('EvolucionRepository')
+    private readonly repository: EvolucionRepository,
+  ) {}
 
-  execute(evolucion: Evolucion): Promise<Evolucion> {
-    return this.evolucionRepository.save(evolucion);
+  async execute(data: any) {
+    return await this.repository.create({
+      idHce: Number(data.idHce),
+      idDoc: Number(data.idDoc),
+      nota: data.nota,
+    });
   }
 }

@@ -1,11 +1,13 @@
-// ARCHIVO: src/modules/publicidad/application/use-cases/create-publicidad.usecase.ts
-import type { Publicidad } from '../../domain/entities/publicidad.entity';
+import { Inject } from '@nestjs/common';
 import type { PublicidadRepository } from '../../domain/repositories/publicidad.repository';
 
 export class CreatePublicidadUseCase {
-  constructor(private readonly publicidadRepository: PublicidadRepository) {}
+  constructor(
+    @Inject('PublicidadRepository')
+    private readonly repository: PublicidadRepository,
+  ) {}
 
-  create(entity: Publicidad): Promise<Publicidad> {
-    return this.publicidadRepository.save(entity);
+  async execute(data: any): Promise<any> {
+    return this.repository.save(data);
   }
 }

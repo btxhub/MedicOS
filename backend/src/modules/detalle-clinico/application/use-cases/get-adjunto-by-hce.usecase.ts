@@ -1,11 +1,16 @@
-// ARCHIVO: src/modules/detalle-clinico/application/use-cases/get-adjunto-by-hce.usecase.ts
-import type { Adjunto } from '../../domain/entities/adjunto.entity';
-import type { AdjuntoRepository } from '../../domain/repositories/adjunto.repository';
+// ARCHIVO: /home/btx/MedicOS/backend/src/modules/detalle-clinico/application/use-cases/get-adjunto-by-hce.usecase.ts
 
+import { Inject, Injectable } from '@nestjs/common';
+import { AdjuntoRepository } from '../../domain/repositories/adjunto.repository';
+
+@Injectable()
 export class GetAdjuntoByHceUseCase {
-  constructor(private readonly adjuntoRepository: AdjuntoRepository) {}
+  constructor(
+    @Inject('AdjuntoRepository')
+    private readonly repository: AdjuntoRepository,
+  ) {}
 
-  execute(idHce: string): Promise<Adjunto[]> {
-    return this.adjuntoRepository.findByHce(idHce);
+  async execute(idHce: string) {
+    return await this.repository.findByHce(Number(idHce));
   }
 }

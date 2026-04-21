@@ -1,11 +1,9 @@
-// ARCHIVO: src/modules/publicidad/application/use-cases/update-publicidad-pago.usecase.ts
-import type { PublicidadPago } from '../../domain/entities/publicidad-pago.entity';
-import type { PublicidadPagoRepository } from '../../domain/repositories/publicidad-pago.repository';
+import type { PublicidadRepository } from '../../domain/repositories/publicidad.repository';
 
 export class UpdatePublicidadPagoUseCase {
-  constructor(private readonly publicidadPagoRepository: PublicidadPagoRepository) {}
+  constructor(private readonly publicidadRepository: PublicidadRepository) {}
 
-  update(entity: PublicidadPago): Promise<PublicidadPago> {
-    return this.publicidadPagoRepository.update(entity);
+  update(entity: any): Promise<any> {
+    return this.publicidadRepository.updatePago(entity);
   }
 }

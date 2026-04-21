@@ -1,11 +1,15 @@
 // ARCHIVO: src/modules/suscripcion/application/use-cases/update-suscripcion.usecase.ts
-import type { Suscripcion } from '../../domain/entities/suscripcion.entity';
-import type { SuscripcionRepository } from '../../domain/repositories/suscripcion.repository';
 
+import { Inject, Injectable } from '@nestjs/common';
+
+@Injectable()
 export class UpdateSuscripcionUseCase {
-  constructor(private readonly suscripcionRepository: SuscripcionRepository) {}
+  constructor(
+    @Inject('SuscripcionRepository')
+    private readonly repository: any,
+  ) {}
 
-  update(entity: Suscripcion): Promise<Suscripcion> {
-    return this.suscripcionRepository.update(entity);
+  async execute(id: number, data: any) {
+    return this.repository.update(id, data);
   }
 }

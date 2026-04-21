@@ -1,10 +1,16 @@
-// ARCHIVO: src/modules/detalle-clinico/application/use-cases/delete-diagnostico.usecase.ts
-import type { DiagnosticoRepository } from '../../domain/repositories/diagnostico.repository';
+// ARCHIVO: /home/btx/MedicOS/backend/src/modules/detalle-clinico/application/use-cases/delete-diagnostico.usecase.ts
 
+import { Inject, Injectable } from '@nestjs/common';
+import { DiagnosticoRepository } from '../../domain/repositories/diagnostico.repository';
+
+@Injectable()
 export class DeleteDiagnosticoUseCase {
-  constructor(private readonly diagnosticoRepository: DiagnosticoRepository) {}
+  constructor(
+    @Inject('DiagnosticoRepository')
+    private readonly repository: DiagnosticoRepository,
+  ) {}
 
-  execute(idDiag: string): Promise<void> {
-    return this.diagnosticoRepository.delete(idDiag);
+  async execute(id: string) {
+    return await this.repository.delete(Number(id));
   }
 }

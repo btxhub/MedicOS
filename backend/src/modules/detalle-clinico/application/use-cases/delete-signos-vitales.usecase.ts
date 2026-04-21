@@ -1,10 +1,14 @@
-// ARCHIVO: src/modules/detalle-clinico/application/use-cases/delete-signos-vitales.usecase.ts
-import type { SignosVitalesRepository } from '../../domain/repositories/signos-vitales.repository';
+import { Inject, Injectable } from '@nestjs/common';
+import { SignosVitalesRepository } from '../../domain/repositories/signos-vitales.repository';
 
+@Injectable()
 export class DeleteSignosVitalesUseCase {
-  constructor(private readonly signosRepository: SignosVitalesRepository) {}
+  constructor(
+    @Inject('SignosVitalesRepository')
+    private readonly repository: SignosVitalesRepository,
+  ) {}
 
-  execute(idSig: string): Promise<void> {
-    return this.signosRepository.delete(idSig);
+  async execute(id: string) {
+    return this.repository.delete(id);
   }
 }

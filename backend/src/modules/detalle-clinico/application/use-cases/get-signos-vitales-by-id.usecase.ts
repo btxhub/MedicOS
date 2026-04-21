@@ -1,11 +1,10 @@
-// ARCHIVO: src/modules/detalle-clinico/application/use-cases/get-signos-vitales-by-id.usecase.ts
-import type { SignosVitales } from '../../domain/entities/signos-vitales.entity';
 import type { SignosVitalesRepository } from '../../domain/repositories/signos-vitales.repository';
+import { SignosVitales } from '../../domain/entities/signos-vitales.entity';
 
 export class GetSignosVitalesByIdUseCase {
-  constructor(private readonly signosRepository: SignosVitalesRepository) {}
+  constructor(private readonly repository: SignosVitalesRepository) {}
 
-  execute(idSig: string): Promise<SignosVitales | null> {
-    return this.signosRepository.findById(idSig);
+  async execute(id: string): Promise<SignosVitales | null> {
+    return this.repository.findById(id);
   }
 }

@@ -1,15 +1,16 @@
-import { AutenticarUsuarioCommand } from '../commands/autenticar-usuario.command';
-import { AccesoUsuarioPort } from '../ports/acceso-usuario.port';
-import { AccesoFactoryPort } from '../ports/acceso.factory.port';
+import { Inject } from '@nestjs/common';
+import type { UsuarioRepository } from '../../domain/repositories/usuario.repository';
 
 export class AutenticarUsuarioUseCase {
   constructor(
-    private readonly accesoFactory: AccesoFactoryPort,
-    private readonly accesoUsuarioPort: AccesoUsuarioPort
+    @Inject('UsuarioRepository')
+    private readonly repository: UsuarioRepository
   ) {}
 
-  ejecutar(command: AutenticarUsuarioCommand): Promise<void> {
-    const acceso = this.accesoFactory.crear(command.credenciales);
-    return this.accesoUsuarioPort.ejecutar(acceso);
+  async execute(email: string, password: string): Promise<any> {
+    const user = await this.repository.findByEmail(email);
+    if (!user) return null;
+    if (user.password !== password) return null;
+    return user;
   }
 }

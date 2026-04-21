@@ -1,11 +1,19 @@
-// ARCHIVO: src/modules/suscripcion/application/use-cases/create-suscripcion.usecase.ts
-import type { Suscripcion } from '../../domain/entities/suscripcion.entity';
+import { Inject, Injectable } from '@nestjs/common';
 import type { SuscripcionRepository } from '../../domain/repositories/suscripcion.repository';
 
+@Injectable()
 export class CreateSuscripcionUseCase {
-  constructor(private readonly suscripcionRepository: SuscripcionRepository) {}
+  constructor(
+    @Inject('SuscripcionRepository')
+    private readonly repository: SuscripcionRepository,
+  ) {}
 
-  create(entity: Suscripcion): Promise<Suscripcion> {
-    return this.suscripcionRepository.save(entity);
+  async execute(data: any) {
+    const created = await this.repository.save(data);
+
+    return {
+      success: true,
+      data: created,
+    };
   }
 }

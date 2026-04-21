@@ -1,10 +1,16 @@
-// ARCHIVO: src/modules/detalle-clinico/application/use-cases/delete-evolucion.usecase.ts
-import type { EvolucionRepository } from '../../domain/repositories/evolucion.repository';
+// ARCHIVO: /home/btx/MedicOS/backend/src/modules/detalle-clinico/application/use-cases/delete-evolucion.usecase.ts
 
+import { Inject, Injectable } from '@nestjs/common';
+import { EvolucionRepository } from '../../domain/repositories/evolucion.repository';
+
+@Injectable()
 export class DeleteEvolucionUseCase {
-  constructor(private readonly evolucionRepository: EvolucionRepository) {}
+  constructor(
+    @Inject('EvolucionRepository')
+    private readonly repository: EvolucionRepository,
+  ) {}
 
-  execute(idEvo: string): Promise<void> {
-    return this.evolucionRepository.delete(idEvo);
+  async execute(id: string) {
+    return await this.repository.delete(Number(id));
   }
 }

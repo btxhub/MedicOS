@@ -1,14 +1,15 @@
-// ARCHIVO: src/modules/detalle-clinico/domain/entities/receta.entity.ts
+// ARCHIVO: receta.entity.ts (CORREGIDO FINAL)
+
 export class Receta {
   constructor(
-    public readonly idRec: string,
-    public readonly idHce: string,
-    public readonly medicamentoRec: string,
-    public readonly dosisRec: string,
-    public readonly viaRec: string,
-    public readonly frecuenciaRec: string,
-    public readonly duracionRec: string,
-    public readonly indicacionesRec: string,
-    public readonly createdRec: Date
+    public readonly id: number,
+    public readonly idHce: number,
+    public readonly medicamento: string,
+    public readonly dosis: string,
+    public readonly frecuencia: string,
+    public readonly duracion: string,
+    public readonly indicaciones: string,
+    public readonly medico: string,
+    public readonly createdAt: Date,
   ) {}
 }

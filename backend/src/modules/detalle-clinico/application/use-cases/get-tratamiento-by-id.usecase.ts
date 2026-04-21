@@ -1,11 +1,16 @@
-// ARCHIVO: src/modules/detalle-clinico/application/use-cases/get-tratamiento-by-id.usecase.ts
-import type { Tratamiento } from '../../domain/entities/tratamiento.entity';
-import type { TratamientoRepository } from '../../domain/repositories/tratamiento.repository';
+// ARCHIVO: /home/btx/MedicOS/backend/src/modules/detalle-clinico/application/use-cases/get-tratamiento-by-id.usecase.ts
 
+import { Inject, Injectable } from '@nestjs/common';
+import { TratamientoRepository } from '../../domain/repositories/tratamiento.repository';
+
+@Injectable()
 export class GetTratamientoByIdUseCase {
-  constructor(private readonly tratamientoRepository: TratamientoRepository) {}
+  constructor(
+    @Inject('TratamientoRepository')
+    private readonly repository: TratamientoRepository,
+  ) {}
 
-  execute(idTrat: string): Promise<Tratamiento | null> {
-    return this.tratamientoRepository.findById(idTrat);
+  async execute(id: string) {
+    return await this.repository.findById(Number(id));
   }
 }

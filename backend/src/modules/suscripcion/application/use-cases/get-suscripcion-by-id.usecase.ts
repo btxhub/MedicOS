@@ -1,11 +1,14 @@
-// ARCHIVO: src/modules/suscripcion/application/use-cases/get-suscripcion-by-id.usecase.ts
-import type { Suscripcion } from '../../domain/entities/suscripcion.entity';
+import { Inject, Injectable } from '@nestjs/common';
 import type { SuscripcionRepository } from '../../domain/repositories/suscripcion.repository';
 
+@Injectable()
 export class GetSuscripcionByIdUseCase {
-  constructor(private readonly suscripcionRepository: SuscripcionRepository) {}
+  constructor(
+    @Inject('SuscripcionRepository')
+    private readonly repository: SuscripcionRepository,
+  ) {}
 
-  execute(id: string): Promise<Suscripcion | null> {
-    return this.suscripcionRepository.findById(id);
+  async execute(id: string) {
+    return this.repository.findById(id);
   }
 }

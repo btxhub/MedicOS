@@ -1,10 +1,15 @@
 // ARCHIVO: src/modules/suscripcion/application/use-cases/delete-suscripcion.usecase.ts
-import type { SuscripcionRepository } from '../../domain/repositories/suscripcion.repository';
 
+import { Inject, Injectable } from '@nestjs/common';
+
+@Injectable()
 export class DeleteSuscripcionUseCase {
-  constructor(private readonly suscripcionRepository: SuscripcionRepository) {}
+  constructor(
+    @Inject('SuscripcionRepository')
+    private readonly repository: any,
+  ) {}
 
-  delete(id: string): Promise<void> {
-    return this.suscripcionRepository.delete(id);
+  async execute(id: number) {
+    return this.repository.delete(id);
   }
 }

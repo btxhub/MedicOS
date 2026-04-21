@@ -1,10 +1,8 @@
-// ARCHIVO: src/modules/detalle-clinico/domain/repositories/diagnostico.repository.ts
-import type { Diagnostico } from '../entities/diagnostico.entity.js';
+// ARCHIVO: /home/btx/MedicOS/backend/src/modules/detalle-clinico/domain/repositories/diagnostico.repository.ts
 
 export interface DiagnosticoRepository {
-  save(diagnostico: Diagnostico): Promise<Diagnostico>;
-  findById(idDiag: string): Promise<Diagnostico | null>;
-  findByHce(idHce: string): Promise<Diagnostico[]>;
-  update(diagnostico: Diagnostico): Promise<Diagnostico>;
-  delete(idDiag: string): Promise<void>;
+  create(data: any): Promise<any>;
+  findById(id: number): Promise<any>;
+  findByHce(idHce: number): Promise<any[]>;
+  delete(id: number): Promise<number>;
 }

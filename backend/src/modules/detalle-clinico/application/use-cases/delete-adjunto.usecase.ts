@@ -1,10 +1,16 @@
-// ARCHIVO: src/modules/detalle-clinico/application/use-cases/delete-adjunto.usecase.ts
-import type { AdjuntoRepository } from '../../domain/repositories/adjunto.repository';
+// ARCHIVO: /home/btx/MedicOS/backend/src/modules/detalle-clinico/application/use-cases/delete-adjunto.usecase.ts
 
+import { Inject, Injectable } from '@nestjs/common';
+import { AdjuntoRepository } from '../../domain/repositories/adjunto.repository';
+
+@Injectable()
 export class DeleteAdjuntoUseCase {
-  constructor(private readonly adjuntoRepository: AdjuntoRepository) {}
+  constructor(
+    @Inject('AdjuntoRepository')
+    private readonly repository: AdjuntoRepository,
+  ) {}
 
-  execute(idAdj: string): Promise<void> {
-    return this.adjuntoRepository.delete(idAdj);
+  async execute(id: string) {
+    return await this.repository.delete(Number(id));
   }
 }

@@ -1,9 +1,9 @@
-import type { Usuario } from '../entities/usuario.entity';
+// ARCHIVO: src/modules/usuario/domain/repositories/usuario.repository.ts
 
 export interface UsuarioRepository {
-  create(usuario: Usuario): Promise<Usuario>;
-  findById(id: string): Promise<Usuario | null>;
-  findByEmail(email: string): Promise<Usuario | null>;
-  update(usuario: Usuario): Promise<Usuario>;
-  delete(id: string): Promise<void>;
+  create(data: any): Promise<any>;
+  findById(id: string): Promise<any | null>;
+  findByEmail(email: string): Promise<any | null>;
+  update(id: string, data: any): Promise<any>;
+  delete(id: string): Promise<boolean>;
 }

@@ -1,11 +1,19 @@
-// ARCHIVO: src/modules/detalle-clinico/application/use-cases/create-adjunto.usecase.ts
-import type { Adjunto } from '../../domain/entities/adjunto.entity';
-import type { AdjuntoRepository } from '../../domain/repositories/adjunto.repository';
+// ARCHIVO: /home/btx/MedicOS/backend/src/modules/detalle-clinico/application/use-cases/create-adjunto.usecase.ts
 
+import { Inject, Injectable } from '@nestjs/common';
+import { AdjuntoRepository } from '../../domain/repositories/adjunto.repository';
+
+@Injectable()
 export class CreateAdjuntoUseCase {
-  constructor(private readonly adjuntoRepository: AdjuntoRepository) {}
+  constructor(
+    @Inject('AdjuntoRepository')
+    private readonly repository: AdjuntoRepository,
+  ) {}
 
-  execute(adjunto: Adjunto): Promise<Adjunto> {
-    return this.adjuntoRepository.save(adjunto);
+  async execute(data: any) {
+    return await this.repository.create({
+      idHce: Number(data.idHce),
+      url: data.url,
+    });
   }
 }

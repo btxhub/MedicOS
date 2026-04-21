@@ -1,10 +1,16 @@
-// ARCHIVO: src/modules/detalle-clinico/application/use-cases/delete-tratamiento.usecase.ts
-import type { TratamientoRepository } from '../../domain/repositories/tratamiento.repository';
+// ARCHIVO: /home/btx/MedicOS/backend/src/modules/detalle-clinico/application/use-cases/delete-tratamiento.usecase.ts
 
+import { Inject, Injectable } from '@nestjs/common';
+import { TratamientoRepository } from '../../domain/repositories/tratamiento.repository';
+
+@Injectable()
 export class DeleteTratamientoUseCase {
-  constructor(private readonly tratamientoRepository: TratamientoRepository) {}
+  constructor(
+    @Inject('TratamientoRepository')
+    private readonly repository: TratamientoRepository,
+  ) {}
 
-  execute(idTrat: string): Promise<void> {
-    return this.tratamientoRepository.delete(idTrat);
+  async execute(id: string) {
+    return await this.repository.delete(Number(id));
   }
 }

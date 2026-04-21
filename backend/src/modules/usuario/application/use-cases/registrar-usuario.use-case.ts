@@ -1,15 +1,13 @@
-import { RegistrarUsuarioCommand } from '../commands/registrar-usuario.command';
-import { RegistroUsuarioPort } from '../ports/registro-usuario.port';
-import { UsuarioFactoryPort } from '../ports/usuario.factory.port';
+import { Inject } from '@nestjs/common';
+import type { UsuarioRepository } from '../../domain/repositories/usuario.repository';
 
 export class RegistrarUsuarioUseCase {
   constructor(
-    private readonly usuarioFactory: UsuarioFactoryPort,
-    private readonly registroUsuarioPort: RegistroUsuarioPort
+    @Inject('UsuarioRepository')
+    private readonly repository: UsuarioRepository
   ) {}
 
-  ejecutar(command: RegistrarUsuarioCommand): Promise<void> {
-    const usuario = this.usuarioFactory.crear(command.usuario);
-    return this.registroUsuarioPort.ejecutar(usuario);
+  async execute(data: any): Promise<any> {
+    return this.repository.create(data);
   }
 }

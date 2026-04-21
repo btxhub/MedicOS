@@ -1,11 +1,23 @@
-// ARCHIVO: src/modules/detalle-clinico/application/use-cases/update-signos-vitales.usecase.ts
-import type { SignosVitales } from '../../domain/entities/signos-vitales.entity';
+import { SignosVitales } from '../../domain/entities/signos-vitales.entity';
 import type { SignosVitalesRepository } from '../../domain/repositories/signos-vitales.repository';
 
 export class UpdateSignosVitalesUseCase {
-  constructor(private readonly signosRepository: SignosVitalesRepository) {}
+  constructor(private readonly repository: SignosVitalesRepository) {}
 
-  execute(signos: SignosVitales): Promise<SignosVitales> {
-    return this.signosRepository.update(signos);
+  async execute(data: any): Promise<SignosVitales> {
+    const entity = new SignosVitales(
+      data.id,
+      data.idHce,
+      data.presionArterial,
+      data.frecuenciaCardiaca,
+      data.frecuenciaRespiratoria,
+      data.temperatura,
+      data.saturacionOxigeno,
+      data.peso,
+      data.talla,
+      data.createdAt
+    );
+
+    return this.repository.update(entity);
   }
 }
