@@ -6,12 +6,17 @@
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "allowSyntheticDefaultImports": true,
+<<<<<<< HEAD
     "target": "es2017",
+=======
+    "target": "ES2021",
+>>>>>>> 137396805916853fa2c348798080f738ce772f0d
     "sourceMap": true,
     "outDir": "./dist",
     "baseUrl": "./",
     "incremental": true,
     "skipLibCheck": true,
+<<<<<<< HEAD
     "strictNullChecks": false,
     "noImplicitAny": false,
     "strictBindCallApply": false,
@@ -24,3 +29,12 @@
     "src/_legacy_*"
   ]
 }
+=======
+    "strictNullChecks": true,
+    "noImplicitAny": true,
+    "strictBindCallApply": true,
+    "forceConsistentCasingInFileNames": true,
+    "noFallthroughCasesInSwitch": true
+  }
+}
+>>>>>>> 137396805916853fa2c348798080f738ce772f0d

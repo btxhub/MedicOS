@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 // ARCHIVO: /home/btx/MedicOS/backend/src/app.module.ts
 
 import { Module } from '@nestjs/common';
@@ -25,3 +26,18 @@ import { DetalleClinicoModule } from './modules/detalle-clinico/detalle-clinico.
   ],
 })
 export class AppModule {}
+=======
+import { Module } from '@nestjs/common';
+import { ConfigModule } from '@nestjs/config';
+import { AppController } from './app.controller';
+
+@Module({
+  imports: [
+    ConfigModule.forRoot({
+      isGlobal: true,
+    }),
+  ],
+  controllers: [AppController],
+})
+export class AppModule {}
+>>>>>>> 137396805916853fa2c348798080f738ce772f0d

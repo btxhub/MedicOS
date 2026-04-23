@@ -1,5 +1,6 @@
 {
   "extends": "./tsconfig.json",
+<<<<<<< HEAD
   "exclude": [
     "node_modules",
     "test",
@@ -9,3 +10,7 @@
     "frontend"
   ]
 }
+=======
+  "exclude": ["node_modules", "dist", "test", "**/*spec.ts"]
+}
+>>>>>>> 137396805916853fa2c348798080f738ce772f0d
