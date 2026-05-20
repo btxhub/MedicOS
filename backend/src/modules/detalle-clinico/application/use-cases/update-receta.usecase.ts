@@ -1,20 +1,22 @@
 // ARCHIVO: /home/btx/MedicOS/backend/src/modules/detalle-clinico/application/use-cases/update-receta.usecase.ts
 
 import { Inject, Injectable } from '@nestjs/common';
-import { RecetaRepository } from '../../domain/repositories/receta.repository';
 
 @Injectable()
 export class UpdateRecetaUseCase {
   constructor(
     @Inject('RecetaRepository')
-    private readonly repository: RecetaRepository,
+    private readonly repository: any,
   ) {}
 
   async execute(id: string, data: any) {
-    await this.repository.delete(Number(id));
-    return await this.repository.create({
-      idHce: Number(data.idHce),
+    const numericId = Number(id);
+    if (isNaN(numericId)) return null;
+
+    const result = await this.repository.update(numericId, {
       descripcion: data.descripcion,
     });
+
+    return result;
   }
 }

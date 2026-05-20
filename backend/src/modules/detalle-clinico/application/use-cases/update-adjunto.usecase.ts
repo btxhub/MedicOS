@@ -1,19 +1,19 @@
 // ARCHIVO: /home/btx/MedicOS/backend/src/modules/detalle-clinico/application/use-cases/update-adjunto.usecase.ts
 
 import { Inject, Injectable } from '@nestjs/common';
-import { AdjuntoRepository } from '../../domain/repositories/adjunto.repository';
 
 @Injectable()
 export class UpdateAdjuntoUseCase {
   constructor(
     @Inject('AdjuntoRepository')
-    private readonly repository: AdjuntoRepository,
+    private readonly repository: any,
   ) {}
 
   async execute(id: string, data: any) {
-    await this.repository.delete(Number(id));
-    return await this.repository.create({
-      idHce: Number(data.idHce),
+    const numericId = Number(id);
+    if (isNaN(numericId)) return null;
+
+    return this.repository.update(numericId, {
       url: data.url,
     });
   }

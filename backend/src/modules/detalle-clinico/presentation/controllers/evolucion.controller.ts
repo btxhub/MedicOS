@@ -1,6 +1,20 @@
 // ARCHIVO: /home/btx/MedicOS/backend/src/modules/detalle-clinico/presentation/controllers/evolucion.controller.ts
 
-import { Controller, Get, Post, Put, Delete, Param, Body } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Put,
+  Delete,
+  Param,
+  Body,
+  UseGuards,
+} from '@nestjs/common';
+
+import { AuthGuard } from '../../../../core/security/guards/auth.guard';
+import { RolesGuard } from '../../../../core/security/guards/roles.guard';
+import { PermissionsGuard } from '../../../../core/security/guards/permissions.guard';
+import { Roles } from '../../../../core/security/decorators/roles.decorator';
 
 import { CreateEvolucionUseCase } from '../../application/use-cases/create-evolucion.usecase';
 import { UpdateEvolucionUseCase } from '../../application/use-cases/update-evolucion.usecase';
@@ -9,44 +23,47 @@ import { GetEvolucionByHceUseCase } from '../../application/use-cases/get-evoluc
 import { DeleteEvolucionUseCase } from '../../application/use-cases/delete-evolucion.usecase';
 
 @Controller('evolucion')
+@UseGuards(AuthGuard, RolesGuard, PermissionsGuard)
 export class EvolucionController {
   constructor(
-    private readonly createEvolucionUseCase: CreateEvolucionUseCase,
-    private readonly updateEvolucionUseCase: UpdateEvolucionUseCase,
+    private readonly createEvolucion: CreateEvolucionUseCase,
+    private readonly updateEvolucion: UpdateEvolucionUseCase,
     private readonly getById: GetEvolucionByIdUseCase,
     private readonly getByHce: GetEvolucionByHceUseCase,
     private readonly deleteEvolucion: DeleteEvolucionUseCase,
   ) {}
 
   @Post()
+  @Roles('MEDICO', 'ADMIN')
   create(@Body() body: any) {
-    return this.createEvolucionUseCase.execute({
+    return this.createEvolucion.execute({
       idHce: Number(body.idHce),
-      idDoc: Number(body.idDoc),
-      nota: body.nota,
+      descripcion: body.descripcion,
     });
   }
 
   @Put(':id')
+  @Roles('MEDICO', 'ADMIN')
   update(@Param('id') id: string, @Body() body: any) {
-    return this.updateEvolucionUseCase.execute(id, {
-      idHce: Number(body.idHce),
-      idDoc: Number(body.idDoc),
-      nota: body.nota,
+    return this.updateEvolucion.execute(id, {
+      descripcion: body.descripcion,
     });
   }
 
   @Get(':id')
+  @Roles('MEDICO', 'ADMIN')
   findById(@Param('id') id: string) {
     return this.getById.execute(id);
   }
 
   @Get('hce/:id')
+  @Roles('MEDICO', 'ADMIN')
   findByHce(@Param('id') id: string) {
     return this.getByHce.execute(id);
   }
 
   @Delete(':id')
+  @Roles('MEDICO', 'ADMIN')
   delete(@Param('id') id: string) {
     return this.deleteEvolucion.execute(id);
   }

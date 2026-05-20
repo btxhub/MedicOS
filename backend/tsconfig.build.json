@@ -1,11 +1,22 @@
 {
-  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "module": "commonjs",
+    "target": "es2021",
+    "outDir": "./dist",
+    "rootDir": "./src",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "esModuleInterop": true,
+    "sourceMap": true
+  },
+  "files": [
+    "src/main.ts"
+  ],
+  "include": ["src/**/*.ts"],
   "exclude": [
     "node_modules",
-    "test",
     "dist",
-    "**/*spec.ts",
-    "**/_legacy*",
-    "frontend"
+    "test",
+    "**/*.spec.ts"
   ]
 }

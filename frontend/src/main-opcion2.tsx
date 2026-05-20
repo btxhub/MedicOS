@@ -1,30 +1,20 @@
+// ARCHIVO: src/main-opcion2.tsx
+
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import './styles-opcion2.css'
 import Layout from './layout'
 
-function Topbar() {
-  return (
-    <div className="topbar">
-      <div style={{ display:'flex', gap:'20px', alignItems:'center' }}>
-        <h2 className="logo">MedicOS</h2>
-
-        <div className="menu">
-          <span className="menu-item menu-item-active">📊 Panel</span>
-          <span className="menu-item">👤 Pacientes</span>
-          <span className="menu-item">📅 Agenda</span>
-          <span className="menu-item">📄 HCE</span>
-        </div>
-      </div>
-
-      <button className="button-primary">
-        Nueva Cita
-      </button>
-    </div>
-  )
+type CardProps = {
+  title: string
+  value: string
 }
 
-function Card({ title, value }) {
+function Topbar() {
+  return null
+}
+
+function Card({ title, value }: CardProps) {
   return (
     <div className="card">
       <p style={{ margin:0, fontSize:'12px', color:'#6b7280' }}>{title}</p>
@@ -84,7 +74,7 @@ export default function App() {
   )
 }
 
-const root = document.getElementById('root')
+const root = document.getElementById('root')!
 
 ReactDOM.createRoot(root).render(
   <React.StrictMode>

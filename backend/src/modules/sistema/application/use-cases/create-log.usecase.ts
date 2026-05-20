@@ -1,20 +1,40 @@
-// ARCHIVO: src/modules/sistema/application/use-cases/create-log.usecase.ts
+import { Injectable } from '@nestjs/common';
+import { Pool } from 'pg';
 
-import { Inject, Injectable } from '@nestjs/common';
+const pool = new Pool({
+  connectionString: process.env.DATABASE_URL,
+});
 
 @Injectable()
 export class CreateLogUseCase {
-  constructor(
-    @Inject('LogRepository')
-    private readonly repository: any,
-  ) {}
+  async execute(data: {
+    idUsuario: number;
+    accionLog: string;
+    moduloLog: string;
+    entidadLog: string;
+    entidadRefLog: string;
+    ipLog: string;
+  }) {
+    await pool.query(
+      `INSERT INTO log (
+        idusuario,
+        accionlog,
+        modulolog,
+        entidadlog,
+        entidadreflog,
+        fechalog,
+        iplog
+      ) VALUES ($1,$2,$3,$4,$5,NOW(),$6)`,
+      [
+        data.idUsuario,
+        data.accionLog,
+        data.moduloLog,
+        data.entidadLog,
+        data.entidadRefLog,
+        data.ipLog,
+      ],
+    );
 
-  async execute(data: any) {
-    const created = await this.repository.create(data);
-
-    return {
-      success: true,
-      data: created,
-    };
+    return true;
   }
 }

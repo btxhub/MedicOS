@@ -1,10 +1,21 @@
-import type { SignosVitalesRepository } from '../../domain/repositories/signos-vitales.repository';
-import { SignosVitales } from '../../domain/entities/signos-vitales.entity';
+// ARCHIVO: get-signos-vitales-by-hce.usecase.ts (NORMALIZACIÓN GET HCE)
 
+import { Inject, Injectable } from '@nestjs/common';
+
+@Injectable()
 export class GetSignosVitalesByHceUseCase {
-  constructor(private readonly repository: SignosVitalesRepository) {}
+  constructor(
+    @Inject('SignosVitalesRepository')
+    private readonly repository: any,
+  ) {}
 
-  async execute(idHce: string): Promise<SignosVitales[]> {
-    return this.repository.findByHce(idHce);
+  async execute(idHce: string) {
+    const numericId = Number(idHce);
+
+    if (isNaN(numericId)) return [];
+
+    const result = await this.repository.findByHce(numericId);
+
+    return result || [];
   }
 }

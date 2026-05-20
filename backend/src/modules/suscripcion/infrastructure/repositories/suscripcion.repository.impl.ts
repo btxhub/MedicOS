@@ -1,43 +1,44 @@
+import { Inject, Injectable } from '@nestjs/common';
 import { Pool } from 'pg';
 import type { SuscripcionRepository } from '../../domain/repositories/suscripcion.repository';
 
-const pool = new Pool({
-  connectionString: process.env.DATABASE_URL,
-});
-
+@Injectable()
 export class SuscripcionRepositoryImpl implements SuscripcionRepository {
+  constructor(@Inject(Pool) private readonly pool: Pool) {}
 
   async save(data: any): Promise<any> {
-    const result = await pool.query(
+    const result = await this.pool.query(
       `INSERT INTO suscripcion (usuario_id, plan, estado)
        VALUES ($1, $2, $3)
        RETURNING *`,
-      [data.usuario_id, data.plan, data.estado]
+      [data.usuario_id, data.plan, data.estado],
     );
     return result.rows[0];
   }
 
   async findById(id: string): Promise<any | null> {
-    const result = await pool.query(
+    const result = await this.pool.query(
       `SELECT * FROM suscripcion WHERE id = $1`,
-      [id]
+      [id],
     );
     return result.rows[0] || null;
   }
 
-  async update(data: any): Promise<any> {
-    const result = await pool.query(
+  async update(id: number, data: any): Promise<any> {
+    const result = await this.pool.query(
       `UPDATE suscripcion
-       SET usuario_id = $1, plan = $2, estado = $3
+       SET usuario_id = COALESCE($1, usuario_id),
+           plan       = COALESCE($2, plan),
+           estado     = COALESCE($3, estado)
        WHERE id = $4
        RETURNING *`,
-      [data.usuario_id, data.plan, data.estado, data.id]
+      [data.usuario_id ?? null, data.plan ?? null, data.estado ?? null, id],
     );
     return result.rows[0] || null;
   }
 
-  async delete(id: string): Promise<void> {
-    await pool.query(`DELETE FROM suscripcion WHERE id = $1`, [id]);
+  async delete(id: number): Promise<void> {
+    await this.pool.query(`DELETE FROM suscripcion WHERE id = $1`, [id]);
   }
 
   async savePago(data: any): Promise<any> {
@@ -48,9 +49,11 @@ export class SuscripcionRepositoryImpl implements SuscripcionRepository {
     return null;
   }
 
-  async updatePago(data: any): Promise<any> {
+  async updatePago(id: string, data: any): Promise<any> {
     return data;
   }
 
-  async deletePago(id: string): Promise<void> {}
+  async deletePago(id: string): Promise<void> {
+    return;
+  }
 }

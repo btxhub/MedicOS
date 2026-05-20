@@ -1,0 +1,165 @@
+# REGLAS DE NORMALIZACIÓN TÉCNICA — MedicOS
+
+---
+
+# 1. PRINCIPIO GENERAL
+
+Todo dato técnico existe una sola vez en el sistema.
+
+No se permite:
+
+- duplicación
+- redefinición
+- configuración paralela
+
+---
+
+# 2. FUENTE ÚNICA DE CONFIGURACIÓN
+
+Archivo obligatorio:
+
+.env
+
+Contiene:
+
+- puertos
+- rutas
+- credenciales
+- conexión a base de datos
+
+Reglas:
+
+- todas las fases y tareas leen este archivo
+- ninguna fase redefine valores
+- no existen configuraciones locales
+
+---
+
+# 3. NORMALIZACIÓN DE PUERTOS
+
+Puertos oficiales:
+
+- Backend → 3001
+- Base de datos → 5432
+
+Reglas:
+
+- definidos una sola vez en .env
+- no se modifican durante el desarrollo
+- no se duplican
+- no se crean nuevos puertos
+
+---
+
+# 4. NORMALIZACIÓN DE RUTAS
+
+Ruta oficial del proyecto:
+
+/home/btx/MedicOS
+
+Estructura:
+
+- src
+- sql
+- .env
+- package.json
+
+Reglas:
+
+- todas las fases trabajan sobre esta ruta
+- no crear rutas alternativas
+- no duplicar estructuras en otras ubicaciones
+- no mover archivos sin control
+
+---
+
+# 5. NORMALIZACIÓN DE BASE DE DATOS
+
+- una sola base de datos
+- una sola conexión definida en .env
+- no crear conexiones paralelas
+
+---
+
+# 6. NORMALIZACIÓN DE STORAGE
+
+- una sola ubicación de almacenamiento
+- definida en configuración central
+- no crear múltiples ubicaciones de archivos
+
+---
+
+# 7. NORMALIZACIÓN DE MIGRACIONES
+
+- un solo directorio de migraciones (/sql)
+- no crear migraciones en otras rutas
+- no duplicar scripts
+
+---
+
+# 8. NORMALIZACIÓN DE VARIABLES
+
+- todas las variables se definen en .env
+- no declarar variables en código
+- no repetir variables en múltiples archivos
+
+---
+
+# 9. NORMALIZACIÓN DE VERSIONES
+
+Regla crítica:
+
+- las herramientas y librerías se fijan al inicio del proyecto
+- no se actualizan durante el desarrollo
+
+Incluye:
+
+- Node.js
+- NestJS
+- librerías del proyecto
+- dependencias críticas
+
+Prohibido:
+
+- actualizar versiones en medio del desarrollo
+- cambiar versiones entre fases
+- introducir nuevas versiones sin proceso formal
+
+---
+
+# 10. PROHIBICIONES
+
+No se permite:
+
+- redefinir puertos
+- redefinir rutas
+- crear configuraciones locales
+- duplicar archivos
+- crear estructuras paralelas
+- modificar configuración sin proceso formal
+- actualizar herramientas o dependencias
+
+---
+
+# 11. CONTROL DE CAMBIOS
+
+Si se requiere cambio:
+
+1. modificar archivo central (.env o configuración base)
+2. documentar cambio
+3. aplicar globalmente
+
+---
+
+# 12. RESULTADO
+
+Sistema:
+
+- consistente
+- sin conflictos
+- sin duplicaciones
+- predecible en todas las fases
+- alineado entre tareas y módulos
+- estable en versiones
+
+---

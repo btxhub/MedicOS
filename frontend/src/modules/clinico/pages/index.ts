@@ -1,8 +1,8 @@
-// ARCHIVO: frontend/src/modules/clinico/pages/index.ts
+// ARCHIVO: src/modules/clinico/pages/index.ts
 
-export * from "./DiagnosticoPage";
-export * from "./TratamientoPage";
-export * from "./RecetaPage";
-export * from "./SignosVitalesPage";
-export * from "./EvolucionPage";
-export * from "./AdjuntosPage";
+export * from './AdjuntosPage';
+export * from './DiagnosticoPage';
+export * from './EvolucionPage';
+export * from './RecetaPage';
+export * from './SignosVitalesPage';
+export * from './TratamientoPage';

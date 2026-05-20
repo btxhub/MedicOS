@@ -1,16 +1,21 @@
-// ARCHIVO: /home/btx/MedicOS/backend/src/modules/detalle-clinico/application/use-cases/get-tratamiento-by-hce.usecase.ts
+// ARCHIVO: get-tratamiento-by-hce.usecase.ts (NORMALIZACIÓN GET HCE)
 
 import { Inject, Injectable } from '@nestjs/common';
-import { TratamientoRepository } from '../../domain/repositories/tratamiento.repository';
 
 @Injectable()
 export class GetTratamientoByHceUseCase {
   constructor(
     @Inject('TratamientoRepository')
-    private readonly repository: TratamientoRepository,
+    private readonly repository: any,
   ) {}
 
   async execute(idHce: string) {
-    return await this.repository.findByHce(Number(idHce));
+    const numericId = Number(idHce);
+
+    if (isNaN(numericId)) return [];
+
+    const result = await this.repository.findByHce(numericId);
+
+    return result || [];
   }
 }

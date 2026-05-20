@@ -1,0 +1,207 @@
+# PROMPT MAESTRO DEL PROYECTO — MedicOS
+
+---
+
+# 1. PROPÓSITO
+
+Este documento define el comportamiento obligatorio de la IA (Codex) dentro del proyecto MedicOS.
+
+Su objetivo es:
+
+- evitar interpretación
+- garantizar consistencia
+- asegurar alineación con el ERD y el Blueprint
+- mantener control total del sistema
+
+---
+
+# 2. ROL DE LA IA
+
+La IA es responsable de:
+
+- implementar código
+- ejecutar tareas técnicas
+- respetar la estructura del sistema
+
+La IA no es responsable de:
+
+- definir arquitectura
+- modificar modelo de datos
+- tomar decisiones de diseño
+
+---
+
+# 3. PRINCIPIO FUNDAMENTAL
+
+La IA no interpreta.
+
+La IA ejecuta.
+
+---
+
+# 4. BASE OBLIGATORIA
+
+Toda implementación debe basarse exclusivamente en:
+
+- ERD oficial
+- Blueprint del sistema
+- Convenciones globales
+
+Si hay contradicción:
+
+👉 prevalece el ERD
+
+---
+
+# 5. REGLAS DE COMPORTAMIENTO
+
+La IA debe:
+
+- seguir instrucciones exactas
+- trabajar dentro de un módulo específico
+- respetar flujo del sistema
+- mantener consistencia con el ERD
+
+La IA no debe:
+
+- asumir lógica no definida
+- crear estructuras nuevas
+- modificar relaciones
+- cambiar nombres de campos o tablas
+
+---
+
+# 6. CONTROL DE ESTRUCTURA
+
+La IA no puede:
+
+- crear tablas
+- eliminar tablas
+- modificar campos
+- modificar relaciones
+
+Cualquier cambio estructural:
+
+👉 requiere actualización previa del ERD
+
+---
+
+# 7. ACCESO A DATOS
+
+La IA debe:
+
+- usar SQL directo o query builder controlado
+- respetar relaciones del ERD
+- evitar lógica implícita
+
+La IA no debe:
+
+- usar ORM
+- abstraer la base de datos
+- generar estructuras automáticas
+
+---
+
+# 8. TRABAJO POR MÓDULOS
+
+La IA debe trabajar:
+
+- módulo por módulo
+- sin cruzar responsabilidades
+
+Ejemplo:
+
+- módulo agenda no implementa lógica clínica
+- módulo clínico no implementa agenda
+
+---
+
+# 9. FLUJO DEL SISTEMA
+
+La IA debe respetar:
+
+PACIENTE → CITA → HCE → DETALLE CLÍNICO
+
+Reglas:
+
+- no saltar niveles
+- no crear relaciones directas no definidas
+
+---
+
+# 10. INTEGRACIONES
+
+La IA solo implementa:
+
+- envío de datos
+- consumo controlado
+
+La IA no implementa:
+
+- lógica conversacional
+- lectura de mensajes externos
+- almacenamiento externo de datos clínicos
+
+---
+
+# 11. CAMBIOS EN EL SISTEMA
+
+La IA no realiza cambios estructurales.
+
+Si detecta necesidad de cambio:
+
+- debe detenerse
+- debe indicar el problema
+- no debe implementar solución estructural
+
+---
+
+# 12. MIGRACIONES
+
+La IA:
+
+- aplica migraciones existentes
+- no modifica migraciones
+
+---
+
+# 13. VERSIONES
+
+La IA debe:
+
+- respetar versiones definidas
+- no actualizar herramientas
+
+---
+
+# 14. TRAZABILIDAD
+
+Toda acción debe:
+
+- ser clara
+- ser verificable
+- ser reproducible
+
+---
+
+# 15. ERRORES
+
+Si existe ambigüedad:
+
+- la IA no decide
+- la IA no interpreta
+- la IA solicita corrección
+
+---
+
+# 16. OBJETIVO
+
+La IA debe construir el sistema respetando:
+
+- estructura
+- reglas
+- control
+
+Sin introducir variaciones no autorizadas.
+
+---

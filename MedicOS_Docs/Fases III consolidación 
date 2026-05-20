@@ -1,0 +1,72 @@
+PROMPT MAESTRO — FASES DE CONSOLIDACIÓN Y OPERATIVIDAD (FCO)
+
+Objetivo: Gobernar todas las fases necesarias para que MedicOS alcance un **estado funcional completo**, asegurando integridad, consistencia, compilación, build, Git, UX/HCE, pruebas, administración y preparación para futuras integraciones.
+
+RUTAS DE TRABAJO
+- Backend: /home/btx/MedicOS/backend
+- Frontend: /home/btx/MedicOS/backend/frontend
+
+CARPETAS Y ESTRUCTURA
+- Backend: src/, sql/, .env, package.json; módulos con domain/entities, domain/repositories, application/use-cases, infrastructure/.gitkeep; barrels implementados
+- Frontend: src/ con core/, shared/components/, shared/layouts/, shared/utils/, modules/ (usuario, paciente, agenda, hce, clinico, suscripcion, sistema, publicidad, integraciones), index.ts global, assets/, main.ts, App.ts, package.json, tsconfig.json, vite.config.ts; barrels implementados
+
+FASES Y TAREAS
+
+- FCO01 — Revisión Infraestructura Backend
+  - Validar rutas, carpetas, barrels
+  - Compilación y endpoints
+  - Logs y auditoría
+  - Git limpio, commits aislados
+
+- FCO02 — Revisión Frontend
+  - Validar estructura de módulos, pantallas y componentes
+  - Build limpio y reproducible
+  - Render correcto y navegación
+  - Barrels validados
+  - Git controlado
+
+- FCO03 — Integración Backend-Frontend
+  - Conectar endpoints con pantallas
+  - Validar CRUD y flujos de datos
+  - Pruebas en desktop, tablet y móvil
+  - Git controlado, commits por integración
+
+- FCO04 — Validación UX/HCE
+  - Confirmar que el médico escribe como piensa
+  - Campos visibles cómodos y consistentes
+  - Layout ContentLayout obligatorio
+  - Navegación y consistencia visual
+
+- FCO05 — Diseño Visual y Plantillas
+  - Buscar plantillas y referencias (dashboards médicos, UI kits)
+  - Definir paleta de colores, tipografía, iconografía, grid, bordes y layouts
+  - Crear prototipos y mockups de pantallas clave
+  - Preparación de componentes base para personalización
+
+- FCO06 — Administración y Mantenimiento
+  - Gestión de usuarios y permisos
+  - Supervisión de pagos de suscriptores y publicidad
+  - Auditoría y logs activos
+  - Registro de pagos en backend (SUSCRIPCIÓN, PAGO, PAGO_DETALLE)
+
+- FCO07 — Pruebas integrales
+  - Flujos completos de registro, HCE, agenda, pagos y publicidad
+  - Seguridad, roles y permisos
+  - Escalabilidad y performance
+  - Multidispositivo (desktop, tablet, móvil)
+  - Validación de integración y consistencia total
+
+REGLAS OPERATIVAS
+
+1. Flujo secuencial obligatorio: estructura → rutas → barrels → build → Git → ejecución → validación  
+2. Git: commits aislados, push seguro a master, prohibido reset, clean o restore destructivo  
+3. Build: compilación limpia obligatoria, validación de endpoints y render  
+4. UX/HCE: interfaz natural para el médico, campos claros y consistentes, ContentLayout obligatorio  
+5. Administración: usuarios, pagos y publicidad gestionados por médico o asistente autorizado, logs activos  
+6. Diseño visual: paleta, tipografía, layouts, mockups y prototipos aplicados antes de implementación  
+7. Validación integral: pruebas de flujos completos, seguridad, roles, escalabilidad y multidispositivo  
+8. Documentación: registrar todos los cambios globales y de rutas  
+9. Prioridad de rutas: en conflicto, prevalecen las del frontend  
+10. Cada tarea o fase avanza **solo cuando la anterior está completamente validada**
+
+Este Prompt Maestro define **fases, tareas, reglas y flujos** para asegurar que MedicOS sea funcional, estable y escalable, integrando backend, frontend, UX, administración, pagos, publicidad y pruebas integrales.

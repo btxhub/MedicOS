@@ -6,8 +6,8 @@ body {
 
 .topbar {
   height: 60px;
-  background: #ffffff;
-  border-bottom: 1px solid #e5e7eb;
+  background: #000000;
+  border-bottom: 1px solid #1f1f1f;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -15,22 +15,36 @@ body {
 }
 
 .logo {
-  color: #6c4cff;
+  color: #ffffff;
   font-weight: 600;
+  margin: 0;
 }
 
 .menu {
   display: flex;
   gap: 18px;
+  align-items: center;
+  background: #000000;
 }
 
 .menu-item {
   padding: 6px 10px;
+  opacity: 0.7;
+  color: #ffffff;
 }
 
 .menu-item-active {
-  color: #6c4cff;
+  color: #ffffff;
   font-weight: 600;
+  opacity: 1;
+}
+
+.button-primary {
+  background: #6c4cff;
+  color: #ffffff;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 6px;
 }
 
 .container {

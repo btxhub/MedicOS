@@ -1,0 +1,192 @@
+# CONVENCIONES GLOBALES DE DESARROLLO — MedicOS (FINAL)
+
+---
+
+# 1. OBJETIVO
+
+Establecer reglas obligatorias para garantizar:
+
+- consistencia
+- estabilidad
+- trazabilidad
+- control del sistema
+
+Estas reglas aplican a todo el proyecto.
+
+---
+
+# 2. PRINCIPIO DEL SISTEMA
+
+MedicOS:
+
+- no interpreta datos médicos
+- no genera diagnósticos
+- no sugiere tratamientos
+
+El sistema solo registra y organiza información.
+
+---
+
+# 3. PRINCIPIO DE SIMPLICIDAD
+
+El sistema debe:
+
+- ser fácil de usar
+- tener flujos claros
+- evitar complejidad innecesaria
+
+Se debe evitar:
+
+- lógica innecesaria
+- configuraciones complejas visibles
+- estructuras ambiguas
+
+---
+
+# 4. MODELO DE DATOS
+
+El ERD es la única fuente de verdad.
+
+Reglas:
+
+- no eliminar campos
+- no renombrar campos
+- no modificar relaciones
+- no crear nuevas entidades sin actualizar el ERD
+
+---
+
+# 5. ACCESO A DATOS
+
+- no usar ORM
+- usar SQL directo o query builder controlado
+- toda consulta debe respetar el ERD
+
+---
+
+# 6. CONVENCIONES DE NOMBRES
+
+- nombres de tablas y campos definidos en el ERD son obligatorios
+- no se permite duplicidad semántica
+- no se permiten nombres genéricos ambiguos
+
+---
+
+# 7. RELACIONES
+
+- solo se permiten relaciones definidas en el ERD
+- no crear conexiones nuevas entre tablas
+- no saltar niveles de relación
+
+---
+
+# 8. ESTRUCTURA DEL CÓDIGO
+
+- desarrollo por módulos
+- cada módulo usa solo sus tablas
+- no cruzar lógica entre módulos
+
+---
+
+# 9. MIGRACIONES
+
+- toda modificación estructural requiere migración
+- no modificar migraciones existentes
+- no eliminar migraciones
+- mantener consistencia entre código y base de datos
+
+---
+
+# 10. INFRAESTRUCTURA
+
+- PostgreSQL instalado directamente (no Docker)
+- backend independiente
+- versiones de herramientas fijas (no actualizar durante el desarrollo)
+
+---
+
+# 11. CONTROL DE VERSIONES
+
+- uso obligatorio de Git
+- todo cambio debe registrarse
+- no trabajar fuera del repositorio
+
+---
+
+# 12. TRAZABILIDAD
+
+- registrar cambios estructurales
+- registrar acciones relevantes en LOG
+- mantener consistencia documental
+
+---
+
+# 13. PROHIBICIÓN DE CAMBIOS ARBITRARIOS
+
+No se permite modificar:
+
+- modelo de datos
+- estructura del sistema
+- convenciones
+- infraestructura
+
+sin proceso formal
+
+---
+
+# 14. EVOLUCIÓN CONTROLADA
+
+El sistema puede cambiar.
+
+Reglas:
+
+- cambios siempre controlados
+- cambios siempre documentados
+
+Proceso obligatorio:
+
+1. actualizar ERD
+2. generar migración
+3. aplicar migración
+4. ajustar backend
+5. validar sistema
+
+---
+
+# 15. PROTECCIÓN DE DATOS
+
+- no eliminar datos existentes
+- extender antes que reemplazar
+- mantener compatibilidad con información previa
+
+---
+
+# 16. REGLAS PARA CODEX
+
+Codex:
+
+- no modifica estructura
+- no crea relaciones
+- no cambia nombres
+- no asume lógica
+
+Codex solo implementa sobre lo definido
+
+---
+
+# 17. AISLAMIENTO DE TAREAS Y FASES
+
+1. una tarea ejecuta solo su objetivo
+2. no sugiere ni inicia otras tareas
+3. una fase no ejecuta otra fase
+4. cierre de tarea:
+   - informar resultados
+   - entregar resultados
+   - registrar información
+5. cierre de fase:
+   - consolidar resultados
+   - verificar objetivos
+   - generar informe
+6. inicio de nuevas tareas ocurre fuera de la actual
+
+---

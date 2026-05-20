@@ -4,7 +4,7 @@ export class Receta {
   constructor(
     public readonly id: number,
     public readonly idHce: number,
-    public readonly medicamento: string,
+    public readonly descripcion: string,
     public readonly dosis: string,
     public readonly frecuencia: string,
     public readonly duracion: string,

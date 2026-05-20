@@ -1,0 +1,216 @@
+# REGISTRO DE MIGRACIONES DEL PROYECTO — MedicOS (FINAL)
+
+---
+
+# 1. OBJETIVO
+
+Registrar y controlar todos los cambios estructurales del sistema MedicOS.
+
+Garantizar:
+
+- trazabilidad
+- consistencia
+- control del modelo de datos
+- alineación con el ERD
+
+---
+
+# 2. DEFINICIÓN DE MIGRACIÓN
+
+Una migración es cualquier cambio en la estructura de la base de datos.
+
+Incluye:
+
+- creación de tablas
+- modificación de tablas
+- adición de campos
+- modificación de campos
+- eliminación de campos
+- cambios en relaciones
+
+---
+
+# 3. PRINCIPIO FUNDAMENTAL
+
+La base de datos no se modifica directamente.
+
+Toda modificación:
+
+👉 se realiza mediante migraciones
+
+---
+
+# 4. RELACIÓN CON EL ERD
+
+Regla crítica:
+
+- primero se actualiza el ERD
+- luego se crea la migración
+
+Nunca al revés.
+
+El ERD es la referencia obligatoria.
+
+---
+
+# 5. UBICACIÓN DE MIGRACIONES
+
+Directorio:
+
+/home/btx/MedicOS/sql
+
+Reglas:
+
+- todas las migraciones se almacenan aquí
+- no crear migraciones fuera de este directorio
+
+---
+
+# 6. FORMATO DE MIGRACIONES
+
+Cada migración debe:
+
+- ser un archivo SQL
+- tener nombre único
+- seguir orden cronológico
+
+Formato:
+
+YYYYMMDD_HHMM_descripcion.sql
+
+Ejemplo:
+
+20260320_1530_create_paciente.sql
+
+---
+
+# 7. CONTENIDO DE MIGRACIONES
+
+Cada archivo debe contener:
+
+- cambios estructurales
+- comandos SQL claros
+- sin ambigüedad
+
+Reglas:
+
+- no usar generación automática
+- no usar herramientas que modifiquen estructura sin control
+
+---
+
+# 8. EJECUCIÓN DE MIGRACIONES
+
+Las migraciones se ejecutan:
+
+- manualmente
+- en orden cronológico
+
+Reglas:
+
+- no saltar migraciones
+- no ejecutar fuera de orden
+- verificar resultado después de ejecución
+
+---
+
+# 9. REGISTRO DE MIGRACIONES
+
+Cada migración debe registrarse en este documento.
+
+Debe incluir:
+
+- identificador
+- fecha
+- descripción
+- tablas afectadas
+- tipo de cambio
+
+---
+
+# 10. REGLAS DE INMUTABILIDAD
+
+- no modificar migraciones existentes
+- no eliminar migraciones
+- no sobrescribir archivos
+
+Si se requiere cambio:
+
+👉 crear nueva migración
+
+---
+
+# 11. PRINCIPIO DE EVOLUCIÓN
+
+El sistema puede cambiar.
+
+Las migraciones deben permitir:
+
+- ajustes frecuentes
+- evolución del modelo
+- adaptación a pruebas reales
+
+---
+
+# 12. REGLAS DE CAMBIO
+
+- no eliminar datos existentes
+- evitar cambios destructivos
+- extender antes que reemplazar
+- mantener compatibilidad
+
+---
+
+# 13. VALIDACIÓN
+
+Después de cada migración:
+
+- verificar estructura
+- verificar integridad
+- validar funcionamiento del sistema
+
+---
+
+# 14. CONTROL DE CONSISTENCIA
+
+Debe existir consistencia entre:
+
+- ERD
+- base de datos
+- backend
+
+Regla:
+
+- no puede haber diferencias entre estos elementos
+
+---
+
+# 15. PROHIBICIONES
+
+No se permite:
+
+- modificar base de datos manualmente
+- ejecutar cambios sin migración
+- crear estructura fuera del ERD
+
+---
+
+# 16. RESPONSABILIDAD
+
+Las migraciones son:
+
+- la única forma de cambiar la base de datos
+- el historial oficial de cambios
+
+---
+
+# 17. RESULTADO
+
+Sistema:
+
+- controlado
+- trazable
+- consistente
+- adaptable a cambios sin perder estabilidad
+
+---

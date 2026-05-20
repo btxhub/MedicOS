@@ -1,13 +1,27 @@
-// ARCHIVO: src/modules/sistema/sistema.controller.ts
+// ARCHIVO: /home/btx/MedicOS/backend/src/modules/sistema/sistema.controller.ts
 
-import { Controller, Get } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Param,
+  UseGuards,
+} from '@nestjs/common';
+
+import { AuthGuard } from '../../core/security/guards/auth.guard';
+import { RolesGuard } from '../../core/security/guards/roles.guard';
 
 @Controller('sistema')
+@UseGuards(AuthGuard, RolesGuard)
 export class SistemaController {
+  constructor() {}
 
-  @Get('logs')
-  getLogs() {
-    return [];
+  @Get()
+  health() {
+    return { status: 'ok' };
   }
 
+  @Get(':id')
+  getById(@Param('id') id: string) {
+    return { id };
+  }
 }

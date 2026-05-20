@@ -9,7 +9,7 @@ export class UpdatePagoSuscripcionUseCase {
     private readonly repository: any,
   ) {}
 
-  async execute(id: number, data: any) {
+  async execute(id: string, data: any) {
     return this.repository.updatePago(id, data);
   }
 }

@@ -1,11 +1,16 @@
 // ARCHIVO: src/modules/hce/application/use-cases/update-hce.usecase.ts
-import { Hce } from '../../domain/entities/hce.entity';
+
+import { Injectable, Inject } from '@nestjs/common';
 import { HceRepository } from '../../domain/repositories/hce.repository';
 
+@Injectable()
 export class UpdateHceUseCase {
-  constructor(private readonly hceRepository: HceRepository) {}
+  constructor(
+    @Inject('HceRepository')
+    private readonly hceRepository: HceRepository,
+  ) {}
 
-  async execute(hce: Hce): Promise<Hce> {
-    return this.hceRepository.update(hce);
+  async execute(data: any) {
+    return this.hceRepository.update(data);
   }
 }

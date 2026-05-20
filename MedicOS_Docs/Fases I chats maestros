@@ -1,0 +1,221 @@
+# PROMPT MAESTRO — F00 INFRAESTRUCTURA — MedicOS
+
+---
+
+# 1. IDENTIFICACIÓN
+
+Fase:
+F00 — Infraestructura
+
+Nombre:
+Infraestructura Base del Proyecto
+
+---
+
+# 2. PROPÓSITO DE LA FASE
+
+Establecer la base técnica única, estable y centralizada del sistema MedicOS.
+
+Esta fase no desarrolla funcionalidades del sistema.
+Define el entorno sobre el cual todas las fases posteriores operarán.
+
+---
+
+# 3. ALCANCE
+
+Esta fase incluye exclusivamente:
+
+- configuración del backend (NestJS + TypeScript)
+- conexión a base de datos PostgreSQL
+- estructura del proyecto
+- archivo .env
+- control de versiones (Git)
+- definición de rutas oficiales
+- definición de puertos
+- estructura de migraciones SQL
+
+---
+
+# 4. RESTRICCIONES ESTRICTAS
+
+No está permitido:
+
+- crear lógica de negocio
+- implementar módulos funcionales
+- modificar el ERD
+- crear tablas adicionales
+- usar ORM
+- introducir nuevas tecnologías
+- redefinir configuración fuera de .env
+
+---
+
+# 5. COMPONENTES OBLIGATORIOS
+
+Backend:
+- NestJS
+- TypeScript
+
+Base de datos:
+- PostgreSQL instalado directamente
+
+Acceso a datos:
+- SQL directo o query builder controlado
+- prohibido ORM
+
+Control de versiones:
+- Git obligatorio
+
+---
+
+# 6. CONFIGURACIÓN GLOBAL
+
+Archivo único:
+.env
+
+Debe contener:
+
+- credenciales DB
+- host
+- puerto DB (5432)
+- puerto backend (3001)
+- variables del sistema
+
+Reglas:
+
+- única fuente de configuración
+- no se crean archivos alternativos
+- no se duplican valores
+
+---
+
+# 7. RUTA DEL PROYECTO
+
+Ruta obligatoria:
+
+/home/btx/MedicOS
+
+Reglas:
+
+- no trabajar fuera de esta ruta
+- no duplicar estructura
+- no crear rutas paralelas
+
+---
+
+# 8. ESTRUCTURA DEL PROYECTO
+
+Estructura mínima obligatoria:
+
+- src
+- sql
+- .env
+- package.json
+
+Reglas:
+
+- no crear estructuras alternativas
+- no mover archivos sin control
+
+---
+
+# 9. MIGRACIONES
+
+Ubicación:
+
+/home/btx/MedicOS/sql
+
+Reglas:
+
+- solo SQL manual
+- no usar generación automática
+- no modificar migraciones existentes
+- no eliminar migraciones
+
+Formato:
+
+YYYYMMDD_HHMM_descripcion.sql
+
+---
+
+# 10. PUERTOS
+
+Backend:
+3001
+
+Base de datos:
+5432
+
+Reglas:
+
+- valores fijos
+- no modificables por tareas
+- no duplicables
+
+---
+
+# 11. PRINCIPIOS TÉCNICOS
+
+- una sola configuración
+- una sola base de datos
+- un solo backend
+- una sola estructura de proyecto
+
+No duplicar nada.
+
+---
+
+# 12. RESPONSABILIDAD DE LA IA
+
+La IA debe:
+
+- ejecutar configuración técnica
+- respetar infraestructura definida
+- no modificar parámetros globales
+- no asumir configuraciones
+
+La IA no debe:
+
+- crear estructura adicional
+- cambiar versiones
+- modificar arquitectura
+
+---
+
+# 13. VALIDACIÓN
+
+Se debe verificar:
+
+- backend ejecuta correctamente
+- conexión a DB funcional
+- variables .env aplicadas
+- estructura de proyecto correcta
+- repositorio Git inicializado
+
+---
+
+# 14. RESULTADO ESPERADO
+
+Entorno técnico:
+
+- operativo
+- estable
+- reproducible
+- centralizado
+- sin duplicaciones
+
+---
+
+# 15. CONDICIÓN DE CIERRE
+
+La fase se considera completa cuando:
+
+- el entorno funciona sin errores
+- todas las configuraciones están centralizadas
+- no existen estructuras paralelas
+- la base está lista para F01
+
+---
+
+
+

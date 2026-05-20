@@ -10,6 +10,6 @@ export class CreatePagoSuscripcionUseCase {
   ) {}
 
   async execute(data: any) {
-    return this.repository.createPago(data);
+    return this.repository.savePago(data);
   }
 }

@@ -1,144 +1,161 @@
+// ARCHIVO: /home/btx/MedicOS/backend/src/modules/detalle-clinico/detalle-clinico.module.ts
+
 import { Module } from '@nestjs/common';
 import { Pool } from 'pg';
+import { UsuarioModule } from '../usuario/usuario.module'; // ✅ agregado
+import { AccesoRepositoryImpl } from '../usuario/infrastructure/repositories/acceso.repository.impl';
+``
 
 // Controllers
 import { DiagnosticoController } from './presentation/controllers/diagnostico.controller';
-import { AdjuntoController } from './presentation/controllers/adjunto.controller';
-import { EvolucionController } from './presentation/controllers/evolucion.controller';
 import { TratamientoController } from './presentation/controllers/tratamiento.controller';
 import { RecetaController } from './presentation/controllers/receta.controller';
+import { AdjuntoController } from './presentation/controllers/adjunto.controller';
+import { EvolucionController } from './presentation/controllers/evolucion.controller';
+import { SignosVitalesController } from './presentation/controllers/signos-vitales.controller';
+import { OrdenClinicaController } from './presentation/controllers/orden-clinica.controller';
 
-// UseCases Diagnóstico
-import { CreateDiagnosticoUseCase } from './application/use-cases/create-diagnostico.usecase';
-import { UpdateDiagnosticoUseCase } from './application/use-cases/update-diagnostico.usecase';
-import { GetDiagnosticoByIdUseCase } from './application/use-cases/get-diagnostico-by-id.usecase';
-import { GetDiagnosticoByHceUseCase } from './application/use-cases/get-diagnostico-by-hce.usecase';
-import { DeleteDiagnosticoUseCase } from './application/use-cases/delete-diagnostico.usecase';
-
-// UseCases Adjunto
-import { CreateAdjuntoUseCase } from './application/use-cases/create-adjunto.usecase';
-import { UpdateAdjuntoUseCase } from './application/use-cases/update-adjunto.usecase';
-import { DeleteAdjuntoUseCase } from './application/use-cases/delete-adjunto.usecase';
-import { GetAdjuntoByIdUseCase } from './application/use-cases/get-adjunto-by-id.usecase';
-import { GetAdjuntoByHceUseCase } from './application/use-cases/get-adjunto-by-hce.usecase';
-
-// UseCases Evolución
-import { CreateEvolucionUseCase } from './application/use-cases/create-evolucion.usecase';
-import { UpdateEvolucionUseCase } from './application/use-cases/update-evolucion.usecase';
-import { DeleteEvolucionUseCase } from './application/use-cases/delete-evolucion.usecase';
-import { GetEvolucionByIdUseCase } from './application/use-cases/get-evolucion-by-id.usecase';
-import { GetEvolucionByHceUseCase } from './application/use-cases/get-evolucion-by-hce.usecase';
-
-// UseCases Tratamiento
-import { CreateTratamientoUseCase } from './application/use-cases/create-tratamiento.usecase';
-import { UpdateTratamientoUseCase } from './application/use-cases/update-tratamiento.usecase';
-import { GetTratamientoByIdUseCase } from './application/use-cases/get-tratamiento-by-id.usecase';
-import { GetTratamientoByHceUseCase } from './application/use-cases/get-tratamiento-by-hce.usecase';
-
-// UseCases Receta
-import { CreateRecetaUseCase } from './application/use-cases/create-receta.usecase';
-import { UpdateRecetaUseCase } from './application/use-cases/update-receta.usecase';
-import { DeleteRecetaUseCase } from './application/use-cases/delete-receta.usecase';
-import { GetRecetaByIdUseCase } from './application/use-cases/get-receta-by-id.usecase';
-import { GetRecetaByHceUseCase } from './application/use-cases/get-receta-by-hce.usecase';
-
-// Repositories
+// Implementaciones
 import { DiagnosticoRepositoryImpl } from './infrastructure/repositories/diagnostico.repository.impl';
-import { AdjuntoRepositoryImpl } from './infrastructure/repositories/adjunto.repository.impl';
-import { EvolucionRepositoryImpl } from './infrastructure/repositories/evolucion.repository.impl';
 import { TratamientoRepositoryImpl } from './infrastructure/repositories/tratamiento.repository.impl';
 import { RecetaRepositoryImpl } from './infrastructure/repositories/receta.repository.impl';
+import { AdjuntoRepositoryImpl } from './infrastructure/repositories/adjunto.repository.impl';
+import { EvolucionRepositoryImpl } from './infrastructure/repositories/evolucion.repository.impl';
+import { SignosVitalesRepositoryImpl } from './infrastructure/repositories/signos-vitales.repository.impl';
+import { OrdenClinicaRepositoryImpl } from './infrastructure/repositories/orden-clinica.repository.impl';
+
+// UseCases diagnóstico
+import {
+  CreateDiagnosticoUseCase,
+  UpdateDiagnosticoUseCase,
+  DeleteDiagnosticoUseCase,
+  GetDiagnosticoByIdUseCase,
+  GetDiagnosticoByHceUseCase,
+} from './application/use-cases';
+
+// UseCases tratamiento
+import {
+  CreateTratamientoUseCase,
+  UpdateTratamientoUseCase,
+  DeleteTratamientoUseCase,
+  GetTratamientoByIdUseCase,
+  GetTratamientoByHceUseCase,
+} from './application/use-cases';
+
+// UseCases receta
+import {
+  CreateRecetaUseCase,
+  UpdateRecetaUseCase,
+  DeleteRecetaUseCase,
+  GetRecetaByIdUseCase,
+  GetRecetaByHceUseCase,
+} from './application/use-cases';
+
+// UseCases adjunto
+import {
+  CreateAdjuntoUseCase,
+  UpdateAdjuntoUseCase,
+  DeleteAdjuntoUseCase,
+  GetAdjuntoByIdUseCase,
+  GetAdjuntoByHceUseCase,
+} from './application/use-cases';
+
+// UseCases evolucion
+import {
+  CreateEvolucionUseCase,
+  UpdateEvolucionUseCase,
+  DeleteEvolucionUseCase,
+  GetEvolucionByIdUseCase,
+  GetEvolucionByHceUseCase,
+} from './application/use-cases';
+
+// UseCases signos vitales
+import {
+  CreateSignosVitalesUseCase,
+  UpdateSignosVitalesUseCase,
+  DeleteSignosVitalesUseCase,
+  GetSignosVitalesByIdUseCase,
+  GetSignosVitalesByHceUseCase,
+} from './application/use-cases';
+
+// UseCases orden clinica
+import {
+  CreateOrdenClinicaUseCase,
+  UpdateOrdenClinicaUseCase,
+  DeleteOrdenClinicaUseCase,
+  GetOrdenClinicaByIdUseCase,
+  GetOrdenClinicaByHceUseCase,
+} from './application/use-cases';
 
 @Module({
+  imports: [
+    UsuarioModule, // ✅ único cambio necesario
+  ],
   controllers: [
     DiagnosticoController,
-    AdjuntoController,
-    EvolucionController,
     TratamientoController,
     RecetaController,
+    AdjuntoController,
+    EvolucionController,
+    SignosVitalesController,
+    OrdenClinicaController,
   ],
   providers: [
     {
       provide: Pool,
-      useFactory: () =>
-        new Pool({
-          connectionString: process.env.DATABASE_URL,
-        }),
+      useFactory: () => new Pool({ connectionString: process.env.DATABASE_URL }),
     },
 
-    // Diagnóstico
-    {
-      provide: 'DiagnosticoRepository',
-      useFactory: (pool: Pool) =>
-        new DiagnosticoRepositoryImpl(pool),
-      inject: [Pool],
-    },
+    { provide: 'DiagnosticoRepository', useClass: DiagnosticoRepositoryImpl },
+    { provide: 'TratamientoRepository', useClass: TratamientoRepositoryImpl },
+    { provide: 'RecetaRepository', useClass: RecetaRepositoryImpl },
+    { provide: 'AdjuntoRepository', useClass: AdjuntoRepositoryImpl },
+    { provide: 'EvolucionRepository', useClass: EvolucionRepositoryImpl },
+    { provide: 'SignosVitalesRepository', useClass: SignosVitalesRepositoryImpl },
+    { provide: 'OrdenClinicaRepository', useClass: OrdenClinicaRepositoryImpl },
+    { provide: 'AccesoRepository', useClass: AccesoRepositoryImpl },
 
-    // Adjunto
-    {
-      provide: 'AdjuntoRepository',
-      useFactory: (pool: Pool) =>
-        new AdjuntoRepositoryImpl(pool),
-      inject: [Pool],
-    },
-
-    // Evolución
-    {
-      provide: 'EvolucionRepository',
-      useFactory: (pool: Pool) =>
-        new EvolucionRepositoryImpl(pool),
-      inject: [Pool],
-    },
-
-    // Tratamiento
-    {
-      provide: 'TratamientoRepository',
-      useFactory: (pool: Pool) =>
-        new TratamientoRepositoryImpl(pool),
-      inject: [Pool],
-    },
-
-    // Receta
-    {
-      provide: 'RecetaRepository',
-      useFactory: (pool: Pool) =>
-        new RecetaRepositoryImpl(pool),
-      inject: [Pool],
-    },
-
-    // UseCases Diagnóstico
     CreateDiagnosticoUseCase,
     UpdateDiagnosticoUseCase,
+    DeleteDiagnosticoUseCase,
     GetDiagnosticoByIdUseCase,
     GetDiagnosticoByHceUseCase,
-    DeleteDiagnosticoUseCase,
 
-    // UseCases Adjunto
+    CreateTratamientoUseCase,
+    UpdateTratamientoUseCase,
+    DeleteTratamientoUseCase,
+    GetTratamientoByIdUseCase,
+    GetTratamientoByHceUseCase,
+
+    CreateRecetaUseCase,
+    UpdateRecetaUseCase,
+    DeleteRecetaUseCase,
+    GetRecetaByIdUseCase,
+    GetRecetaByHceUseCase,
+
     CreateAdjuntoUseCase,
     UpdateAdjuntoUseCase,
     DeleteAdjuntoUseCase,
     GetAdjuntoByIdUseCase,
     GetAdjuntoByHceUseCase,
 
-    // UseCases Evolución
     CreateEvolucionUseCase,
     UpdateEvolucionUseCase,
     DeleteEvolucionUseCase,
     GetEvolucionByIdUseCase,
     GetEvolucionByHceUseCase,
 
-    // UseCases Tratamiento
-    CreateTratamientoUseCase,
-    UpdateTratamientoUseCase,
-    GetTratamientoByIdUseCase,
-    GetTratamientoByHceUseCase,
+    CreateSignosVitalesUseCase,
+    UpdateSignosVitalesUseCase,
+    DeleteSignosVitalesUseCase,
+    GetSignosVitalesByIdUseCase,
+    GetSignosVitalesByHceUseCase,
 
-    // UseCases Receta
-    CreateRecetaUseCase,
-    UpdateRecetaUseCase,
-    DeleteRecetaUseCase,
-    GetRecetaByIdUseCase,
-    GetRecetaByHceUseCase,
+    CreateOrdenClinicaUseCase,
+    UpdateOrdenClinicaUseCase,
+    DeleteOrdenClinicaUseCase,
+    GetOrdenClinicaByIdUseCase,
+    GetOrdenClinicaByHceUseCase,
   ],
 })
 export class DetalleClinicoModule {}

@@ -1,0 +1,66 @@
+
+adjunto,id,integer
+adjunto,hce_id,integer
+adjunto,url,text
+adjunto,created_at,timestamp without time zone
+diagnostico,id,integer
+diagnostico,hce_id,integer
+diagnostico,descripcion,text
+diagnostico,created_at,timestamp without time zone
+evolucion,id,integer
+evolucion,hce_id,integer
+evolucion,descripcion,text
+evolucion,created_at,timestamp without time zone
+hce,id,integer
+hce,paciente_id,integer
+hce,usuario_id,integer
+hce,created_at,timestamp without time zone
+log,id,integer
+log,accion,text
+log,created_at,timestamp without time zone
+log,usuario_id,integer
+pago_publicidad,id,integer
+pago_publicidad,publicidad_id,integer
+pago_publicidad,monto,numeric
+pago_publicidad,fecha,timestamp without time zone
+pago_suscripcion,id,integer
+pago_suscripcion,suscripcion_id,integer
+pago_suscripcion,monto,numeric
+pago_suscripcion,fecha,timestamp without time zone
+personalizacion,idpersonalizacion,uuid
+personalizacion,clave,character varying
+personalizacion,valor,text
+personalizacion,createdpersonalizacion,timestamp without time zone
+personalizacion,updatedpersonalizacion,timestamp without time zone
+publicidad,id,integer
+publicidad,titulo,character varying
+publicidad,estado,character varying
+publicidad,created_at,timestamp without time zone
+receta,id,integer
+receta,hce_id,integer
+receta,descripcion,text
+receta,created_at,timestamp without time zone
+signos_vitales,id,integer
+signos_vitales,hce_id,integer
+signos_vitales,data,jsonb
+signos_vitales,created_at,timestamp without time zone
+suscripcion,id,integer
+suscripcion,usuario_id,integer
+suscripcion,plan,character varying
+suscripcion,estado,character varying
+suscripcion,created_at,timestamp without time zone
+traduccion,idtraduccion,uuid
+traduccion,clave,character varying
+traduccion,idioma,character varying
+traduccion,valor,text
+traduccion,createdtraduccion,timestamp without time zone
+traduccion,updatedtraduccion,timestamp without time zone
+tratamiento,id,integer
+tratamiento,hce_id,integer
+tratamiento,descripcion,text
+tratamiento,created_at,timestamp without time zone
+usuario,id,integer
+usuario,email,character varying
+usuario,password,character varying
+usuario,created_at,timestamp without time zone
+

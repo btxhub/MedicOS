@@ -1,23 +1,26 @@
-import { SignosVitales } from '../../domain/entities/signos-vitales.entity';
-import type { SignosVitalesRepository } from '../../domain/repositories/signos-vitales.repository';
+// ARCHIVO: /home/btx/MedicOS/backend/src/modules/detalle-clinico/application/use-cases/update-signos-vitales.usecase.ts
 
+import { Inject, Injectable } from '@nestjs/common';
+
+@Injectable()
 export class UpdateSignosVitalesUseCase {
-  constructor(private readonly repository: SignosVitalesRepository) {}
+  constructor(
+    @Inject('SignosVitalesRepository')
+    private readonly repository: any,
+  ) {}
 
-  async execute(data: any): Promise<SignosVitales> {
-    const entity = new SignosVitales(
-      data.id,
-      data.idHce,
-      data.presionArterial,
-      data.frecuenciaCardiaca,
-      data.frecuenciaRespiratoria,
-      data.temperatura,
-      data.saturacionOxigeno,
-      data.peso,
-      data.talla,
-      data.createdAt
-    );
+  async execute(id: string, data: any) {
+    const numericId = Number(id);
+    if (isNaN(numericId)) return null;
 
-    return this.repository.update(entity);
+    return await this.repository.update(numericId, {
+      presion: data.presion,
+      fc: data.fc,
+      fr: data.fr,
+      temp: data.temp,
+      peso: data.peso,
+      talla: data.talla,
+      satO2: data.satO2,
+    });
   }
 }

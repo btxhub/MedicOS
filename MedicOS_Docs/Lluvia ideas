@@ -1,0 +1,169 @@
+MedicOS
+
+Desarrollo de un saas para consultorios médicos, específicamente para la gestión de historiales médicos, gestión de citas médicas y control de pagos de pacientes, generación y envío de recetas, telemedicina (tal vez) (facturación y otros detalles a futuro)
+
+El SaaS gestiona historiales clínicos que incluyen texto, imágenes, videos y PDFs, junto con control de citas médicas integradas a calendarios. Incorpora manejo de pagos y deudas, además de funcionalidades auxiliares para médicos mediante interacciones con WhatsApp, correo electrónico y recordatorios automáticos. Los médicos se inscriben vía email, permitiendo un desarrollo paso a paso orientado a un microSaaS escalable.
+
+Por ahora el saas será para uso personal de los médicos, no para centros de salud. Por lo tanto cada médico se hará cargo del manejo de la aplicación pero con la posibilidad de aumentar usuarios dispuestos por el médico para el manejo de ciertas funciones como el control de citas por ejemplo.
+
+Algunos ejemplos de saas para gestión de historiales que funcionan en otros países : Nimbo, medesk, doctorpad, clinic cloud, meddbase, doctocliq. Usar ideas de estas aplicaciones
+Algunas de estas aplicaciones se conectan con Medi-Span y UpToDate, ver la posibilidad de incluirlas.
+
+Este saas está dirigido a los médicos de Bolivia. Existe la Norma Técnica para el Manejo del Expediente Clínico, emitida por el Ministerio de Salud de Bolivia que está alineada con estándares internacionales para promover la interoperabilidad y calidad en la atención médica, pero con adaptaciones específicas al contexto legal y sanitario del país.
+
+De acuerdo con la Norma Técnica para el Manejo del Expediente Clínico vigente en Bolivia, los campos mínimos que debe incluir la historia clínica son: Datos generales del paciente: nombres y apellidos completos, número de historia clínica, lugar y fecha de nacimiento, edad, sexo, grupo sanguíneo, factor Rh, domicilio actual y de procedencia, teléfono, documento de identificación, estado civil, grado de instrucción, ocupación, religión, y datos de persona acompañante o responsable. Motivo de consulta, fecha y hora de atención. Enfermedad actual: síntomas principales, forma de inicio, curso y funciones biológicas. Antecedentes personales generales: patologías previas, quirúrgicos, fisiológicos y patológicos. Antecedentes familiares relevantes. Vacunación y antecedentes no patológicos. Exploración física detallada. Procedimientos diagnósticos y terapéuticos realizados, con sus respectivos códigos. Complicaciones. Diagnóstico principal y secundarios con códigos (CIE-10 u otra versión vigente). Tratamiento y plan terapéutico. Evolución clínica con notas y observaciones. Consentimientos informados. Nombre, firma, sello y número de colegiatura del profesional que realiza la atención. Datos específicos en hospitalización: servicio, número de cama, episodio de hospitalización, fecha y hora de egreso, tipo de alta y condición de egreso.
+
+Campos comunes de información médica en un historial clínico general, aplicables a distintas especialidades médicas, pueden incluir: Antecedentes médicos y quirúrgicos: enfermedades previas, cirugías, hospitalizaciones. Alergias: medicamentos, alimentos, otros agentes. Vacunas: tipo, fechas y refuerzos aplicados. Historia familiar relevante: enfermedades genéticas o crónicas en la familia. Motivo de la consulta: síntoma o problema actual. Historia de la enfermedad actual: descripción cronológica de síntomas, duración y evolución. Revisión por sistemas: síntomas relacionados a diferentes órganos o sistemas. Signos vitales: presión arterial, frecuencia cardíaca, temperatura, saturación, peso, talla. Exploración física: hallazgos clínicos detectados durante el examen. Resultados de exámenes y pruebas: laboratorios, radiografías, biopsias. Diagnóstico o hipótesis diagnóstica. Tratamiento prescrito: medicamentos, dosis, duración, otros procedimientos. Evolución clínica: notas sobre respuestas al tratamiento, cambios en el estado. Registro de interconsultas y derivaciones. Notas de urgencia o eventos especiales.
+
+El SaaS Médico es una plataforma integral de gestión clínica diseñada específicamente para el contexto boliviano, cumpliendo con la Ley 475 de IdentificMedicOS
+
+El módulo de gestión de citas debe incluir interacción con calendarios, email, whtasapp (u otra aplicación de mensajería), recordatorios. Incluso estas vías de comunicación deben servir para envío de recetas, informes, etc. Los pacientes no serán los que ingresen al sistema para las citas, sólo los médicos y supersonal autorizado y registrado en el sistema.
+
+Desarrollo de un saas para consultorios médicos, específicamente para la gestión de historiales médicos, gestión de citas médicas y control de pagos de pacientes, generación y envío de recetas, telemedicina (tal vez) (facturación y otros detalles a futuro)
+
+El SaaS gestiona historiales clínicos que incluyen texto, imágenes, videos y PDFs, junto con control de citas médicas integradas a calendarios. Incorpora manejo de pagos y deudas, además de funcionalidades auxiliares para médicos mediante interacciones con WhatsApp, correo electrónico y recordatorios automáticos. Los médicos se inscriben vía email, permitiendo un desarrollo paso a paso orientado a un microSaaS escalable.
+
+Por ahora el saas será para uso personal de los médicos, no para centros de salud. Por lo tanto cada médico se hará cargo del manejo de la aplicación pero con la posibilidad de aumentar usuarios dispuestos por el médico para el manejo de ciertas funciones como el control de citas por ejemplo.
+
+Algunos ejemplos de saas para gestión de historiales que funcionan en otros países : Nimbo, medesk, doctorpad, clinic cloud, meddbase, doctocliq. Usar ideas de estas aplicaciones
+Algunas de estas aplicaciones se conectan con Medi-Span y UpToDate, ver la posibilidad de incluirlas.
+
+Este saas está dirigido a los médicos de Bolivia. Existe la Norma Técnica para el Manejo del Expediente Clínico, emitida por el Ministerio de Salud de Bolivia que está alineada con estándares internacionales para promover la interoperabilidad y calidad en la atención médica, pero con adaptaciones específicas al contexto legal y sanitario del país.
+
+De acuerdo con la Norma Técnica para el Manejo del Expediente Clínico vigente en Bolivia, los campos mínimos que debe incluir la historia clínica son: Datos generales del paciente: nombres y apellidos completos, número de historia clínica, lugar y fecha de nacimiento, edad, sexo, grupo sanguíneo, factor Rh, domicilio actual y de procedencia, teléfono, documento de identificación, estado civil, grado de instrucción, ocupación, religión, y datos de persona acompañante o responsable. Motivo de consulta, fecha y hora de atención. Enfermedad actual: síntomas principales, forma de inicio, curso y funciones biológicas. Antecedentes personales generales: patologías previas, quirúrgicos, fisiológicos y patológicos. Antecedentes familiares relevantes. Vacunación y antecedentes no patológicos. Exploración física detallada. Procedimientos diagnósticos y terapéuticos realizados, con sus respectivos códigos. Complicaciones. Diagnóstico principal y secundarios con códigos (CIE-10 u otra versión vigente). Tratamiento y plan terapéutico. Evolución clínica con notas y observaciones. Consentimientos informados. Nombre, firma, sello y número de colegiatura del profesional que realiza la atención. Datos específicos en hospitalización: servicio, número de cama, episodio de hospitalización, fecha y hora de egreso, tipo de alta y condición de egreso.
+
+Campos comunes de información médica en un historial clínico general, aplicables a distintas especialidades médicas, pueden incluir: Antecedentes médicos y quirúrgicos: enfermedades previas, cirugías, hospitalizaciones. Alergias: medicamentos, alimentos, otros agentes. Vacunas: tipo, fechas y refuerzos aplicados. Historia familiar relevante: enfermedades genéticas o crónicas en la familia. Motivo de la consulta: síntoma o problema actual. Historia de la enfermedad actual: descripción cronológica de síntomas, duración y evolución. Revisión por sistemas: síntomas relacionados a diferentes órganos o sistemas. Signos vitales: presión arterial, frecuencia cardíaca, temperatura, saturación, peso, talla. Exploración física: hallazgos clínicos detectados durante el examen. Resultados de exámenes y pruebas: laboratorios, radiografías, biopsias. Diagnóstico o hipótesis diagnóstica. Tratamiento prescrito: medicamentos, dosis, duración, otros procedimientos. Evolución clínica: notas sobre respuestas al tratamiento, cambios en el estado. Registro de interconsultas y derivaciones. Notas de urgencia o eventos especiales.
+
+El SaaS Médico es una plataforma integral de gestión clínica diseñada específicamente para el contexto boliviano, cumpliendo con la Ley 475 de Identificación y Autenticación Digital y el Código de Salud N° 4752 que regula los sistemas de historias clínicas electrónicas en Bolivia. Este microSaaS centraliza la gestión de historias clínicas electrónicas completas, control de agenda médica, facturación/pagos y comunicaciones automatizadas, permitiendo a médicos independientes y consultorios pequeños digitalizar completamente su operación clínica.
+
+1 -------------------------------------------
+
+Existen convenciones y estándares internacionales para el formato y contenido de las historias clínicas, tanto en papel como electrónicas. Algunos de los más relevantes son: Norma Oficial Mexicana NOM-004-SSA3-2012, que regula el contenido mínimo, formato y manejo de la historia clínica en México, aplicable a todos los prestadores de servicios de salud públicos y privados. NOM-024-SSA3-2012, que establece requisitos específicos para los expedientes clínicos electrónicos, incluyendo estructura, seguridad y firma electrónica. Estándares ISO, especialmente ISO/CEN 13606, que es un estándar internacional para el intercambio seguro y estructurado de información clínica entre sistemas. HL7 y CDA (Clinical Document Architecture), que definen formatos y protocolos para la interoperabilidad y el intercambio electrónico de documentos clínicos. Normas HIPAA en Estados Unidos, que regulan además la privacidad y seguridad de los datos de salud. Podemos usar esta información junto con la normativa boliviana.
+
+No se considerarán especialidades, será un sistema para todos los médicos en general.
+
+Hay que considerar que muchos de los médicos no son "amigables" con las aplicaciones ya sea por edad o por el poco interés con la tecnología, por lo tanto debe ser un sistema muy sencillo de manejar, muy intuitivo, de fácil aprendizaje, que el usuario no se rinda en los primeros intentos. Que sea útil para su trabajo y que beneficie a la dupla médico paciente.
+
+Es importante que el control de citas se relacione con las herramientas de calendarios, email, whatsapp, recordatorios. Puesto que no es para centros médicos por ahora no será el paciente quien tenga acceso al calendario del médico.
+
+La parte de facturación debe estar de acuerdo a la normativa boliviana, que sea facturación electrónica.
+
+También debe haber un módulo financiero para que el médico tenga toda la información financiera necesaria tanto para entregar a la oficina de impuestos o al contador como para su uso personal
+
+En Bolivia uno puede descontar de los impuestos las compras que realiza de acuerdo a su rubro, para esto hay un software en Impuestos Internos, hay que ver la posibilidad de interactuar con este software
+
+El historial clínico debe incluir: Texto, pdf, imágenes, video (para rayos x, tomografías, etc) y otro formato que pueda ser necesario
+
+El control de pagos debe incluir efectivo, tarjeta, QR, depósito bancario, por pagar, una combinación de estas formas, incluso pago adelantado. Algún paciente podrá pagar un porcentaje en efectivo, otro con tarjeta, otro con QR, transacción bancaria y dejar otro porcentaje por pagar.
+
+Se considera que en Bolivia hay un estimado de 17000 médicos, si cada médico que tenga 50 pacientes estamos hablando de una base de datos pequeña, Esperamos llegar al 10% de esta población para usar este saas.
+
+Algo muy importante, que este saas sea manejado también desde celular/tablet, en especial la parte de citas y pagos, recetas considerando que el médico no esté en su consultorio en el momento dado.
+En datos del médico usaremos email para suscribirse al sistema, añadir datos como teléfono, celular, carnet de identidad y algún otro que sirva para declaraciones impositivas
+
+Algo muy importante, que todos los mensajes en pantalla, todo texto del frontend este guardado en una base de datos, esto para poder usar varios idiomas.
+
+1. Alcance Funcional Completo
+1.1 Gestión de Historias Clínicas (Núcleo Crítico)
+Obligatorio por normativa boliviana según Resolución Ministerial de Salud que exige mínimo 12 campos estructurados en HCE:
+Datos Identificación Paciente: CI/NIT, nombres completos, fecha nacimiento, sexo, dirección, teléfono, ocupación, lugar trabajo
+Antecedentes Heredofamiliares: Enfermedades crónicas familiares, cirugías, alergias hereditarias
+Antecedentes Personales Patológicos: Enfermedades previas, hospitalizaciones, cirugías, transfusiones, alergias medicamentosas
+Antecedentes Gineco-Obstétricos (mujeres): Menarquia, menopausia, embarazos, partos, abortos
+Hábitos Tóxicos: Tabaquismo, alcoholismo, drogadicción (tipos, frecuencia, cantidad)
+Examen Físico: Peso, talla, TA, FC, FR, temperatura, IMC, hallazgos por aparatos/sistemas
+Motivo Consulta: Narrativa libre del paciente
+Diagnósticos (mínimo 1, máximo 5 por consulta): CIE-10 códigos bolivianos obligatorios
+Tratamiento: Medicamentos (principio activo, dosis, vía, duración), estudios solicitados, indicaciones
+Evolución: Seguimiento temporalizado de cada consulta
+Archivos Multimedia: Imágenes (ecografías, rayos X), videos (endoscopias), PDFs (laboratorios, informes)
+Consentimiento Informado: Firma digital obligatoria por Ley 475[ppl-ai-file-upload.s3.amazonaws](https://ppl-ai-file-upload.s3.amazonaws.com/web/direct-files/attachments/130373101/e4814875-40f6-425f-aeab-04dc0778fcff/Lluvia-ideas-Saas-MedicOS.odt)​
+1.2 Gestión de Agenda y Citas
+Sistema de calendario completo con:
+Tipos cita: Consulta nueva, control, estudios, cirugías
+Duraciones: 15/20/30/45/60 minutos configurables
+Estados: Reservada, confirmada, en curso, finalizada, no presentada, re programada
+Recordatorios: WhatsApp (72h/24h/hora), email (48h/24h), SMS opcional
+Bloqueo agenda: Vacaciones, feriados judiciales bolivianos automáticos
+1.3 Facturación y Control Deudas
+Facturación electrónica certificada SENAD (Sistema Electrónico Nacional de Documentos)
+Tipos comprobantes: Factura, nota débito/crédito, recibo
+Control de deudores: Historial pagos, recordatorios deuda, reporte morosos
+Integración bancos: BCP, BNB paradébitosautomáticos futuros
+1.4 Comunicaciones Automatizadas
+WhatsApp Business API: Confirmaciones, recordatorios, resultados estudios
+SMTP Email: Consentimientos, facturas, informes detallados
+Notificaciones push futuras app móvilación y Autenticación Digital y el Código de Salud N° 4752 que regula los sistemas de historias clínicas electrónicas en Bolivia. Este microSaaS centraliza la gestión de historias clínicas electrónicas completas, control de agenda médica, facturación/pagos y comunicaciones automatizadas, permitiendo a médicos independientes y consultorios pequeños digitalizar completamente su operación clínica.
+
+2  -----------------------------------------------------------------
+
+Existen convenciones y estándares internacionales para el formato y contenido de las historias clínicas, tanto en papel como electrónicas. Algunos de los más relevantes son: Norma Oficial Mexicana NOM-004-SSA3-2012, que regula el contenido mínimo, formato y manejo de la historia clínica en México, aplicable a todos los prestadores de servicios de salud públicos y privados. NOM-024-SSA3-2012, que establece requisitos específicos para los expedientes clínicos electrónicos, incluyendo estructura, seguridad y firma electrónica. Estándares ISO, especialmente ISO/CEN 13606, que es un estándar internacional para el intercambio seguro y estructurado de información clínica entre sistemas. HL7 y CDA (Clinical Document Architecture), que definen formatos y protocolos para la interoperabilidad y el intercambio electrónico de documentos clínicos. Normas HIPAA en Estados Unidos, que regulan además la privacidad y seguridad de los datos de salud. Podemos usar esta información junto con la normativa boliviana.
+
+No se considerarán especialidades, será un sistema para todos los médicos en general.
+
+Hay que considerar que muchos de los médicos no son "amigables" con las aplicaciones ya sea por edad o por el poco interés con la tecnología, por lo tanto debe ser un sistema muy sencillo de manejar, muy intuitivo, de fácil aprendizaje, que el usuario no se rinda en los primeros intentos. Que sea útil para su trabajo y que beneficie a la dupla médico paciente.
+
+Es importante que el control de citas se relacione con las herramientas de calendarios, email, whatsapp, recordatorios. Puesto que no es para centros médicos por ahora no será el paciente quien tenga acceso al calendario del médico.
+
+La parte de facturación debe estar de acuerdo a la normativa boliviana, que sea facturación electrónica.
+
+También debe haber un módulo financiero para que el médico tenga toda la información financiera necesaria tanto para entregar a la oficina de impuestos o al contador como para su uso personal
+
+En Bolivia uno puede descontar de los impuestos las compras que realiza de acuerdo a su rubro, para esto hay un software en Impuestos Internos, hay que ver la posibilidad de interactuar con este software
+
+El historial clínico debe incluir: Texto, pdf, imágenes, video (para rayos x, tomografías, etc) y otro formato que pueda ser necesario
+
+El control de pagos debe incluir efectivo, tarjeta, QR, depósito bancario, por pagar, una combinación de estas formas, incluso pago adelantado. Algún paciente podrá pagar un porcentaje en efectivo, otro con tarjeta, otro con QR, transacción bancaria y dejar otro porcentaje por pagar.
+
+Se considera que en Bolivia hay un estimado de 17000 médicos, si cada médico que tenga 50 pacientes estamos hablando de una base de datos pequeña, Esperamos llegar al 10% de esta población para usar este saas.
+
+Algo muy importante, que este saas sea manejado también desde celular/tablet, en especial la parte de citas y pagos, recetas considerando que el médico no esté en su consultorio en el momento dado.
+En datos del médico usaremos email para suscribirse al sistema, añadir datos como teléfono, celular, carnet de identidad y algún otro que sirva para declaraciones impositivas
+
+Algo muy importante, que todos los mensajes en pantalla, todo texto del frontend este guardado en una base de datos, esto para poder usar varios idiomas.
+
+1. Alcance Funcional Completo
+1.1 Gestión de Historias Clínicas (Núcleo Crítico)
+Obligatorio por normativa boliviana según Resolución Ministerial de Salud que exige mínimo 12 campos estructurados en HCE:
+Datos Identificación Paciente: CI/NIT, nombres completos, fecha nacimiento, sexo, dirección, teléfono, ocupación, lugar trabajo
+Antecedentes Heredofamiliares: Enfermedades crónicas familiares, cirugías, alergias hereditarias
+Antecedentes Personales Patológicos: Enfermedades previas, hospitalizaciones, cirugías, transfusiones, alergias medicamentosas
+Antecedentes Gineco-Obstétricos (mujeres): Menarquia, menopausia, embarazos, partos, abortos
+Hábitos Tóxicos: Tabaquismo, alcoholismo, drogadicción (tipos, frecuencia, cantidad)
+Examen Físico: Peso, talla, TA, FC, FR, temperatura, IMC, hallazgos por aparatos/sistemas
+Motivo Consulta: Narrativa libre del paciente
+Diagnósticos (mínimo 1, máximo 5 por consulta): CIE-10 códigos bolivianos obligatorios
+Tratamiento: Medicamentos (principio activo, dosis, vía, duración), estudios solicitados, indicaciones
+Evolución: Seguimiento temporalizado de cada consulta
+Archivos Multimedia: Imágenes (ecografías, rayos X), videos (endoscopias), PDFs (laboratorios, informes)
+Consentimiento Informado: Firma digital obligatoria por Ley 475[ppl-ai-file-upload.s3.amazonaws](https://ppl-ai-file-upload.s3.amazonaws.com/web/direct-files/attachments/130373101/e4814875-40f6-425f-aeab-04dc0778fcff/Lluvia-ideas-Saas-MedicOS.odt)​
+1.2 Gestión de Agenda y Citas
+Sistema de calendario completo con:
+Tipos cita: Consulta nueva, control, estudios, cirugías
+Duraciones: 15/20/30/45/60 minutos configurables
+Estados: Reservada, confirmada, en curso, finalizada, no presentada, re programada
+Recordatorios: WhatsApp (72h/24h/hora), email (48h/24h), SMS opcional
+Bloqueo agenda: Vacaciones, feriados judiciales bolivianos automáticos
+1.3 Facturación y Control Deudas
+Facturación electrónica certificada SENAD (Sistema Electrónico Nacional de Documentos)
+Tipos comprobantes: Factura, nota débito/crédito, recibo
+Control de deudores: Historial pagos, recordatorios deuda, reporte morosos
+Integración bancos: BCP, BNB paradébitosautomáticos futuros
+1.4 Comunicaciones Automatizadas
+WhatsApp Business API: Confirmaciones, recordatorios, resultados estudios
+SMTP Email: Consentimientos, facturas, informes detallados
+Notificaciones push futuras app móvil
+
+MedicOS es un SaaS diseñado para apoyar el trabajo diario del médico en su consultorio. Su función es registrar, organizar, consultar y gestionar la información generada durante la atención de los pacientes, así como facilitar algunas tareas administrativas del consultorio. MedicOS no es un sistema de diagnóstico ni un sistema que tome decisiones médicas. El conocimiento médico, el diagnóstico, el tratamiento y las indicaciones siempre dependen del médico. El sistema únicamente proporciona herramientas para registrar, organizar y comunicar esa información. El sistema está pensado para consultorios médicos individuales en Bolivia. Cada médico administra su cuenta y puede habilitar usuarios adicionales, como asistentes, para apoyar tareas como el manejo de citas o registros administrativos. Un principio fundamental del sistema es la simplicidad. Muchos médicos no son usuarios expertos en tecnología, por lo que MedicOS debe ser fácil de usar, intuitivo y de aprendizaje rápido. El sistema debe adaptarse al trabajo del médico y no obligar al médico a adaptarse al sistema. FUNCIONES PRINCIPALES Gestión de historias clínicas MedicOS permite registrar y consultar la historia clínica de los pacientes. Cada historia clínica puede incluir texto libre y archivos adjuntos en diferentes formatos como PDFs, imágenes médicas (por ejemplo rayos X o tomografías), videos de estudios y otros documentos relevantes. Registro de consultas Después de cada consulta médica, el médico o su asistente registran en el sistema la información generada durante la atención del paciente. Migración de historiales existentes Muchos médicos ya poseen historias clínicas en formato físico o archivos digitales almacenados en sus computadoras. MedicOS debe permitir incorporar esa información mediante la carga de documentos digitalizados o archivos existentes para centralizar progresivamente toda la información en el sistema. Gestión de citas El sistema permite organizar la agenda del consultorio, registrar citas, reprogramaciones y estados de atención. La agenda puede interactuar con calendarios, correo electrónico o mensajería para enviar recordatorios. Recetas e indicaciones MedicOS proporciona herramientas para que el médico escriba dentro del sistema las recetas o indicaciones que decide prescribir. El contenido siempre es definido por el médico. El sistema únicamente facilita su registro, almacenamiento y envío al paciente cuando sea necesario. Comunicación con pacientes El sistema permite enviar documentos, recetas, indicaciones, informes u otros archivos al paciente mediante correo electrónico o sistemas de mensajería. Compartir documentos con otros médicos MedicOS permite enviar documentos específicos a otros médicos cuando el doctor lo considere necesario. Esto no implica acceso al sistema ni repositorios compartidos, sino únicamente el envío de archivos. Gestión financiera básica MedicOS incluye un módulo simple para registrar pagos, controlar deudas de pacientes y mantener un registro financiero del consultorio. La facturación electrónica debe adaptarse a la normativa boliviana cuando corresponda. Acceso desde dispositivos móviles El sistema debe poder utilizarse desde computadoras, tablets y teléfonos móviles, especialmente para funciones como agenda, registro de pagos, consulta de pacientes y envío de recetas o documentos. Principio general del sistema MedicOS es una herramienta que ayuda al médico en su trabajo diario. Su objetivo es mantener organizada la información del consultorio, facilitar el acceso al historial del paciente y apoyar la gestión administrativa del médico.
+
+El usuario de este saas es el médico (y si él lo decide un asistente)
+Este sistema no es el médico, no sugiere curaciones ni medicinas, sólo es la herramienta que facilita el trabajo del médico.
+
+La página inicial tiene mucho espacio vacío, es prácticamente un pequeño espacio  para login. Quiero aprovechar el espacio restante para publicidades, estas no deben ser invasivas, deben resptear al visitante o usuario.
+
+Quiero que se multilingue, que se pueda interactuar con la voz
+
+
+
+
+

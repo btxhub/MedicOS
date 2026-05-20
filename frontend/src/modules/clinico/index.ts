@@ -1,3 +1,3 @@
-// ARCHIVO: frontend/src/modules/clinico/index.ts
+// ARCHIVO: src/modules/clinico/index.ts
 
-export * from "./pages";
+export * from './pages';

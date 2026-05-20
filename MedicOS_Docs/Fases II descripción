@@ -1,0 +1,359 @@
+F00 — Infraestructura
+
+Nombre de la fase:
+Infraestructura Base del Proyecto
+
+Descripción detallada:
+Esta fase establece la base técnica única, inmutable y centralizada del sistema MedicOS. Su objetivo es eliminar cualquier ambigüedad en la configuración del entorno y garantizar que todas las fases posteriores operen sobre una misma estructura estable.
+
+Incluye la creación del backend en NestJS con TypeScript, la configuración de la conexión directa a PostgreSQL (sin ORM), la definición de la estructura oficial del proyecto dentro de la ruta /home/btx/MedicOS, la creación del archivo .env como única fuente de configuración (credenciales, puertos, rutas), y la inicialización del repositorio Git para control de versiones.
+
+También fija de forma obligatoria:
+- puerto backend (3001)
+- puerto base de datos (5432)
+- versiones de herramientas (sin actualizaciones posteriores)
+- estructura de carpetas (src, sql, etc.)
+
+Define además el modelo de migraciones SQL manuales dentro de /home/btx/MedicOS/sql, estableciendo que toda modificación estructural futura debe pasar por este mecanismo.
+
+No se permite en esta fase:
+- crear lógica de negocio
+- modificar el ERD
+- crear tablas adicionales
+- introducir nuevas tecnologías
+
+Resultado esperado:
+entorno completamente operativo, consistente, reproducible y bloqueado para cambios estructurales fuera de proceso.
+
+
+
+F01 — Usuario
+
+Nombre de la fase:
+Gestión de Usuarios y Acceso
+
+Descripción detallada:
+Esta fase implementa la capa de identidad del sistema. Define cómo se crean, autentican y controlan los usuarios que acceden a MedicOS.
+
+Trabaja sobre:
+- USUARIO
+- ACCESO
+- PRESENTACION
+
+Incluye:
+- registro de usuarios
+- validación de credenciales
+- control de acceso
+- asociación entre usuario y sus datos de presentación
+
+Establece que:
+- toda acción del sistema debe estar asociada a un usuario
+- no existe operación anónima
+- el acceso está controlado desde ACCESO
+
+Define la base para:
+- trazabilidad (LOG)
+- propiedad de datos (CITA, HCE)
+- control de permisos
+
+No se permite en esta fase:
+- acceso a datos clínicos
+- manipulación de pacientes
+- lógica de agenda
+- creación de relaciones fuera del ERD
+
+Resultado esperado:
+sistema con autenticación funcional, control de acceso estable y usuarios correctamente identificados dentro del modelo.
+
+
+
+F02 — Paciente
+
+Nombre de la fase:
+Gestión de Pacientes
+
+Descripción detallada:
+Esta fase implementa la gestión estructural completa de los pacientes del sistema, consolidando la información base que será utilizada por agenda y clínica.
+
+Trabaja sobre:
+- PACIENTE
+- PACIENTE_CONTACTO
+- PACIENTE_SEGURO
+- ANTECEDENTE
+
+Incluye:
+- registro de pacientes
+- actualización de datos
+- consulta de información
+- gestión de múltiples contactos
+- registro de seguros
+- almacenamiento de antecedentes
+
+Define que:
+- PACIENTE es entidad compartida
+- un paciente puede ser atendido por múltiples médicos
+- no se deben duplicar pacientes
+- la información debe mantenerse normalizada
+
+No se permite en esta fase:
+- registrar datos clínicos (HCE)
+- crear citas
+- generar lógica médica
+
+Resultado esperado:
+base de pacientes sólida, sin duplicidad, consistente con el ERD y lista para ser utilizada por otros módulos.
+
+
+
+F03 — Agenda
+
+Nombre de la fase:
+Gestión de Agenda y Citas
+
+Descripción detallada:
+Esta fase implementa la planificación de la atención médica mediante el manejo de citas.
+
+Trabaja sobre:
+- CITA
+- PLANTILLA_CITA
+
+Incluye:
+- creación de citas
+- modificación de citas
+- control de estado de citas
+- organización temporal (fecha/hora)
+- asociación obligatoria con PACIENTE y USUARIO (médico)
+
+Define que:
+- CITA representa intención de atención
+- CITA no contiene datos clínicos
+- CITA puede existir sin HCE
+- no se obliga conversión de cita a atención
+
+No se permite en esta fase:
+- registrar diagnósticos
+- crear HCE automáticamente
+- modificar datos del paciente
+- cruzar lógica con módulo clínico
+
+Resultado esperado:
+agenda operativa, organizada y coherente con el flujo del sistema, sin invadir el dominio clínico.
+
+
+
+F04 — HCE
+
+Nombre de la fase:
+Historia Clínica Electrónica Base
+
+Descripción detallada:
+Esta fase implementa el núcleo clínico del sistema mediante la creación de la HCE.
+
+Trabaja sobre:
+- HCE
+
+Incluye:
+- creación de registros de atención médica
+- asociación obligatoria con PACIENTE y USUARIO (médico)
+- asociación opcional con CITA
+
+Define que:
+- HCE representa atención realizada
+- es el nodo central clínico
+- toda información clínica depende de HCE
+
+Reglas:
+- HCE puede existir sin CITA
+- CITA puede existir sin HCE
+- no se crean dependencias adicionales
+
+No se permite en esta fase:
+- registrar diagnósticos o tratamientos
+- crear estructuras clínicas adicionales
+- modificar relaciones del ERD
+
+Resultado esperado:
+estructura base de atención médica correctamente implementada y lista para extensión clínica.
+
+
+
+F05 — Detalle Clínico
+
+Nombre de la fase:
+Registro de Detalle Clínico
+
+Descripción detallada:
+Esta fase implementa la información clínica completa dependiente de la HCE.
+
+Trabaja sobre:
+- DIAGNOSTICO
+- TRATAMIENTO
+- RECETA
+- SIGNOS_VITALES
+- ADJUNTO
+- EVOLUCION
+
+Incluye:
+- registro de diagnóstico
+- registro de tratamiento
+- generación de recetas
+- captura de signos vitales
+- almacenamiento de archivos clínicos
+- seguimiento evolutivo
+
+Define que:
+- toda información clínica depende de HCE
+- no existe dato clínico fuera de HCE
+- cada registro clínico está vinculado a una atención
+
+No se permite en esta fase:
+- crear datos clínicos independientes
+- modificar la estructura de HCE
+- cruzar con módulos no clínicos
+
+Resultado esperado:
+historial clínico completo, estructurado y alineado con el ERD.
+F06 — Suscripción
+
+Nombre de la fase:
+Gestión de Suscripción del SaaS
+
+Descripción detallada:
+Esta fase implementa la gestión económica del sistema desde la perspectiva del modelo SaaS.
+
+Trabaja sobre:
+- SUSCRIPCION
+- PAGO_SUSCRIPCION
+
+Incluye:
+- registro de suscripciones
+- control de estados de suscripción
+- registro de pagos
+- control de periodos
+
+Define que:
+- está completamente separado del módulo clínico
+- no accede a pacientes
+- no accede a HCE
+
+No se permite en esta fase:
+- manipular datos médicos
+- cruzar lógica con agenda o pacientes
+
+Resultado esperado:
+control comercial funcional del sistema, independiente de la operación médica.
+
+
+
+F07 — Publicidad
+
+Nombre de la fase:
+Gestión de Publicidad
+
+Descripción detallada:
+Esta fase implementa la gestión de anuncios dentro del sistema y sus pagos asociados.
+
+Trabaja sobre:
+- PUBLICIDAD
+- PUBLICIDAD_PAGO
+
+Incluye:
+- registro de anuncios
+- control de contenido publicitario
+- gestión de ubicación de anuncios
+- control de pagos publicitarios
+
+Define que:
+- no interactúa con datos clínicos
+- no accede a pacientes
+- no modifica flujo médico
+
+No se permite en esta fase:
+- generar lógica invasiva
+- cruzar con módulos clínicos
+
+Resultado esperado:
+módulo de publicidad funcional, controlado y aislado.
+
+
+
+F08 — Sistema
+
+Nombre de la fase:
+Auditoría del Sistema
+
+Descripción detallada:
+Esta fase implementa el registro de acciones del sistema mediante LOG.
+
+Trabaja sobre:
+- LOG
+
+Incluye:
+- registro de acciones de usuarios
+- trazabilidad de cambios
+- auditoría de operaciones
+
+Define que:
+- toda acción relevante debe registrarse
+- LOG no modifica datos del sistema
+- LOG es solo observacional
+
+No se permite en esta fase:
+- alterar lógica de negocio
+- intervenir en módulos funcionales
+
+Resultado esperado:
+sistema con trazabilidad completa y capacidad de auditoría.
+
+
+
+F09 — Integraciones
+
+Nombre de la fase:
+Integraciones Externas
+
+Descripción detallada:
+Esta fase implementa la conexión controlada con servicios externos.
+
+Incluye:
+- envío de emails
+- envío de mensajes por WhatsApp
+- sincronización con calendarios
+
+Define que:
+- no se leen mensajes externos
+- no existe lógica conversacional
+- no se almacenan datos clínicos fuera del sistema
+
+No se permite en esta fase:
+- delegar lógica del sistema a servicios externos
+- romper control interno del sistema
+
+Resultado esperado:
+sistema capaz de comunicarse externamente sin perder control ni seguridad.
+
+
+
+F10 — Validación
+
+Nombre de la fase:
+Validación del Sistema
+
+Descripción detallada:
+Esta fase valida el sistema en uso real.
+
+Incluye:
+- pruebas con usuarios reales
+- detección de errores
+- identificación de mejoras
+
+Define que:
+- ningún cambio es directo
+- todo cambio sigue proceso formal (ERD → migración → backend)
+
+No se permite en esta fase:
+- modificar estructura sin migración
+- aplicar cambios sin control
+
+Resultado esperado:
+sistema validado, ajustado y alineado con uso real sin romper consistencia.

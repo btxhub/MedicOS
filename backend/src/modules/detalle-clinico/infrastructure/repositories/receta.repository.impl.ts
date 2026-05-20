@@ -7,31 +7,23 @@ import { Pool } from 'pg';
 export class RecetaRepositoryImpl {
   constructor(private readonly pool: Pool) {}
 
-  async create(data: any) {
-    const result = await this.pool.query(
-      `INSERT INTO receta (
-        hce_id,
-        descripcion,
-        created_at
-      ) VALUES ($1,$2,NOW())
-      RETURNING id, hce_id, descripcion, created_at`,
-      [
-        Number(data.idHce),
-        data.descripcion,
-      ],
-    );
-
-    return result.rows[0];
-  }
-
   async findById(id: number) {
     const result = await this.pool.query(
       `SELECT id, hce_id, descripcion, created_at
        FROM receta
        WHERE id = $1`,
-      [Number(id)],
+      [id],
     );
-    return result.rows[0];
+
+    const row = result.rows?.[0];
+    if (!row) return null;
+
+    return {
+      idRec: row.id,
+      idHce: row.hce_id,
+      descripcionRec: row.descripcion,
+      createdRec: row.created_at,
+    };
   }
 
   async findByHce(idHce: number) {
@@ -39,17 +31,62 @@ export class RecetaRepositoryImpl {
       `SELECT id, hce_id, descripcion, created_at
        FROM receta
        WHERE hce_id = $1
-       ORDER BY created_at ASC`,
-      [Number(idHce)],
+       ORDER BY created_at DESC`,
+      [idHce],
     );
-    return result.rows;
+
+    return result.rows.map((row) => ({
+      idRec: row.id,
+      idHce: row.hce_id,
+      descripcionRec: row.descripcion,
+      createdRec: row.created_at,
+    }));
+  }
+
+  async create(data: any) {
+    const result = await this.pool.query(
+      `INSERT INTO receta (hce_id, descripcion)
+       VALUES ($1, $2)
+       RETURNING id, hce_id, descripcion, created_at`,
+      [data.idHce, data.descripcion],
+    );
+
+    const row = result.rows[0];
+
+    return {
+      idRec: row.id,
+      idHce: row.hce_id,
+      descripcionRec: row.descripcion,
+      createdRec: row.created_at,
+    };
+  }
+
+  async update(id: number, data: any) {
+    const result = await this.pool.query(
+      `UPDATE receta
+       SET descripcion = $1
+       WHERE id = $2
+       RETURNING id, hce_id, descripcion, created_at`,
+      [data.descripcion, id],
+    );
+
+    const row = result.rows?.[0];
+    if (!row) return null;
+
+    return {
+      idRec: row.id,
+      idHce: row.hce_id,
+      descripcionRec: row.descripcion,
+      createdRec: row.created_at,
+    };
   }
 
   async delete(id: number) {
-    const result = await this.pool.query(
+    await this.pool.query(
       `DELETE FROM receta WHERE id = $1`,
-      [Number(id)],
+      [id],
     );
-    return result.rowCount;
+
+    return { success: true };
   }
 }

@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 # compiled output
 /dist
 /node_modules
@@ -60,3 +61,10 @@ dist/
 node_modules/
 .env
 >>>>>>> e20031c4 (feat(usuario): repositorios de dominio definidos)
+=======
+node_modules
+/dist
+.env
+.nest
+coverage
+>>>>>>> 137396805916853fa2c348798080f738ce772f0d

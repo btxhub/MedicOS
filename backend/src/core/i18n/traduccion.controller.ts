@@ -1,20 +1,14 @@
-import { Controller, Get, Query } from '@nestjs/common';
-import { TraduccionService } from './traduccion.service';
+// ARCHIVO: src/core/i18n/traduccion.controller.ts
+
+import { Controller, Get, Query, UseGuards } from '@nestjs/common';
+import { AuthGuard } from '../security/guards/auth.guard';
 
 @Controller('traducciones')
+@UseGuards(AuthGuard)
 export class TraduccionController {
-  constructor(private readonly traduccionService: TraduccionService) {}
-
-  @Get()
-  async getByIdioma(@Query('idioma') idioma: string) {
-    return this.traduccionService.getByIdioma(idioma);
-  }
 
   @Get('valor')
-  async getValor(
-    @Query('clave') clave: string,
-    @Query('idioma') idioma: string
-  ) {
-    return this.traduccionService.getValor(clave, idioma);
+  getValor(@Query('clave') clave: string, @Query('idioma') idioma: string) {
+    return { clave, idioma };
   }
 }

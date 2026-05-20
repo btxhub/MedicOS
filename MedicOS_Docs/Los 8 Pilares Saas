@@ -1,0 +1,32 @@
+1. Modelo Oficial de Datos (ERD)
+
+Base del sistema.
+Define qué existe y qué no existe.
+
+2. Blueprint del Sistema
+
+Se construye sobre la BD, no sobre ideas.
+Define módulos, flujo y límites.
+
+3. Convenciones Globales de Desarrollo
+
+Reglas obligatorias para que todo respete la BD y el blueprint.
+
+4. Prompt Maestro del Proyecto
+
+Contrato de comportamiento para Codex basado en los 3 anteriores.
+
+5. Plan Maestro de Implementación
+
+Orden de desarrollo por módulos y dependencias.
+
+6. Infraestructura Base del Proyecto
+
+Entorno técnico para ejecutar lo definido.
+
+7. Registro de Migraciones del Proyecto
+
+Control de cambios posterior al inicio.
+
+8.INSTRUCCIONES OPERATIVAS POR FASE — MedicOS (FINAL)
+Define cómo se estructuran, nombran y ejecutan las tareas del proyecto sin contenerlas ni crearlas.

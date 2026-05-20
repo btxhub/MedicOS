@@ -1,0 +1,342 @@
+# INFRAESTRUCTURA BASE DEL PROYECTO — MedicOS (FINAL)
+
+---
+
+# 1. OBJETIVO
+
+Definir la infraestructura técnica única, estable y consistente del sistema MedicOS.
+
+La infraestructura debe ser:
+
+- única
+- centralizada
+- no duplicada
+- consistente entre todas las fases y tareas
+- independiente de cambios funcionales
+
+---
+
+# 2. PRINCIPIO DE ESTABILIDAD
+
+La infraestructura no cambia durante el desarrollo.
+
+Reglas:
+
+- versiones de herramientas fijas
+- no actualizar dependencias principales
+- no introducir nuevas tecnologías durante el proceso
+
+---
+
+# 3. PRINCIPIO DE CONFIGURACIÓN ÚNICA
+
+Existe una sola configuración global del sistema.
+
+Ninguna fase ni tarea puede:
+
+- redefinir puertos
+- redefinir rutas
+- redefinir estructura
+- crear configuraciones paralelas
+
+Toda la configuración es centralizada y compartida.
+
+---
+
+# 4. ENTORNO DEL SISTEMA
+
+Sistema operativo:
+
+Ubuntu Server
+
+Entorno único de desarrollo y ejecución controlado.
+
+---
+
+# 5. ARQUITECTURA GENERAL
+
+Componentes:
+
+- Backend
+- Base de datos
+- Storage de archivos
+
+Reglas:
+
+- cada componente tiene una única responsabilidad
+- no se mezclan responsabilidades
+- el backend es el único punto de acceso a datos
+
+---
+
+# 6. BACKEND
+
+Tecnología:
+
+- NestJS
+- TypeScript
+
+Responsabilidad:
+
+- lógica del sistema
+- acceso a base de datos
+- control de módulos
+- validación de reglas
+
+---
+
+# 7. BASE DE DATOS
+
+Motor:
+
+- PostgreSQL (instalado directamente en el sistema)
+
+Reglas:
+
+- no usar contenedores para la base de datos
+- única fuente de verdad del sistema
+- acceso exclusivo desde el backend
+
+---
+
+# 8. ACCESO A DATOS
+
+Tecnología:
+
+- SQL directo o query builder controlado
+
+Reglas:
+
+- no usar ORM
+- no generar estructuras automáticas
+- respetar estrictamente el ERD
+
+---
+
+# 9. STORAGE
+
+Responsabilidad:
+
+- almacenamiento de archivos clínicos
+
+Reglas:
+
+- independiente de la base de datos
+- acceso controlado desde backend
+
+---
+
+# 10. CONTROL DE VERSIONES
+
+Herramienta:
+
+- Git
+
+Reglas:
+
+- todo cambio debe registrarse
+- no trabajar fuera del repositorio
+
+---
+
+# 11. MIGRACIONES
+
+Gestión:
+
+- migraciones SQL controladas
+
+Ubicación:
+
+- directorio del proyecto
+
+Reglas:
+
+- no modificar migraciones existentes
+- no eliminar migraciones
+- toda modificación estructural genera nueva migración
+
+---
+
+# 12. CONFIGURACIÓN GLOBAL
+
+Archivo obligatorio:
+
+.env
+
+Contiene:
+
+- conexión a base de datos
+- credenciales
+- puertos
+- rutas
+- parámetros del sistema
+
+Reglas:
+
+- todas las fases usan este archivo
+- ninguna fase redefine valores
+- no existen configuraciones locales
+
+---
+
+# 13. PUERTOS DEL SISTEMA
+
+Backend:
+3001
+
+Base de datos:
+5432
+
+Reglas:
+
+- valores fijos
+- no modificables por tareas
+- no duplicables
+- no se crean nuevos puertos
+
+---
+
+# 14. RUTA DEL PROYECTO
+
+Ruta oficial:
+
+/home/btx/MedicOS
+
+Reglas:
+
+- todas las fases trabajan en esta ruta
+- no crear carpetas fuera de esta ubicación
+- no duplicar estructuras
+
+---
+
+# 15. ESTRUCTURA DEL PROYECTO
+
+Estructura única:
+
+- src
+- sql
+- .env
+- package.json
+
+Reglas:
+
+- no crear estructuras alternativas
+- no duplicar archivos en otras rutas
+- no mover archivos sin control
+
+---
+
+# 16. ENTORNOS
+
+Definición:
+
+- desarrollo
+- pruebas
+
+Reglas:
+
+- misma estructura
+- misma configuración
+- solo cambian datos
+
+---
+
+# 17. COMUNICACIÓN ENTRE COMPONENTES
+
+- backend accede a base de datos
+- backend gestiona storage
+- frontend no accede directamente a la base de datos
+
+---
+
+# 18. COMUNICACIÓN ENTRE FASES
+
+Las fases:
+
+- no crean configuraciones
+- no redefinen valores
+- usan infraestructura existente
+
+---
+
+# 19. COMUNICACIÓN ENTRE TAREAS
+
+Las tareas:
+
+- no crean configuraciones nuevas
+- no modifican configuración existente
+- no duplican datos técnicos
+
+---
+
+# 20. PRINCIPIO DE NORMALIZACIÓN
+
+Todo dato técnico existe una sola vez.
+
+Ejemplos:
+
+- puerto → una sola definición
+- ruta → una sola definición
+- conexión DB → una sola definición
+
+---
+
+# 21. CONTROL DE CAMBIOS
+
+Si se requiere cambio:
+
+Proceso obligatorio:
+
+1. modificar configuración central
+2. documentar cambio
+3. aplicar globalmente
+
+---
+
+# 22. PROHIBICIONES
+
+No se permite:
+
+- duplicar archivos
+- duplicar configuraciones
+- crear versiones paralelas
+- redefinir parámetros técnicos
+
+---
+
+# 23. PRINCIPIO DE AISLAMIENTO
+
+- la base de datos no contiene lógica
+- el backend contiene toda la lógica
+- el storage solo almacena archivos
+
+---
+
+# 24. PRINCIPIO DE EVOLUCIÓN
+
+La infraestructura es estable.
+
+Los cambios ocurren en:
+
+- modelo de datos
+- backend
+
+No en:
+
+- herramientas
+- entorno base
+
+---
+
+# 25. RESULTADO
+
+Infraestructura:
+
+- única
+- centralizada
+- sin duplicaciones
+- consistente entre fases
+- controlada y predecible
+
+---

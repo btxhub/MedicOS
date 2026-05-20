@@ -1,0 +1,223 @@
+# PILAR 8 — INSTRUCCIONES OPERATIVAS POR FASE — MedicOS (FINAL)
+
+---
+
+# 1. OBJETIVO
+
+Definir el marco estructural para la creación y uso de tareas dentro del proyecto MedicOS.
+
+Este pilar elimina:
+
+- ambigüedad
+- improvisación
+- interpretación durante la ejecución
+
+---
+
+# 2. FUNCIÓN DEL PILAR
+
+Establecer:
+
+- cómo deben ser las tareas
+- cómo se organizan
+- cómo se ejecutan
+
+Este pilar NO contiene las tareas.
+
+---
+
+# 3. RELACIÓN CON OTROS PILARES
+
+Plan Maestro:
+→ define fases (qué hacer)
+
+Pilar 8:
+→ define cómo se estructuran las tareas
+
+Prompt Maestro:
+→ define comportamiento de Codex
+
+Blueprint:
+→ define estructura del sistema
+
+---
+
+# 4. SEPARACIÓN CRÍTICA
+
+Regla obligatoria:
+
+- este pilar define la estructura de tareas
+- este pilar NO contiene tareas
+
+Las tareas:
+
+- se crean en un documento independiente
+- no se generan dentro de este pilar
+- no se generan dentro de los chats de fase
+
+---
+
+# 5. ORIGEN DE LAS TAREAS
+
+Las tareas se crean en un proceso separado del diseño de pilares.
+
+Reglas:
+
+- las tareas se definen antes de la ejecución
+- las tareas no se crean en tiempo real
+- las tareas no se improvisan
+
+---
+
+# 6. ESTRUCTURA DE LAS TAREAS
+
+Cada fase tiene su propio conjunto de tareas.
+
+Formato:
+
+FASE XX — TAREAS
+
+- FXXTYY
+- FXXTYY
+- FXXTYY
+
+---
+
+# 7. CONVENCIÓN DE NOMENCLATURA
+
+Formato obligatorio:
+
+FXXTYY
+
+Donde:
+
+- XX = número de fase
+- YY = número de tarea
+
+Reglas:
+
+- números menores a 10 usan formato 0X
+- números mayores o iguales a 10 usan formato XX
+
+Ejemplos:
+
+- F01T01 → Fase 1, Tarea 1
+- F06T05 → Fase 6, Tarea 5
+- F04T13 → Fase 4, Tarea 13
+- F10T02 → Fase 10, Tarea 2
+
+---
+
+# 8. CARACTERÍSTICAS DE LAS TAREAS
+
+Cada tarea debe ser:
+
+- clara
+- específica
+- de alcance cerrado
+- ejecutable directamente
+
+---
+
+# 9. REGLAS DE LAS TAREAS
+
+- una tarea = una acción
+- no mezclar objetivos
+- no depender de interpretación
+- no saltar pasos
+
+---
+
+# 10. ORDEN DE EJECUCIÓN
+
+- las tareas se ejecutan en orden
+- no se saltan tareas
+- no se ejecutan en paralelo
+
+---
+
+# 11. ALCANCE
+
+Cada tarea:
+
+- pertenece a una fase
+- no ejecuta lógica de otra fase
+- no modifica otras fases
+
+---
+
+# 12. RELACIÓN CON CODEX
+
+Codex:
+
+- recibe tareas ya definidas
+- ejecuta tareas
+- entrega resultados
+
+Codex no:
+
+- define tareas
+- modifica tareas
+- reordena tareas
+
+---
+
+# 13. USO OPERATIVO
+
+En el chat de fase:
+
+1. se carga el contexto (pilares)
+2. se cargan las tareas de la fase (desde documento externo)
+3. se ejecutan una por una
+
+---
+
+# 14. VALIDACIÓN
+
+Después de cada tarea:
+
+- verificar resultado
+- validar funcionamiento
+- confirmar consistencia con ERD y Blueprint
+
+---
+
+# 15. CONTROL DE ERRORES
+
+Si una tarea falla:
+
+- se corrige dentro de la misma tarea
+- no se avanza a la siguiente
+
+---
+
+# 16. PROHIBICIONES
+
+No se permite:
+
+- crear tareas dentro del chat
+- modificar tareas durante ejecución
+- ejecutar tareas fuera de orden
+- mezclar tareas de distintas fases
+
+---
+
+# 17. PRINCIPIO DE CONTROL
+
+Las tareas:
+
+- están definidas antes de ejecutar
+- no cambian durante la ejecución
+
+---
+
+# 18. RESULTADO
+
+Ejecución:
+
+- ordenada
+- controlada
+- predecible
+- sin improvisación
+
+---

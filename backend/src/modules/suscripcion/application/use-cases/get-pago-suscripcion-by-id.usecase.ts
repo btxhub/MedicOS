@@ -9,7 +9,7 @@ export class GetPagoSuscripcionByIdUseCase {
     private readonly repository: any,
   ) {}
 
-  async execute(id: number) {
+  async execute(id: string) {
     return this.repository.findPagoById(id);
   }
 }

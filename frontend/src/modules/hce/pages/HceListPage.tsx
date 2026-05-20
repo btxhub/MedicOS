@@ -60,7 +60,7 @@ const HceListPage = () => {
           )}
 
           {!loading && !error && data.length > 0 && (
-            <Table columns={columns} data={data} onRowClick={handleRowClick} />
+            <Table columns={columns} data={data} />
           )}
         </Card>
       </div>

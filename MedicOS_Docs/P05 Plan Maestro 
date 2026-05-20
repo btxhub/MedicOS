@@ -1,0 +1,324 @@
+# PLAN MAESTRO DE IMPLEMENTACIÓN — MedicOS (FINAL)
+
+---
+
+# 1. OBJETIVO
+
+Organizar el desarrollo del sistema MedicOS de forma:
+
+- estructurada
+- controlada
+- trazable
+- adaptable a cambios reales
+
+---
+
+# 2. PRINCIPIOS DE IMPLEMENTACIÓN
+
+- el desarrollo se basa en el ERD y el Blueprint
+- no se implementa nada fuera del modelo
+- cada fase construye sobre la anterior
+- el sistema debe poder ajustarse sin romperse
+
+---
+
+# 3. ESTRUCTURA DEL TRABAJO
+
+Proyecto
+→ Fases
+→ Tareas
+
+Reglas:
+
+- cada tarea tiene un objetivo único
+- no se mezclan responsabilidades
+- no se adelantan tareas
+
+---
+
+# 4. MODELO DE EJECUCIÓN
+
+El desarrollo es iterativo.
+
+Ciclo:
+
+construir → probar → ajustar → repetir
+
+Reglas:
+
+- las pruebas reales tienen prioridad
+- los cambios se incorporan de forma controlada
+- no se rompe el sistema existente
+
+---
+
+# 5. FASE 0 — INFRAESTRUCTURA
+
+Objetivo:
+establecer entorno técnico estable
+
+Incluye:
+
+- backend configurado
+- conexión a PostgreSQL
+- estructura del proyecto
+- variables de entorno
+- control de versiones
+- versiones de herramientas fijas
+
+Resultado:
+entorno listo para desarrollo
+
+---
+
+# 6. FASE 1 — USUARIO
+
+Tablas:
+USUARIO
+ACCESO
+PRESENTACION
+
+Objetivo:
+gestión de identidad y acceso
+
+Incluye:
+
+- creación de usuarios
+- autenticación
+- control de acceso
+
+Resultado:
+acceso al sistema funcional
+
+---
+
+# 7. FASE 2 — PACIENTE
+
+Tablas:
+PACIENTE
+PACIENTE_CONTACTO
+PACIENTE_SEGURO
+ANTECEDENTE
+
+Objetivo:
+gestión de pacientes
+
+Incluye:
+
+- registro de pacientes
+- edición
+- consulta
+
+Resultado:
+base de pacientes operativa
+
+---
+
+# 8. FASE 3 — AGENDA
+
+Tablas:
+CITA
+PLANTILLA_CITA
+
+Objetivo:
+gestión de citas
+
+Incluye:
+
+- creación de citas
+- modificación
+- control de estados
+
+Resultado:
+agenda funcional
+
+---
+
+# 9. FASE 4 — HCE
+
+Tablas:
+HCE
+
+Objetivo:
+registro de atención médica
+
+Incluye:
+
+- creación de HCE
+- asociación con paciente y médico
+
+Resultado:
+registro clínico base
+
+---
+
+# 10. FASE 5 — DETALLE CLÍNICO
+
+Tablas:
+DIAGNOSTICO
+TRATAMIENTO
+RECETA
+SIGNOS_VITALES
+ADJUNTO
+EVOLUCION
+
+Objetivo:
+extensión de la HCE
+
+Incluye:
+
+- registro de información clínica detallada
+
+Resultado:
+historial clínico completo
+
+---
+
+# 11. FASE 6 — SUSCRIPCIÓN
+
+Tablas:
+SUSCRIPCION
+PAGO_SUSCRIPCION
+
+Objetivo:
+gestión comercial del SaaS
+
+Incluye:
+
+- registro de suscripciones
+- control de pagos
+
+Resultado:
+control comercial operativo
+
+---
+
+# 12. FASE 7 — PUBLICIDAD
+
+Tablas:
+PUBLICIDAD
+PUBLICIDAD_PAGO
+
+Objetivo:
+gestión de anuncios
+
+Incluye:
+
+- registro de publicidad
+- control de pagos publicitarios
+
+Resultado:
+módulo de publicidad funcional
+
+---
+
+# 13. FASE 8 — SISTEMA
+
+Tablas:
+LOG
+
+Objetivo:
+auditoría del sistema
+
+Incluye:
+
+- registro de acciones
+- trazabilidad
+
+Resultado:
+sistema auditado
+
+---
+
+# 14. FASE 9 — INTEGRACIONES
+
+Objetivo:
+integrar herramientas externas
+
+Incluye:
+
+- email
+- whatsapp
+- calendario
+
+Restricciones:
+
+- no lógica conversacional
+- no almacenamiento externo de datos clínicos
+
+Resultado:
+comunicación automatizada
+
+---
+
+# 15. FASE 10 — VALIDACIÓN
+
+Objetivo:
+validar sistema en uso real
+
+Incluye:
+
+- pruebas con médicos
+- detección de problemas
+- ajustes controlados
+
+Resultado:
+sistema alineado a uso real
+
+---
+
+# 16. GESTIÓN DE CAMBIOS
+
+Cuando se detecte una mejora:
+
+Proceso obligatorio:
+
+1. actualizar ERD
+2. generar migración
+3. aplicar migración
+4. ajustar backend
+5. validar sistema
+
+---
+
+# 17. REGLAS DE IMPLEMENTACIÓN
+
+- no modificar estructura sin migración
+- no eliminar datos
+- extender antes que reemplazar
+- mantener compatibilidad
+
+---
+
+# 18. ENTREGA DE TAREAS
+
+Cada tarea debe registrar:
+
+- acciones realizadas
+- cambios aplicados
+- comandos ejecutados
+- verificación
+- problemas y solución
+
+---
+
+# 19. CIERRE DE FASE
+
+Cada fase debe:
+
+- consolidar resultados
+- verificar objetivo
+- documentar estado del sistema
+
+---
+
+# 20. RESULTADO
+
+El sistema se construye de forma:
+
+- controlada
+- consistente
+- adaptable
+- alineada con el ERD y el Blueprint
+
+---

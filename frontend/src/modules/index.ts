@@ -1,4 +1,10 @@
-// ARCHIVO: frontend/src/modules/index.ts
+// ARCHIVO: src/modules/index.ts
 
-export * as clinico from "./clinico";
-export * as suscripcion from "./suscripcion";
+export * from './agenda';
+export * from './clinico';
+export * from './hce';
+export * from './paciente';
+export * from './publicidad';
+export * from './suscripcion';
+export * from './sistema';
+export * from './usuario';

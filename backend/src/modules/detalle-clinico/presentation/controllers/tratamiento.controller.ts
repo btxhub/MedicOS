@@ -1,37 +1,70 @@
-// ARCHIVO: src/modules/detalle-clinico/presentation/controllers/tratamiento.controller.ts
+// ARCHIVO: /home/btx/MedicOS/backend/src/modules/detalle-clinico/presentation/controllers/tratamiento.controller.ts
 
-import { Body, Controller, Get, Param, Post, Put } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Put,
+  Delete,
+  Param,
+  Body,
+  UseGuards,
+} from '@nestjs/common';
+
+import { AuthGuard } from '../../../../core/security/guards/auth.guard';
+import { RolesGuard } from '../../../../core/security/guards/roles.guard';
+import { PermissionsGuard } from '../../../../core/security/guards/permissions.guard';
+import { Roles } from '../../../../core/security/decorators/roles.decorator';
+
 import { CreateTratamientoUseCase } from '../../application/use-cases/create-tratamiento.usecase';
 import { UpdateTratamientoUseCase } from '../../application/use-cases/update-tratamiento.usecase';
 import { GetTratamientoByIdUseCase } from '../../application/use-cases/get-tratamiento-by-id.usecase';
 import { GetTratamientoByHceUseCase } from '../../application/use-cases/get-tratamiento-by-hce.usecase';
+import { DeleteTratamientoUseCase } from '../../application/use-cases/delete-tratamiento.usecase';
 
 @Controller('tratamiento')
+@UseGuards(AuthGuard, RolesGuard, PermissionsGuard)
 export class TratamientoController {
   constructor(
-    private readonly createTratamientoUseCase: CreateTratamientoUseCase,
-    private readonly updateTratamientoUseCase: UpdateTratamientoUseCase,
-    private readonly getTratamientoByIdUseCase: GetTratamientoByIdUseCase,
-    private readonly getTratamientoByHceUseCase: GetTratamientoByHceUseCase,
+    private readonly createTratamiento: CreateTratamientoUseCase,
+    private readonly updateTratamiento: UpdateTratamientoUseCase,
+    private readonly getById: GetTratamientoByIdUseCase,
+    private readonly getByHce: GetTratamientoByHceUseCase,
+    private readonly deleteTratamiento: DeleteTratamientoUseCase,
   ) {}
 
   @Post()
-  async create(@Body() body: any) {
-    return await this.createTratamientoUseCase.execute(body);
-  }
-
-  @Get(':id')
-  async getById(@Param('id') id: string) {
-    return await this.getTratamientoByIdUseCase.execute(id);
-  }
-
-  @Get('hce/:idHce')
-  async getByHce(@Param('idHce') idHce: string) {
-    return await this.getTratamientoByHceUseCase.execute(idHce);
+  @Roles('MEDICO', 'ADMIN')
+  create(@Body() body: any) {
+    return this.createTratamiento.execute({
+      idHce: Number(body.idHce),
+      descripcion: body.descripcion,
+    });
   }
 
   @Put(':id')
-  async update(@Param('id') id: string, @Body() body: any) {
-    return await this.updateTratamientoUseCase.execute(id, body);
+  @Roles('MEDICO', 'ADMIN')
+  update(@Param('id') id: string, @Body() body: any) {
+    return this.updateTratamiento.execute(id, {
+      descripcion: body.descripcion,
+    });
+  }
+
+  @Get(':id')
+  @Roles('MEDICO', 'ADMIN')
+  findById(@Param('id') id: string) {
+    return this.getById.execute(id);
+  }
+
+  @Get('hce/:id')
+  @Roles('MEDICO', 'ADMIN')
+  findByHce(@Param('id') id: string) {
+    return this.getByHce.execute(id);
+  }
+
+  @Delete(':id')
+  @Roles('MEDICO', 'ADMIN')
+  delete(@Param('id') id: string) {
+    return this.deleteTratamiento.execute(id);
   }
 }

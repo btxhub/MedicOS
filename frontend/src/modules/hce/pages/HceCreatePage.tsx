@@ -99,7 +99,6 @@ const HceCreatePage = () => {
               <Button
                 variant="primary"
                 label={loading ? 'Guardando...' : 'Guardar'}
-                onClick={handleSave}
                 disabled={loading || !selectedPaciente}
               />
               <Button variant="secondary" label="Cancelar" disabled={loading} />

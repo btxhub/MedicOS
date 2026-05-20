@@ -1,27 +1,57 @@
 // ARCHIVO: /home/btx/MedicOS/backend/src/app.module.ts
 
-import { Module } from '@nestjs/common';
-import { IntegracionesModule } from './modules/integraciones/integraciones.module';
-import { TraduccionModule } from './core/i18n/traduccion.module';
-import { SistemaModule } from './modules/sistema/sistema.module';
-import { PacienteModule } from './modules/paciente/paciente.module';
-import { HceModule } from './modules/hce/hce.module';
+import { Module, Global } from '@nestjs/common';
+import { Pool } from 'pg';
+import { APP_INTERCEPTOR } from '@nestjs/core';
+
+import { AuthGuard } from './core/security/guards/auth.guard';
+import { RolesGuard } from './core/security/guards/roles.guard';
+import { LogInterceptor } from './core/security/interceptors/log.interceptor';
+
 import { UsuarioModule } from './modules/usuario/usuario.module';
+import { HceModule } from './modules/hce/hce.module';
+import { PacienteModule } from './modules/paciente/paciente.module';
 import { SuscripcionModule } from './modules/suscripcion/suscripcion.module';
 import { PublicidadModule } from './modules/publicidad/publicidad.module';
 import { DetalleClinicoModule } from './modules/detalle-clinico/detalle-clinico.module';
 
+@Global()
+@Module({
+  providers: [
+    {
+      provide: Pool,
+      useFactory: () =>
+        new Pool({
+          user: 'app_user',
+          password: 'app_password',
+          host: '127.0.0.1',
+          port: 5432,
+          database: 'medicos',
+        }),
+    },
+  ],
+  exports: [Pool],
+})
+export class DatabaseModule {}
+
 @Module({
   imports: [
-    IntegracionesModule,
-    TraduccionModule,
-    SistemaModule,
-    PacienteModule,
-    HceModule,
+    DatabaseModule,
     UsuarioModule,
+    HceModule,
+    PacienteModule,
     SuscripcionModule,
     PublicidadModule,
     DetalleClinicoModule,
+  ],
+  controllers: [],
+  providers: [
+    AuthGuard,
+    RolesGuard,
+    {
+      provide: APP_INTERCEPTOR,
+      useClass: LogInterceptor,
+    },
   ],
 })
 export class AppModule {}

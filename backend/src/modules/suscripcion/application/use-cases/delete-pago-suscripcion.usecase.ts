@@ -1,3 +1,4 @@
+
 // ARCHIVO: src/modules/suscripcion/application/use-cases/delete-pago-suscripcion.usecase.ts
 
 import { Inject, Injectable } from '@nestjs/common';
@@ -9,7 +10,7 @@ export class DeletePagoSuscripcionUseCase {
     private readonly repository: any,
   ) {}
 
-  async execute(id: number) {
+  async execute(id: string) {
     return this.repository.deletePago(id);
   }
 }

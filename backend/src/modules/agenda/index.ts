@@ -1,3 +1,3 @@
-// ARCHIVO: src/modules/agenda/index.ts
+// ARCHIVO: /home/btx/MedicOS/backend/src/modules/agenda/index.ts
 
-export {};
+export * from './application';

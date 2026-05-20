@@ -1,5 +1,5 @@
 export class Suscripcion {
-  idSuscripcion: string;
+  idSuscripcion: number;
   refDocSuscripcion: string;
   tipoSuscripcion: string;
   estadoSuscripcion: string;

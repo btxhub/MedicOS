@@ -1,0 +1,279 @@
+# BLUEPRINT OPERATIVO — MedicOS (FINAL)
+
+---
+
+# 1. DEFINICIÓN DEL SISTEMA
+
+MedicOS es un sistema SaaS para gestión de consultorios médicos.
+
+Función:
+- registrar
+- organizar
+- consultar
+- almacenar
+- comunicar
+
+Restricciones:
+- no realiza diagnóstico
+- no interpreta datos clínicos
+- no sugiere tratamientos
+
+---
+
+# 2. BASE ESTRUCTURAL
+
+El sistema se construye exclusivamente sobre el ERD oficial.
+
+Reglas:
+- no crear tablas fuera del ERD
+- no modificar relaciones sin actualizar el ERD
+- no inferir estructura
+- toda operación debe respetar el ERD
+
+El ERD es la única fuente de verdad estructural.
+
+---
+
+# 3. MÓDULOS DEL SISTEMA
+
+MÓDULO PACIENTE
+Tablas:
+PACIENTE
+PACIENTE_CONTACTO
+PACIENTE_SEGURO
+ANTECEDENTE
+
+Responsabilidad:
+gestión de datos del paciente
+
+Restricciones:
+- no contiene lógica clínica
+- no accede a HCE
+- no accede a CITA
+
+---
+
+MÓDULO AGENDA
+Tablas:
+CITA
+PLANTILLA_CITA
+
+Responsabilidad:
+gestión de citas
+
+Restricciones:
+- no registra datos clínicos
+- no modifica información de paciente
+
+---
+
+MÓDULO CLÍNICO
+Tablas:
+HCE
+DIAGNOSTICO
+TRATAMIENTO
+RECETA
+SIGNOS_VITALES
+ADJUNTO
+EVOLUCION
+
+Responsabilidad:
+registro de atención médica
+
+Reglas:
+- HCE es el nodo central
+- todas las tablas dependen de HCE
+- no existe información clínica fuera de HCE
+
+---
+
+MÓDULO USUARIO
+Tablas:
+USUARIO
+ACCESO
+PRESENTACION
+
+Responsabilidad:
+identidad y acceso
+
+---
+
+MÓDULO SUSCRIPCIÓN
+Tablas:
+SUSCRIPCION
+PAGO_SUSCRIPCION
+
+Responsabilidad:
+gestión comercial del SaaS
+
+Restricciones:
+- no accede a pacientes
+- no accede a datos clínicos
+
+---
+
+MÓDULO SISTEMA
+Tablas:
+LOG
+
+Responsabilidad:
+auditoría
+
+Restricciones:
+- no modifica datos de negocio
+
+---
+
+MÓDULO PUBLICIDAD
+Tablas:
+PUBLICIDAD
+PUBLICIDAD_PAGO
+
+Responsabilidad:
+gestión de anuncios
+
+Restricciones:
+- no interactúa con módulos clínicos
+- no accede a pacientes
+
+---
+
+# 4. FLUJO OPERATIVO
+
+PACIENTE
+   ↓
+CITA
+   ↓ (opcional)
+HCE
+   ↓
+DIAGNOSTICO / TRATAMIENTO / RECETA / SIGNOS_VITALES / ADJUNTO / EVOLUCION
+
+Reglas:
+- CITA no obliga HCE
+- HCE puede existir sin CITA
+- toda información clínica depende de HCE
+
+---
+
+# 5. REGLAS DE INTERACCIÓN
+
+- PACIENTE es entidad compartida
+- un paciente puede ser atendido por múltiples médicos
+- no se duplican pacientes
+- HCE pertenece a (PACIENTE + MÉDICO)
+- CITA pertenece a (PACIENTE + MÉDICO)
+- cada médico controla el acceso a la información que genera
+- la información clínica es privada por defecto
+
+---
+
+# 6. REGLAS DE IMPLEMENTACIÓN
+
+- no cruzar módulos
+- no crear relaciones nuevas
+- no duplicar datos
+- no cambiar nombres de campos
+- no modificar estructura sin proceso formal
+
+Toda implementación debe respetar:
+- ERD
+- módulos
+- flujo
+
+---
+
+# 7. INTEGRACIONES
+
+EMAIL:
+- envío de documentos
+- notificaciones
+
+WHATSAPP:
+- envío de recordatorios
+- envío de documentos
+
+CALENDARIO:
+- sincronización de citas
+
+Restricciones:
+- no lectura de mensajes
+- no lógica conversacional
+- no almacenamiento externo de datos clínicos
+
+---
+
+# 8. ARQUITECTURA
+
+Frontend:
+- interfaz
+- no accede a DB
+
+Backend:
+- lógica del sistema
+- único acceso a DB
+
+Base de datos:
+- única fuente de verdad
+
+Storage:
+- archivos clínicos
+
+---
+
+# 9. CONTROL Y TRAZABILIDAD
+
+- toda acción respeta el ERD
+- toda modificación estructural requiere migración
+- las migraciones no se modifican
+- toda acción relevante se registra en LOG
+
+---
+
+# 10. PRINCIPIO DE EVOLUCIÓN
+
+El sistema está diseñado para cambiar.
+
+Reglas:
+- el modelo puede evolucionar
+- los cambios son controlados
+
+Proceso obligatorio:
+
+1. actualizar ERD
+2. crear migración
+3. aplicar migración
+4. ajustar backend
+5. validar sistema
+
+---
+
+# 11. REGLAS DE CAMBIO
+
+- no modificar base de datos directamente
+- no eliminar datos existentes
+- extender antes que reemplazar
+- usar nuevas estructuras cuando sea necesario
+- mantener compatibilidad con datos existentes
+
+---
+
+# 12. REGLAS PARA CODEX
+
+Codex:
+
+- no modifica el ERD
+- no crea relaciones nuevas
+- no cambia nombres de campos
+- no asume lógica no definida
+
+Codex solo:
+
+- implementa sobre el modelo existente
+- respeta módulos
+- ejecuta tareas específicas
+
+---
+
+# 13. OBJETIVO
+
+Mantener organizada la información del consultorio médico y facilitar la operación diaria sin intervenir en decisiones clínicas.

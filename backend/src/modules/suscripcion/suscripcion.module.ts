@@ -1,5 +1,6 @@
 import { Module } from '@nestjs/common';
-import { SuscripcionController } from './suscripcion.controller';
+import { Pool } from 'pg';
+import { SuscripcionController } from './infrastructure/suscripcion.controller';
 
 import { CreateSuscripcionUseCase } from './application/use-cases/create-suscripcion.usecase';
 import { UpdateSuscripcionUseCase } from './application/use-cases/update-suscripcion.usecase';
@@ -16,6 +17,14 @@ import { SuscripcionRepositoryImpl } from './infrastructure/repositories/suscrip
 @Module({
   controllers: [SuscripcionController],
   providers: [
+    {
+      provide: Pool,
+      useFactory: () =>
+        new Pool({
+          connectionString: process.env.DATABASE_URL,
+        }),
+    },
+
     CreateSuscripcionUseCase,
     UpdateSuscripcionUseCase,
     DeleteSuscripcionUseCase,

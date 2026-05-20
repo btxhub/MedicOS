@@ -1,9 +1,12 @@
-// ARCHIVO: /home/btx/MedicOS/backend/src/modules/integraciones/integraciones.controller.ts
-import { Controller, Post, Body } from '@nestjs/common';
+// ARCHIVO: src/modules/integraciones/integraciones.controller.ts
+
+import { Controller, Post, Body, UseGuards } from '@nestjs/common';
+import { AuthGuard } from '../../core/security/guards/auth.guard';
 import { SendEmailUseCase } from './application/use-cases/send-email.usecase';
 import { SendWhatsappUseCase } from './application/use-cases/send-whatsapp.usecase';
 
 @Controller('integraciones')
+@UseGuards(AuthGuard)
 export class IntegracionesController {
   constructor(
     private readonly sendEmailUseCase: SendEmailUseCase,

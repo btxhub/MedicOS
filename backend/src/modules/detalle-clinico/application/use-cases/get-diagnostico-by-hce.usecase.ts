@@ -1,16 +1,21 @@
-// ARCHIVO: /home/btx/MedicOS/backend/src/modules/detalle-clinico/application/use-cases/get-diagnostico-by-hce.usecase.ts
+// ARCHIVO: get-diagnostico-by-hce.usecase.ts (NORMALIZACIÓN GET HCE)
 
 import { Inject, Injectable } from '@nestjs/common';
-import { DiagnosticoRepository } from '../../domain/repositories/diagnostico.repository';
 
 @Injectable()
 export class GetDiagnosticoByHceUseCase {
   constructor(
     @Inject('DiagnosticoRepository')
-    private readonly repository: DiagnosticoRepository,
+    private readonly repository: any,
   ) {}
 
   async execute(idHce: string) {
-    return await this.repository.findByHce(Number(idHce));
+    const numericId = Number(idHce);
+
+    if (isNaN(numericId)) return [];
+
+    const result = await this.repository.findByHce(numericId);
+
+    return result || [];
   }
 }
